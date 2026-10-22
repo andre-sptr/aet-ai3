@@ -1,6 +1,0 @@
-npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
-
-> aet-ai@2.1.1 test:benchmark:plan
-> node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/benchmark-all-models.mjs --plan
-
-{"report":"docs/benchmarks/run-2026-10-22T04-43-57-526Z-38e884be","status":"BLOCKED","modelRequests":0,"metadataRequests":0,"recordedTokens":0,"actualCostUsd":null}

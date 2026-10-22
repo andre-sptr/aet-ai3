@@ -1,7 +1,0 @@
-{
-  "schemaVersion": 1,
-  "datasetSha256": "REPLACE_WITH_HASH_FROM_COMPARABLE_LIVE_REPORT",
-  "maxLatencyMs": 5000,
-  "maxCostUsdPerRequest": 0.01,
-  "evidence": []
-}
