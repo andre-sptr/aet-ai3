@@ -3325,6 +3325,11 @@ img {
 .conversation-list { display:flex; flex-direction:column; gap:4px; min-height:0; max-height:34dvh; overflow:auto; margin-bottom:12px; }
 .conversation-list button { text-align:left; padding:9px 10px; font-size:12px; border-radius:8px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex-shrink:0; }
 .conversation-list button:hover,.conversation-list button.active { background:#e9f1ff; color:#1653bc; }
+.conversation-item { display:flex; align-items:center; gap:2px; min-width:0; }
+.conversation-item > button:first-child { flex:1; min-width:0; }
+.conversation-item > .conversation-delete { flex:0 0 32px; display:grid; place-items:center; padding:9px 4px; color:#64748b; }
+.conversation-item > .conversation-delete:hover { color:#b91c1c; background:#fef2f2; }
+.conversation-item button:focus-visible { outline:2px solid #2563eb; outline-offset:-2px; }
 .dialog-conversations { max-height:45dvh; }
 .model-option:disabled { opacity:.45; cursor:not-allowed; }
 .feedback button { text-decoration:underline; margin-left:10px; font-weight:600; }

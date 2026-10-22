@@ -1,8 +1,11 @@
+import { assertPaidBudget, freshReportPath } from './benchmark-core.mjs';
+await assertPaidBudget(['gpt-4o-mini','gpt-4.1-mini']);
 import fs from 'node:fs/promises';
 import { buildSumopodChatRequest } from '../lib/sumopod.ts';
 const key=process.env.SUMOPOD_API_KEY;
 if(!key||process.env.AET_LIVE_TEST_APPROVED!=='true')throw new Error('Approved provider-capped API key required.');
 const image='data:image/png;base64,'+(await fs.readFile('tests/fixtures/vision-colors.png')).toString('base64');
+const reportPath=await freshReportPath('vision-verification');
 const results=[];
 for(const model of ['gpt-4o-mini','gpt-4.1-mini']) {
   const started=Date.now();const row={model,test:'128x64 image: red left half, blue right half',expected:'RED BLUE'};
@@ -14,4 +17,4 @@ for(const model of ['gpt-4o-mini','gpt-4.1-mini']) {
   }catch(e){row.status='BLOCKED';row.error=e.name;}
   row.durationMs=Date.now()-started;results.push(row);console.log(JSON.stringify(row));
 }
-await fs.writeFile('docs/vision-verification-current.json',JSON.stringify({checkedAt:new Date().toISOString(),budgetCapUsd:Number(process.env.AET_TEST_BUDGET_USD||1),concurrency:1,requests:results.length,scope:'Basic gateway image input smoke only; not an accuracy benchmark for arbitrary images.',results},null,2));
+await fs.writeFile(reportPath,JSON.stringify({checkedAt:new Date().toISOString(),budgetCapUsd:Number(process.env.AET_TEST_BUDGET_USD||3),concurrency:1,requests:results.length,scope:'Basic gateway image input smoke only; not an accuracy benchmark for arbitrary images.',results},null,2));

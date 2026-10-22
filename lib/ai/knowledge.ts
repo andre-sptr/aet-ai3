@@ -1,6 +1,5 @@
 import { stat, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import mammoth from 'mammoth';
 import type { Evidence } from './personas/prompt-builder.ts';
 let cache: { key: string; sections: string[] } | undefined;
 export function needsAetKnowledge(text: string, previousUserText=''): boolean {
@@ -12,6 +11,7 @@ export async function retrieveAetKnowledge(text: string, previousUserText=''): P
   try {
     const info=await stat(file);const key=`${info.mtimeMs}:${info.size}`;
     if(!cache || cache.key!==key){
+      const { default: mammoth } = await import('mammoth');
       const raw=(await mammoth.extractRawText({buffer:await readFile(file)})).value;
       const paragraphs=raw.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);const sections:string[]=[];
       for(const p of paragraphs){if(sections.length && sections.at(-1)!.length+p.length<1400)sections[sections.length-1]+='\n'+p;else sections.push(p);}

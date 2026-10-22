@@ -19,11 +19,14 @@ export function loadConversationStore(storage: Pick<Storage,'getItem'>, mode: Ch
   const current=storage.getItem(conversationKey(mode));
   if(current){
     const data=JSON.parse(current);
-    if(data.version!==2||!Array.isArray(data.conversations)||!data.conversations.length)throw new Error('Format riwayat baru tidak valid. Data asli tetap disimpan.');
+    if(data.version!==2||!Array.isArray(data.conversations))throw new Error('Format riwayat baru tidak valid. Data asli tetap disimpan.');
     const conversations=data.conversations.map((c:Conversation)=>{
       if(c.mode!==mode||typeof c.id!=='string'||typeof c.title!=='string'||typeof c.modelId!=='string')throw new Error('Format percakapan tidak valid.');
       return{...c,messages:hydrate(c.messages)};
     });
+    if(new Set(conversations.map((c:Conversation)=>c.id)).size!==conversations.length)throw new Error('ID percakapan ganda. Data asli tetap disimpan.');
+    // A durable empty v2 store is a tombstone: never re-import deleted legacy data.
+    if(!conversations.length){const chat=newConversation(mode);return{version:2,activeId:chat.id,conversations:[chat]};}
     return{version:2,activeId:conversations.some((c:Conversation)=>c.id===data.activeId)?data.activeId:conversations[0].id,conversations};
   }
   const legacy=storage.getItem(legacyKey(mode));
@@ -32,7 +35,43 @@ export function loadConversationStore(storage: Pick<Storage,'getItem'>, mode: Ch
   return{version:2,activeId:chat.id,conversations:[chat]};
 }
 export function lightweightStore(store: ConversationStore): ConversationStore {
-  return{...store,conversations:store.conversations.map(c=>({...c,messages:c.messages.map(m=>m.attachment?{...m,attachment:{...m.attachment,content:''}}:m)}))};
+  const conversations=savedConversations(store).map(c=>({...c,messages:c.messages.map(m=>m.attachment?{...m,attachment:{...m.attachment,content:''}}:m)}));
+  return{...store,activeId:conversations.some(c=>c.id===store.activeId)?store.activeId:'',conversations};
+}
+/** Drafts and greeting-only sessions exist in memory, not in the history list. */
+export function savedConversations(store: ConversationStore): Conversation[] {
+  return store.conversations.filter(c=>c.messages.some(m=>m.role==='user'));
+}
+export function removeConversation(store: ConversationStore, id: string, mode: ChatMode): ConversationStore {
+  if(!store.conversations.some(c=>c.id===id))return store;
+  const conversations=store.conversations.filter(c=>c.id!==id);
+  if(!conversations.length)conversations.push(newConversation(mode));
+  const fallback=conversations.find(c=>c.messages.some(m=>m.role==='user'))||conversations[0];
+  return{...store,activeId:conversations.some(c=>c.id===store.activeId)?store.activeId:fallback.id,conversations};
+}
+type HistoryStorage = Pick<Storage,'getItem'|'setItem'|'removeItem'>;
+export function persistConversationStore(storage: Pick<Storage,'setItem'>, mode: ChatMode, store: ConversationStore): void {
+  if(store.conversations.some(c=>c.mode!==mode))throw new Error('Mode penyimpanan riwayat tidak cocok.');
+  storage.setItem(conversationKey(mode),JSON.stringify(lightweightStore(store)));
+}
+/** Called by timers AND effect cleanup. A superseded snapshot must never be written. */
+export function saveCurrentSnapshot(storage: Pick<Storage,'setItem'>, mode: ChatMode, snapshot: ConversationStore, current: ConversationStore | null): boolean {
+  if(snapshot!==current || snapshot.conversations.some(c=>c.mode!==mode))return false;
+  persistConversationStore(storage,mode,snapshot);
+  return true;
+}
+/** Persist first; callers publish the new React/ref state only after this succeeds. */
+export function deleteStoredConversation(storage: HistoryStorage, mode: ChatMode, current: ConversationStore, id: string): ConversationStore {
+  const next=removeConversation(current,id,mode);
+  if(next===current)return current;
+  if(storage.getItem(legacyKey(mode))!==null){
+    // Ensure migration is durable before removing its old copy. Failure at any step
+    // leaves a valid store and is surfaced by the caller, never reported as success.
+    persistConversationStore(storage,mode,current);
+    storage.removeItem(legacyKey(mode));
+  }
+  persistConversationStore(storage,mode,next);
+  return next;
 }
 export function historyForModel(messages: Message[]): Message[] {
   const first=messages.findIndex(m=>m.role==='user');

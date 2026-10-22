@@ -1,4 +1,3 @@
-import mammoth from 'mammoth';
 import { ApiError } from '../http.ts';
 import { MAX_FILE_BYTES, validateImage } from '../files.ts';
 export const MAX_EXTRACTED_CHARS = 24_000;
@@ -37,6 +36,7 @@ export async function extractDocument(bytes: Buffer, mime: string): Promise<{ te
     } else if (mime === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
       if (bytes.length < 46) throw new ApiError(415, 'Dokumen DOCX rusak.');
       checkDocxZip(bytes);
+      const { default: mammoth } = await import('mammoth');
       text = (await mammoth.extractRawText({ buffer: bytes })).value;
     } else if (mime === 'text/plain') {
       text = new TextDecoder('utf-8', { fatal: true }).decode(bytes);

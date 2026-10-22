@@ -8,17 +8,18 @@ const server=http.createServer(async(req,res)=>{
  if(typeof text!=='string'){res.writeHead(400).end();return;}
  if(text.includes('MOCK_ERROR_HTTP')){res.writeHead(500,{'Content-Type':'application/json'}).end(JSON.stringify({error:'qa-private-upstream-detail'}));return;}
  res.writeHead(200,{'Content-Type':'text/event-stream'});
- const delta=value=>res.write(`data: ${JSON.stringify({choices:[{delta:{content:value}}]})}\n\n`);
- if(Array.isArray(content)&&content.some(p=>p.type==='image_url')){delta('Image input received.');res.end('data: [DONE]\n\n');return;}
+ const delta=value=>res.write(`data: ${JSON.stringify({model:body.model,choices:[{delta:{content:value}}]})}\n\n`);
+ const finish=()=>res.end(`data: ${JSON.stringify({model:body.model,choices:[{delta:{},finish_reason:'stop'}]})}\n\ndata: [DONE]\n\n`);
+ if(Array.isArray(content)&&content.some(p=>p.type==='image_url')){delta('Image input received.');finish();return;}
  if(text.includes('MOCK_RENDERING')){
   delta(['Rumus $x^2 + y^2 = z^2$.', '', '```mermaid', 'flowchart TD', 'A[Masukan] --> B[Hasil]', '```', '', '```python', 'print(2 + 2)', '```'].join('\n'));
-  res.end('data: [DONE]\n\n');return;
+  finish();return;
  }
- if(text.includes('MOCK_SLOW')){let count=0;const timer=setInterval(()=>{delta('slow ');if(++count===20){clearInterval(timer);res.end('data: [DONE]\n\n');}},300);res.on('close',()=>clearInterval(timer));return;}
+ if(text.includes('MOCK_SLOW')){let count=0;const timer=setInterval(()=>{delta('slow ');if(++count===20){clearInterval(timer);finish();}},300);res.on('close',()=>clearInterval(timer));return;}
  delta('AET test response. ');
  if(text.includes('MOCK_ERROR_FRAME')){res.end('data: {"error":{"message":"qa-private-upstream-detail"}}\n\n');return;}
  if(text.includes('MOCK_TRUNCATED')){res.end();return;}
  if(text.includes('fixture'))delta('The sensor reads temperature.');
- res.end('data: [DONE]\n\n');
+ finish();
 });
 server.listen(port,'127.0.0.1',()=>console.log(`Local QA gateway listening on ${port}`));

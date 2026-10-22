@@ -1,0 +1,15 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> aet-ai@2.1.1 test:tools
+> node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-tools.mjs
+
+{"prompt":"10 km ke m","status":"PASS","durationMs":4}
+{"prompt":"rata-rata: 10, 20, 30","status":"PASS","durationMs":0}
+{"prompt":"cek email hello@example.com","status":"PASS","durationMs":0}
+{"prompt":"konversi warna #ff0000","status":"PASS","durationMs":0}
+{"prompt":"buatkan password 16 simbol","status":"PASS","durationMs":1}
+{"prompt":"cuaca di Pekanbaru","status":"BLOCKED","durationMs":5001}
+{"prompt":"10 USD ke IDR","status":"BLOCKED","durationMs":3927}
+{"prompt":"ringkas https://example.com","status":"BLOCKED","durationMs":2}
+{"prompt":"cari sumber terbaru tentang elektronika","status":"BLOCKED","durationMs":0}
+{"report":"docs/external-tools-2026-10-22T03-30-35-456Z-ea1ab0ec.json","passed":5,"blocked":4}

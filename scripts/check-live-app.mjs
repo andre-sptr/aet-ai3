@@ -1,3 +1,5 @@
+import { assertPaidBudget, freshReportPath } from './benchmark-core.mjs';
+await assertPaidBudget();
 import { spawn } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { createServer } from 'node:net';
@@ -7,6 +9,7 @@ import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { readChatEvents } from '../lib/chat-stream.ts';
 if(!process.env.SUMOPOD_API_KEY||process.env.AET_LIVE_TEST_APPROVED!=='true')throw new Error('Approved provider-capped API key required.');
+const reportPath=await freshReportPath('live-app');
 const socket=createServer();await new Promise(resolve=>socket.listen(0,'127.0.0.1',resolve));const port=socket.address().port;await new Promise(resolve=>socket.close(resolve));
 const directory=await mkdtemp(join(tmpdir(),'aet-live-'));const database=join(directory,'test.db');await copyFile('prisma/dev.db',database);
 const origin=`http://127.0.0.1:${port}`;
@@ -40,6 +43,6 @@ try {
   await ask('Vision through production app route','daily','Sebutkan warna bagian kiri dan kanan gambar dalam bahasa Inggris. Jawab dua warna saja.',{messages:[{role:'user',content:'Sebutkan warna bagian kiri dan kanan gambar dalam bahasa Inggris. Jawab dua warna saja.',attachment:{type:'image',fileName:'colors.png',mimeType:'image/png',content:image}}]},text=>/red/i.test(text)&&/blue/i.test(text));
 } finally {
   stop();if(server&&server.exitCode===null)await new Promise(resolve=>server.once('exit',resolve));await rm(directory,{recursive:true,force:true});
-  const report={checkedAt:new Date().toISOString(),environment:'Local production Next.js, copied SQLite, actual Sumopod gateway',budgetCapUsd:Number(process.env.AET_TEST_BUDGET_USD||1),total:results.length,passed:results.filter(r=>r.status==='PASS').length,results};
-  await writeFile('docs/live-app-current.json',JSON.stringify(report,null,2));if(report.passed!==report.total)process.exitCode=1;
+  const report={checkedAt:new Date().toISOString(),environment:'Local production Next.js, copied SQLite, actual Sumopod gateway',budgetCapUsd:Number(process.env.AET_TEST_BUDGET_USD||3),total:results.length,passed:results.filter(r=>r.status==='PASS').length,results};
+  await writeFile(reportPath,JSON.stringify(report,null,2));if(report.passed!==report.total)process.exitCode=1;
 }

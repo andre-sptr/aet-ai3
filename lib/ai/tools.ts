@@ -4,7 +4,7 @@ import type { Evidence } from './personas/prompt-builder.ts';
 export type ToolCall = { name: string; args: string[] };
 export function routeTools(text: string): ToolCall[] {
   // Explanations, quoted examples, and code must not trigger external actions.
-  if (/```/.test(text) || /\b(contoh kalimat|jelaskan cara|explain how|arti kata)\b/i.test(text) || /\b(?:jangan|tidak perlu|do not|don't)\s+(?:\w+\s+)?(?:konversi|convert|cari|search|baca|read|cek|check)/i.test(text)) return [];
+  if (/```/.test(text) || /\b(contoh kalimat|jelaskan cara|explain how|arti kata)\b/i.test(text) || /\b(?:jangan|tidak perlu|tak perlu|do not|don't|no need to)\s+[^.,;:!\n]{0,60}\b(?:konversi|convert|cari|search|baca|read|cek|check|hitung|calculate|gunakan|use|jalankan|call|run|tools?|alat)\b/i.test(text)) return [];
   const calls: ToolCall[] = []; let m: RegExpMatchArray | null;
   if ((m = text.match(/(?:konversi(?:kan)?\s+)?(-?\d+(?:\.\d+)?)\s*(km|cm|mm|m|mi|ft|in|kg|mg|g|lb|oz|c|f|k)\s+(?:ke|to|=)\s*(km|cm|mm|m|mi|ft|in|kg|mg|g|lb|oz|c|f|k)\b/i))) calls.push({ name: 'unit', args: m.slice(1) });
   if ((m = text.match(/(?:kurs|konversi|convert|berapa)?\s*(\d+(?:\.\d+)?)\s*(USD|IDR|EUR|GBP|JPY|AUD|SGD|MYR|CNY|KRW|SAR|THB|CAD)\s+(?:ke|to|=)\s*(USD|IDR|EUR|GBP|JPY|AUD|SGD|MYR|CNY|KRW|SAR|THB|CAD)\b/i))) calls.push({ name:'currency',args:m.slice(1) });
@@ -61,19 +61,22 @@ export async function runTools(text: string, signal?: AbortSignal): Promise<{ ev
         source='https://api.tavily.com/search';
         if(!process.env.TAVILY_API_KEY)throw new Error('Pencarian web belum dikonfigurasi; referensi terbaru tidak dapat diverifikasi.');
         const r=await boundedJson(source,{signal,method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({api_key:process.env.TAVILY_API_KEY,query:args[0],search_depth:'basic',max_results:3,include_answer:false})}) as {results?:{title:string;url:string;content:string}[]};
-        data=r.results?.slice(0,3).filter(r=>/^https:\/\//.test(r.url)).map(r=>({title:r.title.slice(0,200),url:r.url,excerpt:r.content.slice(0,1500)}));
+        if(!Array.isArray(r.results))throw new Error('Format hasil pencarian tidak valid.');
+        data=r.results.slice(0,3).filter(r=>typeof r?.url==='string'&&typeof r.title==='string'&&typeof r.content==='string'&&/^https:\/\//.test(r.url)).map(r=>({title:r.title.slice(0,200),url:r.url,excerpt:r.content.slice(0,1500)}));
       }
       if(name==='currency') {
         source='https://api.frankfurter.app';
         const r=await boundedJson(`${source}/latest?amount=${args[0]}&from=${args[1].toUpperCase()}&to=${args[2].toUpperCase()}`,{signal}) as {date:string;rates:Record<string,number>};
-        if(!Number.isFinite(r.rates?.[args[2].toUpperCase()]))throw new Error('Mata uang atau kurs tidak tersedia.');
+        if(typeof r.date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(r.date)||!Number.isFinite(r.rates?.[args[2].toUpperCase()]))throw new Error('Mata uang atau kurs tidak tersedia.');
         data={date:r.date,amount:Number(args[0]),from:args[1].toUpperCase(),to:args[2].toUpperCase(),result:r.rates[args[2].toUpperCase()]};
       }
       if(name==='weather') {
         source='https://open-meteo.com';
         const geo=await boundedJson(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(args[0])}&count=1&language=id`,{signal}) as {results?:{name:string;country:string;latitude:number;longitude:number}[]};
-        const city=geo.results?.[0];if(!city)throw new Error('Kota tidak ditemukan.');
+        const city=geo.results?.[0];if(!city||typeof city.name!=='string'||!Number.isFinite(city.latitude)||!Number.isFinite(city.longitude)||Math.abs(city.latitude)>90||Math.abs(city.longitude)>180)throw new Error('Kota tidak ditemukan.');
         const weather=await boundedJson(`https://api.open-meteo.com/v1/forecast?latitude=${city.latitude}&longitude=${city.longitude}&current=temperature_2m,relative_humidity_2m,weather_code&timezone=Asia%2FJakarta`,{signal});
+        const current=(weather as {current?:{time?:string;temperature_2m?:number}})?.current;
+        if(!current||typeof current.time!=='string'||!Number.isFinite(current.temperature_2m))throw new Error('Data cuaca saat ini tidak tersedia.');
         data={city:city.name,country:city.country,weather};
       }
       evidence.push({kind:name,source,status:'ok',data});

@@ -23,6 +23,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import mermaid from "mermaid";
+import { safeMessageUrl } from "@/lib/ai/safe-message-url";
 
 type CodeBlockProps = {
   className?: string;
@@ -508,11 +509,12 @@ export default function MessageBubble({
             <div className="message-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm, remarkMath]}
-                rehypePlugins={[rehypeKatex]}
-                urlTransform={(value) => value}
+                rehypePlugins={[[rehypeKatex, { trust: false }]]}
+                urlTransform={(value, key) => safeMessageUrl(value, key === "src" ? "media" : "link")}
                 components={{
                   pre: ({ children }) => <>{children}</>,
                   img: ({ src, alt }) => {
+                    if (!src) return null;
                     return <ImageViewer src={src as string} alt={alt} />;
                   },
                   code: ({ className, children }) => {
@@ -548,7 +550,7 @@ export default function MessageBubble({
                     <span className="font-bold opacity-90">{children}</span>
                   ),
                   a: ({ href, children }) => {
-                    if (!href) return null;
+                    if (!href) return <>{children}</>;
                     const isVideo =
                       href.startsWith("data:video") || href.endsWith(".mp4");
 

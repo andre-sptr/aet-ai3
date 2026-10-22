@@ -1,5 +1,10 @@
 # AET AI — Full-Stack Persona Evolution 2.1.1
 
+> **Hasil optimasi terbaru — 22 Oktober 2026:** baca `docs/AI_OPTIMIZATION_REPORT_20261022.md`, `docs/AI_REGRESSION_FINAL_20261022.md`, dan `docs/AI_ROUTING_POLICY_20261022.md`. Dependency, 131 tes, lint, typecheck, build dan 84 pemeriksaan HTTP lulus. Metadata Sumopod HTTP 200 memuat seluruh 12 ID. Generasi live belum dijalankan karena bukti cap provider pada key dan tarif resmi belum terverifikasi. Routing default `off`, model default tetap `gpt-4o-mini`; pilihan manual dipertahankan. QA browser BLOCKED karena unduhan Chromium tidak valid. Catatan audit sebelumnya di bawah tetap disimpan sebagai riwayat.
+
+
+> **Catatan audit sebelumnya — 22 Oktober 2026:** bug penghapusan riwayat, autosave, pembatalan, validasi stream, URL Markdown dan integritas hasil tools sudah dipatch. `docs/AI_FULL_AUDIT.md` dan `docs/AI_REGRESSION_TEST_REPORT.md` adalah rujukan audit sebelumnya. Laporan lama di bawah merupakan arsip, bukan hasil pengujian patch ini. Benchmark gateway baru BLOCKED (HTTP 403 lingkungan); build/lint/PDF/DOCX/visual belum terverifikasi ulang karena dependency tidak dapat diunduh.
+
 AET AI untuk Himpunan Mahasiswa AET, Association of Electronics and Telecommunication, Politeknik Caltex Riau. Versi ini mempertahankan AET Signature Hybrid (tema terang), menambah tiga persona modular, multi-chat lokal, ekstraksi dokumen, dan pengamanan API.
 
 ## Menjalankan
@@ -41,8 +46,8 @@ Simpan `.env.local` di folder yang sama dengan `package.json`, lalu restart pros
 ## Kemampuan
 
 - `daily`: Smart Companion; `report`: Academic Writer; `coding`: Coding Expert.
-- 12 model terkurasi lulus smoke test teks dan streaming Sumopod. Default tetap `gpt-4o-mini`; model tidak diganti diam-diam bila gagal.
-- Percakapan baru, cari, pindah, ganti nama, hapus, edit, coba ulang, dan hentikan respons. Riwayat lama dimigrasikan secara lokal dan key lama tetap disimpan.
+- 12 model terkurasi dipertahankan. Smoke test lama tersedia sebagai arsip; audit ulang gateway terbaru BLOCKED. Default tetap `gpt-4o-mini`; tidak ada silent fallback.
+- Percakapan baru, cari, pindah, ganti nama, hapus, edit, coba ulang, dan hentikan respons. Riwayat lama dimigrasikan secara lokal. Saat penghapusan, salinan key lama dibersihkan setelah migrasi v2 dipastikan tersimpan.
 - PDF bertulisan, DOCX, TXT: maksimal 5 MB; PDF maksimal 100 halaman; teks konteks maksimal 24.000 karakter. PDF scan memerlukan OCR di luar aplikasi.
 - Analisis gambar aktif pada GPT-4o Mini setelah uji dasar gateway dan route aplikasi. Model lain tetap diblokir untuk gambar; GPT-4.1 Mini gagal uji warna. Maksimal empat gambar terbaru per request. Ini bukan jaminan akurasi gambar kompleks.
 - CMS berita, kegiatan, dan tim dilindungi autentikasi, validasi, serta pemeriksaan konflik update. Tanggal kegiatan diproses eksplisit dalam WIB.
@@ -79,15 +84,15 @@ Pasang devDependencies sebelum build. Prisma Client berada di `dependencies`. Se
 
 Hasil yang sudah direkam ada di `docs/model-verification.json`, `docs/benchmark-live-results.json`, dan `docs/benchmark-refinement-results.json`. Tidak perlu mengulangnya untuk menyalakan aplikasi.
 
-`npm run test:live` dan `npm run test:benchmark` memanggil layanan berbayar. Keduanya membutuhkan `SUMOPOD_API_KEY` dan `AET_LIVE_TEST_APPROVED=true`. Pasang batas pengeluaran di akun penyedia sebelum menjalankan. Variabel persetujuan dan jumlah token **tidak** menjamin biaya aktual; tagihan perlu dilihat di dashboard penyedia. Laporan tes tidak mencantumkan key.
+`npm run test:benchmark` sekarang memakai katalog aktual dan 96 sel (12 model × delapan kasus), persona produksi, serta validator yang dapat diaudit. Harness berbayar memerlukan `SUMOPOD_API_KEY`, `AET_LIVE_TEST_APPROVED=true`, dan `AET_BENCHMARK_BUDGET_FILE` yang mencatat cap provider dan SHA-256 key khusus, serta `AET_BENCHMARK_PRICING_FILE` yang mencatat tarif resmi input/output setiap model. Cap provider harus diperiksa operator dalam 24 jam terakhir. Batas absolut tugas USD 3; angka environment saja tidak cukup. Salin `docs/benchmark-budget.example.json` hanya setelah cap benar-benar diverifikasi; contoh default tidak mengizinkan generasi. Attestasi operator bukan pemeriksaan billing otomatis. Laporan tidak mencantumkan key dan memakai path unik per run. Jalankan `npm run test:benchmark:plan` untuk rencana tanpa jaringan/biaya. Skrip `benchmark-personas.mjs` lama tetap merupakan benchmark satu model, bukan pengganti harness 12 model.
 
 ## Dokumentasi
 
-Mulai dari `docs/MASTER_PROMPT_COMPLETION_AUDIT.md` dan `docs/FINAL_IMPLEMENTATION_REPORT.md`, lalu audit fungsi/keamanan, katalog model, kompatibilitas Sumopod, spesifikasi persona, benchmark, arsitektur tools, preservasi database, laporan regresi, dan changelog 2.1. Laporan redesign lama dipertahankan sebagai catatan baseline dan diberi penanda; klaim integritas backend lama tidak berlaku sebagai klaim untuk versi 2.1.
+Mulai dari `docs/AI_OPTIMIZATION_REPORT_20261022.md` untuk pekerjaan terbaru. Untuk arsip, lihat `docs/MASTER_PROMPT_COMPLETION_AUDIT.md` dan `docs/FINAL_IMPLEMENTATION_REPORT.md`, lalu audit fungsi/keamanan, katalog model, kompatibilitas Sumopod, spesifikasi persona, benchmark, arsitektur tools, preservasi database, laporan regresi, dan changelog 2.1. Laporan redesign lama dipertahankan sebagai catatan baseline dan diberi penanda; klaim integritas backend lama tidak berlaku sebagai klaim untuk versi 2.1.
 
 Batas utama: beberapa dependency turunan masih terdaftar rentan; kualitas jawaban tidak selalu mengikuti jumlah kata/format sitasi secara tepat. Baca audit keamanan dan benchmark sebelum penggunaan publik.
 
-## Hasil audit lanjutan 2.1.1
+## Arsip hasil sebelum audit penghapusan riwayat
 
 77/77 unit, 84/84 HTTP, 9/9 integrasi aplikasi dengan Sumopod asli, lint, TypeScript dan production build lulus. Dua belas kandidat model lulus teks/stream; Gemini kini memiliki headroom minimum 1024. Konteks dihitung setelah ekstraksi, sumber tools tampil pada pesan, unggahan usang dibatalkan, dan contoh sitasi berplaceholder/pembuatan DOI memiliki respons terkontrol.
 
@@ -104,3 +109,19 @@ npm run test:live-app
 ```
 
 Dua perintah terakhir memakai API berbayar dan membutuhkan SUMOPOD_API_KEY serta AET_LIVE_TEST_APPROVED=true. AET_TEST_BUDGET_USD mencatat batas yang telah Anda tetapkan pada penyedia; variabel itu bukan pengukur tagihan atau spending cap otomatis. Gunakan key server melalui environment. Jangan menyimpan key di source, log atau ZIP.
+
+## Pemeriksaan patch terbaru
+
+```bash
+npm run test:history
+npm test
+npm run lint
+npx tsc --noEmit
+npm run build
+npm run test:http
+node scripts/check-source-syntax.mjs
+```
+
+Tes `chat-route.test.mts` menjalankan handler produksi dengan gateway simulasi, tanpa Next.js server/database produksi. Tes harness juga memakai provider lokal simulasi; token pada fixture tersebut bukan penggunaan Sumopod. Kegagalan import parser tidak lagi dianggap lulus tes penolakan PDF. Riwayat v2 kosong merupakan penanda penghapusan yang sah; sesi sapaan baru tidak menjadi entri riwayat sebelum ada pesan pengguna.
+
+Setelah jaringan dependency/gateway tersedia, ulangi quality gates, QA browser desktop/mobile, PDF/DOCX, dan benchmark dengan cap key yang dibuktikan. Jangan melakukan deployment berdasarkan hasil simulasi saja. Pengujian pada audit ini tidak melakukan deployment, push, perubahan kredensial atau operasi tulis ke database asli.

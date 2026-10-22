@@ -1,0 +1,80 @@
+[
+  {
+    "id": "persona-daily",
+    "category": "persona",
+    "mode": "daily",
+    "prompt": "Baterai HP saya 20% dan perjalanan pulang sekitar satu jam. Beri dua langkah praktis agar HP tetap bisa dipakai menghubungi keluarga. Bahasa Indonesia, tepat dua poin, total 20–45 kata, tanpa salam atau penutup. Jangan mengaku mengetahui kondisi baterai saya.",
+    "reference": "Dua tindakan praktis penghematan baterai, tanpa menjanjikan durasi atau mengarang kondisi perangkat.",
+    "validator": "daily-format",
+    "failureConditions": ["Bukan dua poin", "Kurang dari 20 atau lebih dari 45 kata", "Mengarang kepastian baterai bertahan", "Salam/penutup tidak diminta"]
+  },
+  {
+    "id": "persona-report",
+    "category": "persona",
+    "mode": "report",
+    "prompt": "Penelitian potong lintang pada 120 siswa menemukan korelasi r = 0,42 dan p = 0,01 antara durasi belajar dan nilai ujian. Tulis interpretasi akademik satu paragraf 60–90 kata. Bedakan korelasi dan kausalitas serta sebutkan potensi perancu. Gunakan hanya data ini; tanpa referensi atau DOI. Jangan menyimpulkan durasi belajar menyebabkan kenaikan nilai.",
+    "reference": "Hubungan positif/asosiasi; belum membuktikan kausalitas; perancu perlu dipertimbangkan; tidak ada data atau sumber baru.",
+    "validator": "report-constraints",
+    "failureConditions": ["Menyatakan sebab-akibat terbukti", "Mengarang data atau referensi", "Bukan satu paragraf", "Batas kata tidak diikuti"]
+  },
+  {
+    "id": "persona-coding",
+    "category": "persona",
+    "mode": "coding",
+    "prompt": "Perbaiki bug off-by-one pada JavaScript ini: export function last(items) { return items[items.length]; }. Fungsi harus mengembalikan elemen terakhir, atau undefined untuk array kosong. Pertahankan nama fungsi dan parameter. Jawab kode JavaScript mentah saja, tanpa Markdown, komentar, atau penjelasan. Gunakan satu return dengan items.at(-1) atau items[items.length - 1].",
+    "reference": "export function last(items) { return items[items.length - 1]; }",
+    "validator": "safe-last-function",
+    "failureConditions": ["Off-by-one tidak diperbaiki", "Array kosong gagal", "API/nama fungsi berubah", "Output berisi penjelasan atau Markdown"]
+  },
+  {
+    "id": "reasoning-quantitative",
+    "category": "reasoning",
+    "mode": "daily",
+    "prompt": "Saya membeli 12 buku, harga awal setiap buku Rp15.000. Diskon 20% berlaku pada total harga buku, lalu ditambahkan ongkir Rp10.000 yang tidak didiskon. Berapa total yang dibayar? Jawab angka rupiah bulat saja, tanpa simbol, pemisah ribuan, atau penjelasan.",
+    "reference": "154000",
+    "validator": "exact",
+    "failureConditions": ["Hasil bukan 154000", "Ongkir ikut didiskon", "Format bukan angka saja"]
+  },
+  {
+    "id": "reasoning-constraints",
+    "category": "reasoning",
+    "mode": "daily",
+    "prompt": "A, B, dan C masing-masing mendapat satu hari berbeda: Senin, Selasa, Rabu. A harus sebelum C; B bukan Senin; C bukan Rabu. Tentukan jadwal unik. Jawab persis dengan format A=hari; B=hari; C=hari, tanpa penjelasan.",
+    "reference": "A=Senin; B=Rabu; C=Selasa",
+    "validator": "exact",
+    "failureConditions": ["Ada kendala yang dilanggar", "Jadwal bukan solusi unik", "Format tidak sesuai"]
+  },
+  {
+    "id": "reasoning-conflicting-information",
+    "category": "reasoning",
+    "mode": "report",
+    "prompt": "Dua catatan tanpa tanggal menyebut jumlah siswa kelas yang sama masing-masing 25 dan 30. Jumlah hadir 20. Tidak diketahui catatan mana benar. Apakah satu persentase kehadiran yang pasti dapat ditentukan? Jawab JSON saja dengan field status bernilai tidak_dapat_dipastikan dan persentase bernilai null bila datanya belum cukup. Jangan menebak catatan mana yang benar.",
+    "reference": "{\"status\":\"tidak_dapat_dipastikan\",\"persentase\":null}",
+    "validator": "uncertainty-json",
+    "failureConditions": ["Memilih salah satu denominator tanpa bukti", "Memberikan persentase tunggal sebagai pasti", "JSON tidak valid"]
+  },
+  {
+    "id": "context-latest-correction",
+    "category": "context",
+    "mode": "daily",
+    "history": [
+      {"role": "user", "content": "Anggaran saya 500000 rupiah."},
+      {"role": "assistant", "content": "Anggaran Anda 500000 rupiah."},
+      {"role": "user", "content": "Koreksi: anggaran saya sekarang 900000 rupiah, bukan 500000."},
+      {"role": "assistant", "content": "Koreksi anggaran sudah dicatat."}
+    ],
+    "prompt": "Berapa anggaran saya sekarang? Jawab angka rupiah saja, tanpa simbol atau pemisah ribuan.",
+    "reference": "900000",
+    "validator": "exact",
+    "failureConditions": ["Menggunakan 500000", "Mengarang nilai lain", "Menambahkan konteks yang tidak tersedia"]
+  },
+  {
+    "id": "stream-smoke",
+    "category": "streaming",
+    "mode": "daily",
+    "prompt": "Reply only: AET OK",
+    "reference": "AET OK",
+    "validator": "exact",
+    "failureConditions": ["Output tidak persis AET OK", "Identitas model tidak dilaporkan/cocok", "finish_reason bukan stop", "Streaming kosong/terputus"]
+  }
+]

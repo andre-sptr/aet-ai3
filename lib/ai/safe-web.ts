@@ -58,7 +58,7 @@ export async function safeReadWeb(value: string, redirects = 0, parentSignal?: A
 export async function boundedJson(url: string, init: RequestInit = {}): Promise<unknown> {
   const timeout = AbortSignal.timeout(5000);
   const response = await fetch(url, { ...init, signal: init.signal ? AbortSignal.any([init.signal, timeout]) : timeout, redirect: 'error' });
-  if (!response.ok || !response.body) throw new Error('Tool source unavailable.');
+  if (!response.ok || !response.body) { await response.body?.cancel(); throw new Error('Tool source unavailable.'); }
   const reader = response.body.getReader(); let size = 0; const chunks: Uint8Array[] = [];
   try {
     while (true) { const {value,done} = await reader.read(); if(done) break; size += value.length; if(size>256_000) throw new Error('Tool source too large.'); chunks.push(value); }

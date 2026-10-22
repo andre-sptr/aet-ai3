@@ -5,13 +5,18 @@ import { extractDocument, attachmentText, decodeDataUrl } from '../lib/ai/attach
 import { validateImage } from '../lib/files.ts';
 import { ApiError } from '../lib/http.ts';
 test('PDF text extraction uses the installed pdf-parse v2 API',async()=>{
+ await import('pdf-parse'); // Missing parser is an environment failure, never a PDF-validation pass.
  const result=await extractDocument(await readFile('tests/fixtures/valid.pdf'),'application/pdf');assert.match(result.text,/sensor reads temperature/);assert.equal(result.truncated,false);
 });
 for(const file of ['scan.pdf','encrypted.pdf','too-many-pages.pdf'])test(`rejects ${file} with a clear document error`,async()=>{
- await assert.rejects(()=>readFile('tests/fixtures/'+file).then(b=>extractDocument(b,'application/pdf')),ApiError);
+ await import('pdf-parse');
+ await assert.rejects(()=>readFile('tests/fixtures/'+file).then(b=>extractDocument(b,'application/pdf')),e=>e instanceof ApiError&&(file==='too-many-pages.pdf'?e.status===413:e.status===422)&&(file!=='scan.pdf'||/lapisan teks/.test(e.message)));
 });
-test('DOCX and UTF-8 TXT extraction supports bounded text',async()=>{
+test('DOCX extraction uses installed Mammoth',async()=>{
+ await import('mammoth');
  const doc=await extractDocument(await readFile('app/AETPCR.docx'),'application/vnd.openxmlformats-officedocument.wordprocessingml.document');assert.match(doc.text,/AET/);
+});
+test('UTF-8 TXT extraction supports bounded text',async()=>{
  const txt=await extractDocument(Buffer.from('x'.repeat(30_000)),'text/plain');assert.equal(txt.text.length,24_000);assert.equal(txt.truncated,true);
 });
 test('invalid, empty, oversized and spoofed attachments rejected',async()=>{

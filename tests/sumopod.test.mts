@@ -72,6 +72,7 @@ test('parseOpenAITextStream yields content deltas from Server-Sent Events', asyn
     start(controller) {
       controller.enqueue(encoder.encode('data: {"choices":[{"delta":{"content":"Ha"}}]}\n\n'));
       controller.enqueue(encoder.encode('data: {"choices":[{"delta":{"content":"lo"}}]}\n\n'));
+      controller.enqueue(encoder.encode('data: {"choices":[{"delta":{},"finish_reason":"stop"}]}\n\n'));
       controller.enqueue(encoder.encode('data: [DONE]\n\n'));
       controller.close();
     },

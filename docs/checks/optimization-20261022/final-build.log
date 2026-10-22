@@ -1,0 +1,53 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> aet-ai@2.1.1 build
+> next build
+
+▲ Next.js 16.4.2 (Turbopack)
+✓ Running next.config.ts took 33ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.3s
+  Running TypeScript ...
+  Finished TypeScript in 2.5s ...
+  Collecting page data using 8 workers ...
+  Generating static pages using 8 workers (0/18) ...
+  Generating static pages using 8 workers (4/18) 
+  Generating static pages using 8 workers (8/18) 
+  Generating static pages using 8 workers (13/18) 
+✓ Generating static pages using 8 workers (18/18) in 347ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /admin
+├ ƒ /admin/events
+├ ƒ /admin/news
+├ ƒ /admin/team
+├ ƒ /api/attachments
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/chat
+├ ƒ /api/events
+├ ƒ /api/events/[id]
+├ ƒ /api/frontier-access
+├ ƒ /api/news
+├ ƒ /api/news/[id]
+├ ƒ /api/team
+├ ƒ /api/team/[id]
+├ ƒ /api/upload
+├ ○ /coming-soon
+├ ƒ /events
+├ ƒ /events/[slug]
+├ ○ /login
+├ ƒ /news
+├ ƒ /news/[slug]
+└ ƒ /team
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

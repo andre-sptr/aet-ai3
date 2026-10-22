@@ -1,4 +1,4 @@
-import { buildSumopodChatRequest, DEFAULT_SUMOPOD_MODEL, parseOpenAITextStream } from '@/lib/sumopod';
+import { buildSumopodChatRequest, parseOpenAITextStream } from '@/lib/sumopod';
 import { getModelById } from '@/lib/ai-models';
 import { verifyFrontierAccessToken } from '@/lib/aet-frontier-access';
 import { ApiError, errorResponse, readJson, sameOrigin } from '@/lib/http';
@@ -10,6 +10,9 @@ import { runTools } from '@/lib/ai/tools';
 import { retrieveAetKnowledge } from '@/lib/ai/knowledge';
 import { evidenceSources } from '@/lib/ai/evidence';
 import { citationPolicyResponse } from '@/lib/ai/citation-policy';
+import { routeModel } from '@/lib/ai/model-router';
+import { configuredRoutingMode, loadRoutingPolicy } from '@/lib/ai/routing-policy';
+import { gatewayErrorKind } from '@/lib/ai/gateway-errors';
 export const runtime = 'nodejs';
 const state = globalThis as typeof globalThis & { aetChatActive?: number };
 export async function POST(request: Request) {
@@ -25,7 +28,14 @@ export async function POST(request: Request) {
     state.aetChatActive=(state.aetChatActive||0)+1;acquired=true;
     const body=await readJson(request,8*1024*1024);
     const parsed=validateChat(body);
-    const modelId=parsed.model || DEFAULT_SUMOPOD_MODEL;
+    const context=selectContext(parsed.messages);
+    const routingMode=configuredRoutingMode();
+    const routing=routeModel({manualModelId:parsed.model,mode:parsed.mode,text:context.messages.at(-1)!.content,
+      contextChars:context.messages.reduce((sum,m)=>sum+m.content.length+(m.attachment?.extractedText?.length || (m.attachment?.type==='file'?24000:0)),0),
+      hasDocument:context.messages.some(m=>m.attachment?.type==='file'),hasImages:context.messages.some(m=>m.attachment?.type==='image'),
+      frontierAllowed:process.env.ENABLE_FRONTIER==='true'&&verifyFrontierAccessToken(parsed.frontierAccessToken)},routingMode,
+      routingMode!=='off'&&!parsed.model?await loadRoutingPolicy():undefined);
+    const modelId=routing.modelId;
     const model=getModelById(modelId);
     if(!model)throw new ApiError(400,'Model ini sudah tidak tersedia. Pilih model aktif untuk melanjutkan.', 'MODEL_RETIRED');
     if(model.availability!=='available')throw new ApiError(503,'Model belum terverifikasi atau sedang tidak tersedia. Pilih model lain.', 'MODEL_UNAVAILABLE');
@@ -35,7 +45,6 @@ export async function POST(request: Request) {
       limit(`frontier-chat:${clientKey(request)}`,8,86400_000);
       limit('frontier-chat:global',20,86400_000);
     }
-    const context=selectContext(parsed.messages);
     const last=context.messages.at(-1)!;
     const finalContext=await prepareMessages(context.messages,model.supportsImageInput===true);
     const contextTruncated=context.truncated || finalContext.truncated;
@@ -49,6 +58,7 @@ export async function POST(request: Request) {
     const system=buildSystemPrompt(parsed.mode,last.content,evidence,new Date(),{imageInput:model.supportsImageInput===true});
     const useEvents=request.headers.get('accept')?.includes('text/event-stream');
     let iterator: AsyncGenerator<string>;
+    let reportedModel: string | undefined;
     const directResponse=toolResult.directResponse || citationPolicyResponse(last.content);
     if(directResponse) {
       const direct=directResponse;
@@ -58,14 +68,19 @@ export async function POST(request: Request) {
       if(!key)throw new ApiError(503,'Layanan AI belum dikonfigurasi pengelola.', 'AI_CONFIG');
       const outbound=buildSumopodChatRequest({apiKey:key,baseUrl:process.env.SUMOPOD_BASE_URL,modelId,mode:parsed.mode,systemInstruction:system,messages:apiMessages,inputText:last.content});
       let upstream: Response;
-      try { upstream=await fetch(outbound.url,{...outbound.init,signal:AbortSignal.any([request.signal,abort.signal]),cache:'no-store'}); }
-      catch { throw new ApiError(504,'Tidak dapat menghubungi model dalam batas waktu. Silakan coba lagi.', 'UPSTREAM_TIMEOUT'); }
+      try { upstream=await fetch(outbound.url,{...outbound.init,signal,cache:'no-store',redirect:'error'}); }
+      catch {
+        if(signal.aborted)throw new ApiError(504,'Permintaan model dibatalkan atau melewati batas waktu.', 'UPSTREAM_TIMEOUT');
+        throw new ApiError(502,'Koneksi ke penyedia model gagal. Silakan coba lagi.', 'UPSTREAM_TRANSPORT');
+      }
       if(!upstream.ok) {
         await upstream.body?.cancel();
-        throw new ApiError(upstream.status===429?429:502,upstream.status===429?'Batas penggunaan penyedia tercapai. Coba lagi nanti.':'Penyedia menolak permintaan. Coba model lain atau hubungi pengelola.', 'UPSTREAM_ERROR');
+        const kind=gatewayErrorKind(upstream.status);
+        const message=kind==='rate_limit'?'Batas penggunaan penyedia tercapai. Coba lagi nanti.':kind==='billing'?'Layanan model tertahan pada penagihan penyedia. Hubungi pengelola.':'Penyedia menolak permintaan. Coba model lain atau hubungi pengelola.';
+        throw new ApiError(upstream.status===429?429:kind==='billing'?503:502,message,`UPSTREAM_${kind.toUpperCase()}`);
       }
       if(!upstream.headers.get('content-type')?.includes('text/event-stream')) { await upstream.body?.cancel(); throw new ApiError(502,'Format streaming penyedia tidak sesuai.', 'UPSTREAM_FORMAT'); }
-      iterator=parseOpenAITextStream(upstream);
+      iterator=parseOpenAITextStream(upstream,{expectedModel:modelId,signal,onMetadata:metadata=>{if(metadata.model)reportedModel=metadata.model;}});
     }
     const encoder=new TextEncoder();
     let cancelled=false;
@@ -73,12 +88,12 @@ export async function POST(request: Request) {
       async start(controller) {
         const event=(type:string,data:unknown)=>{if(!cancelled)controller.enqueue(encoder.encode(`event: ${type}\ndata: ${JSON.stringify(data)}\n\n`));};
         try {
-          if(useEvents)event('meta',{model:modelId,contextTruncated,sources:evidenceSources(evidence)});
+          if(useEvents)event('meta',{model:modelId,requestedModel:modelId,routing,responseOrigin:directResponse?'application':'gateway',contextTruncated,sources:evidenceSources(evidence)});
           for await(const delta of iterator) {
             if(cancelled || request.signal.aborted || abort.signal.aborted)throw new Error('Response cancelled.');
             if(useEvents)event('delta',{text:delta});else controller.enqueue(encoder.encode(delta));
           }
-          if(useEvents)event('done',{});
+          if(useEvents){event('meta',{requestedModel:modelId,reportedModel:reportedModel??null,modelIdentity:directResponse?'not_applicable':reportedModel===modelId?'reported_match':'unreported'});event('done',{});}
           if(!cancelled)controller.close();
         }catch{
           if(!cancelled) {
@@ -90,7 +105,7 @@ export async function POST(request: Request) {
       cancel(){cancelled=true;abort.abort();void iterator.return(undefined);release();},
     });
     transferred=true;
-    return new Response(stream,{headers:{'Content-Type':useEvents?'text/event-stream; charset=utf-8':'text/plain; charset=utf-8','Cache-Control':'no-store, no-transform','X-Accel-Buffering':'no','X-AET-Model':modelId,'X-AET-Context-Truncated':String(contextTruncated)}});
+    return new Response(stream,{headers:{'Content-Type':useEvents?'text/event-stream; charset=utf-8':'text/plain; charset=utf-8','Cache-Control':'no-store, no-transform','X-Accel-Buffering':'no','X-AET-Model':modelId,'X-AET-Routing-Reason':routing.reason,'X-AET-Context-Truncated':String(contextTruncated)}});
   }catch(error){return errorResponse(error);}
   finally{if(!transferred){abort.abort();release();}}
 }

@@ -1,0 +1,115 @@
+{
+  "checkedAt": "2026-10-22T04:58:32.302Z",
+  "timezone": "Asia/Jakarta",
+  "sourceRevision": "c8e012a60889d5b5200106a0e47d572d5fe14ada",
+  "baselineRevision": "500519a",
+  "checks": [
+    {
+      "command": "npm ci --ignore-scripts --fetch-retries=0 --fetch-timeout=20000",
+      "status": "PASS",
+      "detail": "675 packages installed using the existing unchanged lockfile.",
+      "log": "install.log"
+    },
+    {
+      "command": "npm run postinstall",
+      "status": "PASS",
+      "detail": "Prisma Client 5.22.0 generated; no schema migration.",
+      "log": "prisma-generate.log"
+    },
+    {
+      "command": "npm test (before dependency installation)",
+      "status": "BLOCKED",
+      "detail": "107 PASS, 7 import/dependency failures; 114 results.",
+      "log": "baseline-test.log"
+    },
+    {
+      "command": "npm test (baseline after dependency installation)",
+      "status": "PASS",
+      "detail": "116/116.",
+      "log": "baseline-test-installed.log"
+    },
+    {
+      "command": "npm test (final)",
+      "status": "PASS",
+      "detail": "131/131. Includes 15 added test cases; local mock results are not live model evaluations.",
+      "log": "final-test.log"
+    },
+    {
+      "command": "npm run test:benchmark:plan",
+      "status": "PASS",
+      "detail": "Exit 0; 96 cells intentionally BLOCKED/NOT RUN; 0 network requests.",
+      "log": "final-plan.log"
+    },
+    {
+      "command": "npm run lint",
+      "status": "PASS",
+      "detail": "Baseline and final no lint errors.",
+      "log": "final-lint.log"
+    },
+    {
+      "command": "npx --no-install tsc --noEmit",
+      "status": "PASS",
+      "detail": "Full project typecheck; baseline and final exit 0.",
+      "log": "final-typecheck.log"
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "detail": "Baseline and final Next.js production build exit 0.",
+      "log": "final-build.log"
+    },
+    {
+      "command": "npm run test:http",
+      "status": "PASS",
+      "detail": "Baseline and final 84/84; copied disposable SQLite database and loopback mock gateway.",
+      "log": "final-http.log"
+    },
+    {
+      "command": "npm run test:benchmark with supplied key in environment",
+      "status": "BLOCKED",
+      "detail": "Metadata HTTP 200; 12/12 exact IDs listed; 0 generation requests because provider cap/key binding and official rates unverified. Exit 2 is expected.",
+      "log": "final-live-access.log"
+    },
+    {
+      "command": "Playwright Chromium installation for desktop/mobile QA",
+      "status": "BLOCKED",
+      "detail": "Chromium download was not a valid ZIP; no browser session or visual assertions were executed.",
+      "log": "browser-install.log"
+    }
+  ],
+  "preservationChecks": {
+    "package.json": true,
+    "package-lock.json": true,
+    "prisma/schema.prisma": true,
+    "prisma/dev.db": true,
+    "app/globals.css": true,
+    "lib/auth.ts": true,
+    "lib/aet-frontier-access.ts": true,
+    "public/window.svg": true,
+    "public/vercel.svg": true,
+    "public/AETPCR.docx": true,
+    "public/next.svg": true,
+    "public/globe.svg": true,
+    "public/file.svg": true,
+    "components/LandingPage.tsx": true,
+    "components/MessageBubble.tsx": true,
+    "components/ChatInterface.tsx": true,
+    "public/fonts/OFL.txt": true,
+    "public/fonts/plus-jakarta-sans-latin.woff2": true,
+    "components/admin/ContentManager.tsx": true,
+    "components/shared/MediaViewer.tsx": true,
+    "components/shared/Dialog.tsx": true,
+    "components/shared/ArticleContent.tsx": true,
+    "components/layout/Footer.tsx": true,
+    "components/layout/PublicPage.tsx": true,
+    "components/layout/Brand.tsx": true,
+    "components/layout/PublicNavigation.tsx": true,
+    "components/ui/SkeletonCard.tsx": true
+  },
+  "unchangedHistoricalReportCount": 87,
+  "baselineFilesMissing": [],
+  "productionDeployments": 0,
+  "remotePushes": 0,
+  "liveGenerationRequests": 0,
+  "actualCostUsd": null
+}

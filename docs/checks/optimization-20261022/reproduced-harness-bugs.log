@@ -1,0 +1,101 @@
+✔ budget guard fails closed without real-cap evidence and never accepts a budget over USD 3 (1.320369ms)
+✔ deterministic dataset has reference answers and exactly the promised matrix (6.425198ms)
+✔ code validator executes only its fully whitelisted program templates (0.549908ms)
+✔ missing budget evidence sends no generations, preserves all 96 BLOCKED cells and no invented scores (181.237786ms)
+✔ LOCAL MOCK matrix uses all exact IDs, actual production personas, family parameters and immutable per-case requests (880.54492ms)
+✔ LOCAL MOCK foreign model identity fails integration, never silently replaces requested IDs (805.231795ms)
+✖ LOCAL MOCK metadata 403 and absent IDs do not prevent authorized direct generations (164.369048ms)
+✖ LOCAL MOCK starts with a balanced smoke wave over all 12 models before other cases (267.240631ms)
+✖ LOCAL MOCK direct generation permission error opens circuit with safe provider evidence (186.672432ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 6
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2613.192689
+
+✖ failing tests:
+
+test at tests/benchmark-harness.test.mts:124:1
+✖ LOCAL MOCK metadata 403 and absent IDs do not prevent authorized direct generations (164.369048ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 96
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/25aae26d1cd6/work/aetpcr/tests/benchmark-harness.test.mts:127:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 96,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/benchmark-harness.test.mts:132:1
+✖ LOCAL MOCK starts with a balanced smoke wave over all 12 models before other cases (267.240631ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'gpt-4o-mini',
+  +   'gpt-4o-mini',
+  +   'gpt-4o-mini',
+  +   'gpt-4o-mini',
+  +   'gpt-4o-mini',
+  +   'gpt-4o-mini',
+  +   'gpt-4o-mini',
+  +   'gpt-4o-mini',
+      'gpt-4.1-mini',
+  +   'gpt-4.1-mini',
+  +   'gpt-4.1-mini',
+  +   'gpt-4.1-mini'
+  -   'gpt-5-mini',
+  -   'gpt-5.4-mini',
+  -   'gpt-5.4',
+  -   'claude-haiku-4-5',
+  -   'claude-sonnet-5',
+  -   'claude-opus-5',
+  -   'gemini/gemini-3.5-flash',
+  -   'gemini/gemini-3.1-pro-preview',
+  -   'deepseek-v4-flash',
+  -   'deepseek-v4-pro'
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/25aae26d1cd6/work/aetpcr/tests/benchmark-harness.test.mts:135:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+      'gpt-4o-mini',  'gpt-4o-mini',
+      'gpt-4o-mini',  'gpt-4o-mini',
+      'gpt-4o-mini',  'gpt-4o-mini',
+      'gpt-4o-mini',  'gpt-4o-mini',
+      'gpt-4.1-mini', 'gpt-4.1-mini',
+      'gpt-4.1-mini', 'gpt-4.1-mini'
+    ],
+    expected: [ 'gpt-4o-mini', 'gpt-4.1-mini', 'gpt-5-mini', 'gpt-5.4-mini', 'gpt-5.4', 'claude-haiku-4-5', 'claude-sonnet-5', 'claude-opus-5', 'gemini/gemini-3.5-flash', 'gemini/gemini-3.1-pro-preview', 'deepseek-v4-flash', 'deepseek-v4-pro' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/benchmark-harness.test.mts:139:1
+✖ LOCAL MOCK direct generation permission error opens circuit with safe provider evidence (186.672432ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/25aae26d1cd6/work/aetpcr/tests/benchmark-harness.test.mts:141:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

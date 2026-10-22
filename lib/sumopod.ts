@@ -21,40 +21,77 @@ export function buildSumopodChatRequest({ apiKey, baseUrl = DEFAULT_SUMOPOD_BASE
   return { url: url.href, init: { method: 'POST' as const, headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` }, body: JSON.stringify({ model: modelId, messages: toSumopodMessages(systemInstruction, messages), ...getGenerationConfig(modelId, mode, inputText ?? (typeof last === 'string' ? last : ''), maxTokens), stream }) } };
 }
 export class StreamFailure extends Error { }
-export async function* parseOpenAITextStream(response: Response): AsyncGenerator<string> {
+export type StreamMetadata = {
+  model?: string;
+  finishReason?: string;
+  usage?: { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number };
+  transportDone?: boolean;
+};
+export type StreamOptions = {
+  expectedModel?: string;
+  signal?: AbortSignal;
+  onMetadata?: (metadata: StreamMetadata) => void;
+  readUsageAfterStop?: boolean;
+};
+export async function* parseOpenAITextStream(response: Response, options: StreamOptions = {}): AsyncGenerator<string> {
   if (!response.body) throw new StreamFailure('Empty upstream stream.');
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
-  let buffer = '', finished = false, visible = false;
+  let buffer = '', stopped = false, transportDone = false, visible = false;
+  const cancel = () => { void reader.cancel(options.signal?.reason).catch(() => {}); };
+  options.signal?.addEventListener('abort', cancel, { once: true });
   function parse(frame: string): string[] {
+    options.signal?.throwIfAborted();
     const data = frame.split(/\r?\n/).filter(line => line.startsWith('data:')).map(line => line.slice(5).trimStart()).join('\n');
     if (!data) return [];
-    if (data.trim() === '[DONE]') { finished = true; return []; }
+    if (data.trim() === '[DONE]') { transportDone = true; options.onMetadata?.({ transportDone: true }); return []; }
     let p;
     try { p = JSON.parse(data); } catch { throw new StreamFailure('Malformed upstream frame.'); }
+    if (!p || typeof p !== 'object' || Array.isArray(p)) throw new StreamFailure('Malformed upstream frame.');
     if (p.error || /^event:\s*error/im.test(frame)) throw new StreamFailure('Upstream stream failed.');
+    if (p.model !== undefined) {
+      if (typeof p.model !== 'string') throw new StreamFailure('Invalid upstream model identity.');
+      if (options.expectedModel && p.model !== options.expectedModel) throw new StreamFailure('Identitas model penyedia berbeda dari model yang diminta.');
+    }
+    const wasStopped = stopped;
     const choice = p.choices?.[0];
-    if (choice?.finish_reason === 'length') throw new StreamFailure('Batas keluaran model tercapai. Minta jawaban lebih singkat atau lanjutkan.');
-    if (choice?.finish_reason === 'content_filter') throw new StreamFailure('Respons dihentikan oleh penyedia.');
-    if (choice?.finish_reason === 'stop') finished = true;
+    const finish = choice?.finish_reason;
+    const usage = p.usage && typeof p.usage === 'object'
+      ? Object.fromEntries(['prompt_tokens', 'completion_tokens', 'total_tokens'].filter(k => Number.isFinite(p.usage[k]) && p.usage[k] >= 0).map(k => [k, p.usage[k]]))
+      : undefined;
+    options.onMetadata?.({ model: p.model, finishReason: typeof finish === 'string' ? finish : undefined, usage });
+    if (finish === 'length') throw new StreamFailure('Batas keluaran model tercapai. Minta jawaban lebih singkat atau lanjutkan.');
+    if (finish === 'content_filter') throw new StreamFailure('Respons dihentikan oleh penyedia.');
+    if (finish != null && finish !== 'stop') throw new StreamFailure('Respons model belum selesai sebagai jawaban teks.');
+    if (finish === 'stop') stopped = true;
     const content = choice?.delta?.content;
-    if (typeof content === 'string' && content) { visible = true; return [content]; }
+    if (wasStopped && typeof content === 'string' && content) throw new StreamFailure('Unexpected text after upstream completion.');
+    if (typeof content === 'string' && content) { visible ||= Boolean(content.trim()); return [content]; }
     return [];
   }
   try {
+    options.signal?.throwIfAborted();
     while (true) {
       const { done, value } = await reader.read();
+      options.signal?.throwIfAborted();
       if (done) break;
       buffer += decoder.decode(value, { stream: true });
       if (buffer.length > 256_000) throw new StreamFailure('Upstream frame exceeds limit.');
       const frames = buffer.split(/\r?\n\r?\n/);
       buffer = frames.pop() ?? '';
-      for (const frame of frames) { for (const value of parse(frame)) yield value; if (finished) break; }
-      if (finished) break;
+      for (const frame of frames) {
+        for (const value of parse(frame)) yield value;
+        if (transportDone || stopped && !options.readUsageAfterStop) break;
+      }
+      if (transportDone || stopped && !options.readUsageAfterStop) break;
     }
     buffer += decoder.decode();
-    if (!finished && buffer.trim()) for (const value of parse(buffer)) yield value;
-    if (!finished) throw new StreamFailure('Koneksi model terputus sebelum jawaban selesai.');
+    if ((!stopped || options.readUsageAfterStop) && !transportDone && buffer.trim()) for (const value of parse(buffer)) yield value;
+    if (!stopped) throw new StreamFailure('Koneksi model terputus sebelum finish_reason=stop.');
     if (!visible) throw new StreamFailure('Model tidak mengirim jawaban teks.');
-  } finally { try { await reader.cancel(); } catch { /* already cancelled */ } reader.releaseLock(); }
+  } finally {
+    options.signal?.removeEventListener('abort', cancel);
+    try { await reader.cancel(); } catch { /* already cancelled */ }
+    reader.releaseLock();
+  }
 }

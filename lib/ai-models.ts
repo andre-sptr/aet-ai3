@@ -10,9 +10,12 @@ export type AiModel = {
   supportsNativeTools: Capability; supportsReasoning: Capability;
   contextCapacity?: number;
   relativeCost: 'unknown';
+  verificationRecordedAt?: string;
+  latestAudit?: { checkedAt: string; status: 'blocked' | 'pass' | 'fail' | 'inconclusive'; report: string };
 };
-// Availability and capabilities reflect the recorded gateway tests, not upstream claims.
-export const AI_MODELS: readonly AiModel[] = [
+// Recorded capabilities retain their historical evidence. A blocked network check
+// is not proof that a model/capability has become unavailable.
+const RECORDED_MODELS: readonly AiModel[] = [
   {"id": "gpt-4o-mini", "name": "GPT-4o Mini", "provider": "OpenAI", "tier": "Fast / Everyday", "isFrontier": false, "isDefault": true, "accessPolicy": "public", "availability": "available", "verification": "live", "supportsStreaming": true, "supportsImageInput": true, "supportsNativeTools": "unknown", "supportsReasoning": "unknown", "relativeCost": "unknown", "desc": "Chat dan input gambar telah lulus uji dasar gateway.", "contextCapacity": 128000},
   {"id": "gpt-4.1-mini", "name": "GPT-4.1 Mini", "provider": "OpenAI", "tier": "Balanced", "isFrontier": false, "isDefault": false, "accessPolicy": "public", "availability": "available", "verification": "live", "supportsStreaming": true, "supportsImageInput": "unknown", "supportsNativeTools": "unknown", "supportsReasoning": "unknown", "relativeCost": "unknown", "desc": "Model chat terkurasi; kemampuan tambahan belum diuji.", "contextCapacity": 1047576},
   {"id": "gpt-5-mini", "name": "GPT-5 Mini", "provider": "OpenAI", "tier": "Balanced", "isFrontier": false, "isDefault": false, "accessPolicy": "public", "availability": "available", "verification": "live", "supportsStreaming": true, "supportsImageInput": "unknown", "supportsNativeTools": "unknown", "supportsReasoning": "unknown", "relativeCost": "unknown", "desc": "Model chat terkurasi; kemampuan tambahan belum diuji.", "contextCapacity": 272000},
@@ -26,6 +29,12 @@ export const AI_MODELS: readonly AiModel[] = [
   {"id": "deepseek-v4-flash", "name": "DeepSeek V4 Flash", "provider": "DeepSeek", "tier": "Fast / Everyday", "isFrontier": false, "isDefault": false, "accessPolicy": "public", "availability": "available", "verification": "live", "supportsStreaming": true, "supportsImageInput": "unknown", "supportsNativeTools": "unknown", "supportsReasoning": "unknown", "relativeCost": "unknown", "desc": "Model chat terkurasi; kemampuan tambahan belum diuji.", "contextCapacity": 1000000},
   {"id": "deepseek-v4-pro", "name": "DeepSeek V4 Pro", "provider": "DeepSeek", "tier": "Advanced / Frontier", "isFrontier": true, "isDefault": false, "accessPolicy": "frontier", "availability": "available", "verification": "live", "supportsStreaming": true, "supportsImageInput": "unknown", "supportsNativeTools": "unknown", "supportsReasoning": "unknown", "relativeCost": "unknown", "desc": "Model chat terkurasi; kemampuan tambahan belum diuji.", "contextCapacity": 1000000},
 ];
+
+export const AI_MODELS: readonly AiModel[] = RECORDED_MODELS.map(model => ({
+  ...model,
+  verificationRecordedAt: '2026-10-22T01:27:22.548Z',
+  latestAudit: { checkedAt: "2026-10-22T03:28:12.368Z", status: 'blocked', report: "docs/benchmarks/run-2026-10-22T03-28-12-368Z-ebdf5ad5/report.json" },
+}));
 
 export const AET_FRONTIER_QUESTIONS = [
   {

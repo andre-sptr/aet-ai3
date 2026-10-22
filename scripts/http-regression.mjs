@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { spawn } from 'node:child_process';
+import { freshReportPath } from './benchmark-core.mjs';
 const origin=process.env.AET_TEST_ORIGIN || 'http://127.0.0.1:4173';
 const target=new URL(origin);
 if(!['localhost','127.0.0.1'].includes(target.hostname)||process.env.AET_TEST_DISPOSABLE_DB!=='true')throw new Error('Run only against localhost with AET_TEST_DISPOSABLE_DB=true and a copied database.');
@@ -80,6 +81,6 @@ try{
  await check('logout clears signed cookie',async()=>{const res=await request('/api/auth/logout','POST',{},true);assert.equal(res.status,200);assert.match(res.headers.get('set-cookie'),/Max-Age=0/i);});
 }finally{mock.kill('SIGTERM');}
 const report={checkedAt:new Date().toISOString(),environment:'local Next.js with copied SQLite and mock gateway',total:results.length,passed:results.filter(r=>r.status==='PASS').length,failed:results.filter(r=>r.status==='FAIL').length,results};
-await fs.writeFile('docs/http-regression-2-1.json',JSON.stringify(report,null,2));
+await fs.writeFile(await freshReportPath('http-regression'),JSON.stringify(report,null,2));
 console.log(JSON.stringify({total:report.total,passed:report.passed,failed:report.failed}));
 if(report.failed)process.exitCode=1;
