@@ -1,0 +1,55 @@
+{
+  "operatorVerified": false,
+  "verifiedAt": "REPLACE_AFTER_CHECKING_OFFICIAL_SUMOPOD_RATES",
+  "sourceUrl": "https://sumopod.com/ai",
+  "models": {
+    "gpt-4o-mini": {
+      "inputUsdPerMillion": null,
+      "outputUsdPerMillion": null
+    },
+    "gpt-4.1-mini": {
+      "inputUsdPerMillion": null,
+      "outputUsdPerMillion": null
+    },
+    "gpt-5-mini": {
+      "inputUsdPerMillion": null,
+      "outputUsdPerMillion": null
+    },
+    "gpt-5.4-mini": {
+      "inputUsdPerMillion": null,
+      "outputUsdPerMillion": null
+    },
+    "gpt-5.4": {
+      "inputUsdPerMillion": null,
+      "outputUsdPerMillion": null
+    },
+    "claude-haiku-4-5": {
+      "inputUsdPerMillion": null,
+      "outputUsdPerMillion": null
+    },
+    "claude-sonnet-5": {
+      "inputUsdPerMillion": null,
+      "outputUsdPerMillion": null
+    },
+    "claude-opus-5": {
+      "inputUsdPerMillion": null,
+      "outputUsdPerMillion": null
+    },
+    "gemini/gemini-3.5-flash": {
+      "inputUsdPerMillion": null,
+      "outputUsdPerMillion": null
+    },
+    "gemini/gemini-3.1-pro-preview": {
+      "inputUsdPerMillion": null,
+      "outputUsdPerMillion": null
+    },
+    "deepseek-v4-flash": {
+      "inputUsdPerMillion": null,
+      "outputUsdPerMillion": null
+    },
+    "deepseek-v4-pro": {
+      "inputUsdPerMillion": null,
+      "outputUsdPerMillion": null
+    }
+  }
+}

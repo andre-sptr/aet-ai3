@@ -1,0 +1,127 @@
+{
+  "checkedAt": "2026-10-22T03:57:54.137730+00:00",
+  "overallStatus": "BLOCKED",
+  "node": "24.19.0",
+  "npm": "11.9.0",
+  "fullTest": {
+    "reported": 114,
+    "passed": 107,
+    "failed": 7,
+    "skipped": 0,
+    "blockedByDependencies": 7
+  },
+  "commands": [
+    {
+      "command": "npm ci --offline --ignore-scripts --no-audit",
+      "exitCode": 1,
+      "status": "BLOCKED",
+      "detail": "ENOTCACHED; dependency tidak ada dalam cache",
+      "log": "docs/checks/full-audit-20261022/install-offline.log"
+    },
+    {
+      "command": "npm ci --ignore-scripts --no-audit --maxsockets=2 --fetch-retries=0 --fetch-timeout=12000",
+      "exitCode": 1,
+      "status": "BLOCKED",
+      "detail": "E403 registry npm",
+      "log": "docs/checks/full-audit-20261022/install-network.log"
+    },
+    {
+      "command": "npm test (baseline sebelum patch)",
+      "exitCode": 1,
+      "status": "BLOCKED",
+      "detail": "45 hasil dilaporkan: 41 PASS, 4 file test gagal import dependency; bukan seluruh 77 kasus pada arsip",
+      "log": "docs/checks/full-audit-20261022/baseline-test.log"
+    },
+    {
+      "command": "npm test (patch final)",
+      "exitCode": 1,
+      "status": "BLOCKED",
+      "detail": "114 hasil: 107 PASS, 7 FAIL karena dependency belum tersedia, 0 skipped",
+      "log": "docs/checks/full-audit-20261022/final-test.log"
+    },
+    {
+      "command": "npm run test:history",
+      "exitCode": 0,
+      "status": "PASS",
+      "detail": "30/30: riwayat, lifecycle, parser streaming dan kompatibilitas CMS helpers",
+      "log": "docs/checks/full-audit-20261022/final-history.log"
+    },
+    {
+      "command": "Node --test subset tanpa dependency eksternal",
+      "exitCode": 0,
+      "status": "PASS",
+      "detail": "79/79; mencakup 10 handler route produksi dengan gateway simulasi",
+      "log": "docs/checks/full-audit-20261022/targeted-final.log"
+    },
+    {
+      "command": "Node --test tests/chat-route.test.mts",
+      "exitCode": 0,
+      "status": "PASS",
+      "detail": "10/10 integrasi handler langsung; bukan full Next.js server, bukan Sumopod nyata",
+      "log": "docs/checks/full-audit-20261022/route-integration.log"
+    },
+    {
+      "command": "npm run test:tools",
+      "exitCode": 0,
+      "status": "INCONCLUSIVE",
+      "detail": "5 PASS lokal, 4 BLOCKED eksternal/konfigurasi; exit 0 bukan seluruh layanan berhasil",
+      "log": "docs/checks/full-audit-20261022/tools-current.log"
+    },
+    {
+      "command": "npm run test:benchmark",
+      "exitCode": 2,
+      "status": "BLOCKED",
+      "detail": "1 preflight metadata HTTP 403; 0 generasi; 96 sel tidak dijalankan",
+      "log": "docs/checks/full-audit-20261022/live-benchmark.log"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 127,
+      "status": "BLOCKED",
+      "detail": "eslint tidak terpasang",
+      "log": "docs/checks/full-audit-20261022/lint-current.log"
+    },
+    {
+      "command": "TypeScript 5.9.3 cached/bin/tsc --noEmit --pretty false",
+      "exitCode": 2,
+      "status": "BLOCKED",
+      "detail": "Pemeriksaan konfigurasi proyek gagal resolve React/Next/dependency dan tipe terkait",
+      "log": "docs/checks/full-audit-20261022/types-current.log"
+    },
+    {
+      "command": "TypeScript 5.9.3 --strict --noEmit (subset core)",
+      "exitCode": 0,
+      "status": "PASS",
+      "detail": "Core storage/lifecycle/gateway/context/tools/persona/URL; Node types 25.9.5 runtime, bukan seluruh aplikasi atau Node types target lockfile",
+      "log": "docs/checks/full-audit-20261022/final-core-types.log"
+    },
+    {
+      "command": "npx --no-install prisma generate",
+      "exitCode": 1,
+      "status": "BLOCKED",
+      "detail": "Prisma tidak tersedia; upaya resolusi registry menerima E403",
+      "log": "docs/checks/full-audit-20261022/prisma-current.log"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 127,
+      "status": "BLOCKED",
+      "detail": "next tidak terpasang",
+      "log": "docs/checks/full-audit-20261022/build-current.log"
+    },
+    {
+      "command": "npm run test:http",
+      "exitCode": 1,
+      "status": "BLOCKED",
+      "detail": "Tidak ada .next/BUILD_ID; full HTTP/CMS regression memerlukan build",
+      "log": "docs/checks/full-audit-20261022/http-current.log"
+    },
+    {
+      "command": "node scripts/check-source-syntax.mjs (TypeScript 5.9.3 dari cache)",
+      "exitCode": 0,
+      "status": "PASS",
+      "detail": "103 TS/TSX/MTS/MJS berhasil diperiksa sintaks/transpilasi; bukan semantic full typecheck/build",
+      "log": "docs/checks/full-audit-20261022/final-syntax.log"
+    }
+  ]
+}

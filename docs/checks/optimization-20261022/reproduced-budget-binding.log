@@ -1,0 +1,1 @@
+{"scope":"LOCAL ONLY: no network or paid traffic","baselineGuard":{"allowed":true,"strategy":"provider-enforced-key-cap","hardLimitUsd":3,"verifiedAt":"2026-10-22T04:58:26.311Z","verification":"Operator attestation of provider-side enforcement; not checked automatically by this harness.","evidence":"LOCAL REPRODUCTION ONLY: unrelated cap statement without key binding."}}

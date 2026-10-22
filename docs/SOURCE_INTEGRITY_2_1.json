@@ -1,0 +1,940 @@
+{
+  "baseline": "aet-ai-signature-hybrid-redesign(2).zip",
+  "unchanged": [
+    "app/AETPCR.docx",
+    "app/admin/Sidebar.tsx",
+    "app/admin/events/page.tsx",
+    "app/admin/news/page.tsx",
+    "app/admin/page.tsx",
+    "app/admin/team/page.tsx",
+    "app/coming-soon/page.tsx",
+    "app/events/[slug]/ShareButton.tsx",
+    "app/favicon.ico",
+    "app/layout.tsx",
+    "app/login/page.tsx",
+    "app/news/[slug]/ShareButton.tsx",
+    "app/news/page.tsx",
+    "app/team/page.tsx",
+    "components/layout/Brand.tsx",
+    "components/layout/Footer.tsx",
+    "components/layout/PublicNavigation.tsx",
+    "components/layout/PublicPage.tsx",
+    "components/shared/ArticleContent.tsx",
+    "components/shared/Dialog.tsx",
+    "components/shared/MediaViewer.tsx",
+    "components/ui/SkeletonCard.tsx",
+    "docs/AET_AI_Preview.jpg",
+    "docs/VERIFIKASI_BACKEND.json",
+    "docs/http-regression-results.json",
+    "docs/screenshots/admin-dashboard.jpg",
+    "docs/screenshots/admin-editor.jpg",
+    "docs/screenshots/chat-desktop.jpg",
+    "docs/screenshots/chat-mobile.jpg",
+    "docs/screenshots/landing-desktop.jpg",
+    "docs/screenshots/landing-mobile.jpg",
+    "docs/screenshots/news.jpg",
+    "eslint.config.mjs",
+    "postcss.config.mjs",
+    "prisma/dev.db",
+    "prisma/schema.prisma",
+    "public/AETPCR.docx",
+    "public/file.svg",
+    "public/fonts/OFL.txt",
+    "public/fonts/plus-jakarta-sans-latin.woff2",
+    "public/globe.svg",
+    "public/next.svg",
+    "public/vercel.svg",
+    "public/window.svg",
+    "tailwind.config.ts"
+  ],
+  "changed": [
+    ".env.example",
+    ".gitignore",
+    "README.md",
+    "app/admin/layout.tsx",
+    "app/api/auth/login/route.ts",
+    "app/api/auth/logout/route.ts",
+    "app/api/chat/route.ts",
+    "app/api/events/[id]/route.ts",
+    "app/api/events/route.ts",
+    "app/api/frontier-access/route.ts",
+    "app/api/news/[id]/route.ts",
+    "app/api/news/route.ts",
+    "app/api/team/[id]/route.ts",
+    "app/api/team/route.ts",
+    "app/api/upload/route.ts",
+    "app/events/[slug]/page.tsx",
+    "app/events/page.tsx",
+    "app/globals.css",
+    "app/news/[slug]/page.tsx",
+    "app/page.tsx",
+    "components/ChatInterface.tsx",
+    "components/LandingPage.tsx",
+    "components/MessageBubble.tsx",
+    "components/admin/ContentManager.tsx",
+    "docs/DAFTAR_PERUBAHAN.md",
+    "docs/LAPORAN_IMPLEMENTASI.md",
+    "docs/SCREENSHOTS.md",
+    "docs/checks/build.log",
+    "docs/checks/lint.log",
+    "docs/checks/test.log",
+    "docs/checks/types.log",
+    "lib/aet-frontier-access.ts",
+    "lib/ai-models.ts",
+    "lib/prisma.ts",
+    "lib/sumopod.ts",
+    "next.config.ts",
+    "package-lock.json",
+    "package.json",
+    "proxy.ts",
+    "tests/sumopod.test.mts",
+    "tsconfig.json",
+    "types/index.ts"
+  ],
+  "added": [
+    "app/api/attachments/route.ts",
+    "docs/AI_MODEL_CATALOG.md",
+    "docs/AI_PERSONA_SPECIFICATION.md",
+    "docs/AI_TOOL_ARCHITECTURE.md",
+    "docs/CHANGELOG_2_1.md",
+    "docs/DATABASE_MIGRATION.md",
+    "docs/FINAL_IMPLEMENTATION_REPORT.md",
+    "docs/FUNCTIONAL_AUDIT_2_1.md",
+    "docs/REGRESSION_TEST_REPORT.md",
+    "docs/RESPONSE_QUALITY_BENCHMARK.md",
+    "docs/SECURITY_AUDIT_2_1.md",
+    "docs/SUMOPOD_COMPATIBILITY.md",
+    "docs/benchmark-code-execution.json",
+    "docs/benchmark-deterministic-results.json",
+    "docs/benchmark-live-results.json",
+    "docs/benchmark-manual-review.json",
+    "docs/benchmark-refinement-results.json",
+    "docs/checks/http.log",
+    "docs/checks/install.log",
+    "docs/checks/prisma.log",
+    "docs/dependency-audit.json",
+    "docs/http-regression-2-1.json",
+    "docs/model-gateway-metadata.json",
+    "docs/model-metadata.json",
+    "docs/model-verification.json",
+    "lib/ai/attachments.ts",
+    "lib/ai/context.ts",
+    "lib/ai/knowledge.ts",
+    "lib/ai/model-config.ts",
+    "lib/ai/personas/academic-writer.ts",
+    "lib/ai/personas/coding-expert.ts",
+    "lib/ai/personas/core.ts",
+    "lib/ai/personas/prompt-builder.ts",
+    "lib/ai/personas/response-policy.ts",
+    "lib/ai/personas/smart-companion.ts",
+    "lib/ai/safe-web.ts",
+    "lib/ai/tools.ts",
+    "lib/auth.ts",
+    "lib/chat-stream.ts",
+    "lib/cms-validation.ts",
+    "lib/conversations.ts",
+    "lib/files.ts",
+    "lib/http.ts",
+    "lib/ids.ts",
+    "lib/rate-limit.ts",
+    "next-env.d.ts",
+    "scripts/benchmark-personas.mjs",
+    "scripts/check-benchmark-code.py",
+    "scripts/check-http.mjs",
+    "scripts/dev.mjs",
+    "scripts/evaluate-benchmark.py",
+    "scripts/http-regression.mjs",
+    "scripts/mock-gateway.mjs",
+    "scripts/verify-sumopod.mjs",
+    "tests/ai.test.mts",
+    "tests/attachments.test.mts",
+    "tests/cms-history.test.mts",
+    "tests/fixtures/baseline-prompts.json",
+    "tests/fixtures/benchmark-cases.json",
+    "tests/fixtures/encrypted.pdf",
+    "tests/fixtures/scan.pdf",
+    "tests/fixtures/too-many-pages.pdf",
+    "tests/fixtures/valid.pdf",
+    "tests/rendering.test.mts",
+    "tests/security.test.mts",
+    "tests/streaming.test.mts"
+  ],
+  "removedOrExcluded": [],
+  "databaseAndSchemaPreserved": true,
+  "secretPatternScan": "PASS; no sk- credential patterns found in included files or document XML",
+  "excludes": [
+    "secret .env files",
+    "node_modules",
+    ".next",
+    "test databases",
+    "temporary QA routes/pages",
+    "TypeScript/Python caches"
+  ],
+  "files": [
+    {
+      "path": ".env.example",
+      "sha256": "ac78ed210453c4c4e434c3f54b0365edcea8690111963162ee007a545845c17f",
+      "bytes": 975
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "1db670033197709d9e8ec8e1c706dead9babf08863c736a335addf24f642f235",
+      "bytes": 609
+    },
+    {
+      "path": "README.md",
+      "sha256": "bedfb51d89e208b77f58c2298eba28faed9a21a125712708401741ef59fad550",
+      "bytes": 5391
+    },
+    {
+      "path": "app/AETPCR.docx",
+      "sha256": "21791ed051e5441aad6d1006cdfa240e7e672e727ba96f14353e31f67bd7629c",
+      "bytes": 27779
+    },
+    {
+      "path": "app/admin/Sidebar.tsx",
+      "sha256": "d54bef0548f0ebcc6252f9c1c8491ac658bbb4c8399e6061127523761d5a3437",
+      "bytes": 3231
+    },
+    {
+      "path": "app/admin/events/page.tsx",
+      "sha256": "9b36a97de9e9ac9d956fe7b2b16d10f650ad39af98e6388102f2dca5a904cc7a",
+      "bytes": 153
+    },
+    {
+      "path": "app/admin/layout.tsx",
+      "sha256": "05490e12a6b00408ed4f0170596c354abd487cdc28d26c367a49091b2fa4ab5c",
+      "bytes": 936
+    },
+    {
+      "path": "app/admin/news/page.tsx",
+      "sha256": "8a9fa999431775bb81810dc0df287d312cdf0591f4a2f9466e27fe28e85bc647",
+      "bytes": 149
+    },
+    {
+      "path": "app/admin/page.tsx",
+      "sha256": "f6e9ec207a73468821074a99979a6bb06fb9aa8d9e98385048abe793e384be3c",
+      "bytes": 2907
+    },
+    {
+      "path": "app/admin/team/page.tsx",
+      "sha256": "73c7e222679086e0caa4b075bb35df899271c6e2047db93347a27c2dda3a33ab",
+      "bytes": 149
+    },
+    {
+      "path": "app/api/attachments/route.ts",
+      "sha256": "5da3dd440507b7d9dfbe9f76753d02e336dff570abf32b12149eb34e02a8a044",
+      "bytes": 703
+    },
+    {
+      "path": "app/api/auth/login/route.ts",
+      "sha256": "406c2718fa70a3de5ad5d6461756fe6e619d86f40d9f9d2dc416b882f31f8bf3",
+      "bytes": 1502
+    },
+    {
+      "path": "app/api/auth/logout/route.ts",
+      "sha256": "9fa54ea3f1c62c25d9bdff5a4eb0c351316bd05f178009fba662546d4290dc83",
+      "bytes": 524
+    },
+    {
+      "path": "app/api/chat/route.ts",
+      "sha256": "35682d0716cd686c45a4a258db928f939bba73836b8eb3c3793be160cee959db",
+      "bytes": 6405
+    },
+    {
+      "path": "app/api/events/[id]/route.ts",
+      "sha256": "a7cb2b52148cabd5f6082a97de1066b4c44a7e3979ff8f9c36f8e6a0cff3be45",
+      "bytes": 1592
+    },
+    {
+      "path": "app/api/events/route.ts",
+      "sha256": "05e43b142d7cc756bf94328085718141d92d8befa460e6fc553f59aebc214ced",
+      "bytes": 761
+    },
+    {
+      "path": "app/api/frontier-access/route.ts",
+      "sha256": "f01054cb469ec4a0d84ed10cbae4cac041a42b4bc1a5cae002f7f5cd047b72aa",
+      "bytes": 1023
+    },
+    {
+      "path": "app/api/news/[id]/route.ts",
+      "sha256": "88eb441f49ba4158892de6fb41fc96ec935903c0925ca4bdb4885cdebc16aef1",
+      "bytes": 1587
+    },
+    {
+      "path": "app/api/news/route.ts",
+      "sha256": "dbc5d05a13b1fcd3148787b2c4a7f8a700b9db8568544251787bd32dd307bd56",
+      "bytes": 793
+    },
+    {
+      "path": "app/api/team/[id]/route.ts",
+      "sha256": "dbe2b6d95d15a62bf1d539b881215b3975cbdbf656fbe8729c1d571619e9c37b",
+      "bytes": 1605
+    },
+    {
+      "path": "app/api/team/route.ts",
+      "sha256": "50fc6a12035078af90bc4e94bd157d2fa4285c4982e73c571a5343922d06032b",
+      "bytes": 765
+    },
+    {
+      "path": "app/api/upload/route.ts",
+      "sha256": "ab6dc770cecf2adbf064b5a592ca73e5c6bd1da28dbf55e661f4b1e7eebd5085",
+      "bytes": 1082
+    },
+    {
+      "path": "app/coming-soon/page.tsx",
+      "sha256": "866d6e6053dc4b41a415bbe73f4374fe5938d65275893a9419db3dbb09991519",
+      "bytes": 1993
+    },
+    {
+      "path": "app/events/[slug]/ShareButton.tsx",
+      "sha256": "279afa3dccad21a1847adfc0983381fee16e3509a730f9c0fd0b9022e94e86d4",
+      "bytes": 980
+    },
+    {
+      "path": "app/events/[slug]/page.tsx",
+      "sha256": "d0436af34c307c192af4c08dd6d3f44ef2e88695cf6eb7fe4557170926353e6f",
+      "bytes": 2775
+    },
+    {
+      "path": "app/events/page.tsx",
+      "sha256": "c14d5a5f13d8dbcb88fa4f44ac0daa02fa912b81f0358b165d916a92d6f1ba11",
+      "bytes": 4464
+    },
+    {
+      "path": "app/favicon.ico",
+      "sha256": "b4feb8d1856bfb294fc0336cdc7db3bde8c0e7933ba245fd94b396dc22f67f63",
+      "bytes": 150928
+    },
+    {
+      "path": "app/globals.css",
+      "sha256": "b17a860398537cd458bcab7587c77f25d58d99ad285a29918ffdc21c544668f7",
+      "bytes": 60131
+    },
+    {
+      "path": "app/layout.tsx",
+      "sha256": "297e5b8fe3aac2725ca43467567a61aada3a3b699b4296224763d9f708232dea",
+      "bytes": 1481
+    },
+    {
+      "path": "app/login/page.tsx",
+      "sha256": "c5c3d029855d1e522cd973e8df76de58d4e64bb66813069f9b1acd3e007f6218",
+      "bytes": 3719
+    },
+    {
+      "path": "app/news/[slug]/ShareButton.tsx",
+      "sha256": "ad639e67d543a04ec325609e5638a6baa5a68c58baaccb44df9947761b454d95",
+      "bytes": 979
+    },
+    {
+      "path": "app/news/[slug]/page.tsx",
+      "sha256": "2c50059b9c8a6cd364af85adfec32c185b7a2f765e9b14de200d3835f019f46a",
+      "bytes": 2304
+    },
+    {
+      "path": "app/news/page.tsx",
+      "sha256": "02923ff732d4ecbd7fc72fdfc2b4d1e908052220b10b199601163e44ea76f419",
+      "bytes": 3241
+    },
+    {
+      "path": "app/page.tsx",
+      "sha256": "58fe06188885aa31dc222e3eeab3370ba860e37add460df4baad91017a764417",
+      "bytes": 730
+    },
+    {
+      "path": "app/team/page.tsx",
+      "sha256": "5586d4345650c5117149ac2b4cc5e6c757d2cd7a7d8a5bcd10fc9bc3db4a7fe5",
+      "bytes": 3608
+    },
+    {
+      "path": "components/ChatInterface.tsx",
+      "sha256": "657f4ae038fa6ed43b14087b06dac04831979db86e977a1ed97ec8da0e343cbb",
+      "bytes": 43928
+    },
+    {
+      "path": "components/LandingPage.tsx",
+      "sha256": "4d9f1b75ac2f49d783fb90ef766c0a3fe09ace95f6cf30fb8da241e5926affb8",
+      "bytes": 12289
+    },
+    {
+      "path": "components/MessageBubble.tsx",
+      "sha256": "670f17fdf71084d5c315d793dc954e0b0f4ee836370a7841e6da7f57f6b81b2b",
+      "bytes": 25589
+    },
+    {
+      "path": "components/admin/ContentManager.tsx",
+      "sha256": "e48d5baf763e2a4336ac2f2d2666f38249ba630094f4a9b51f526f0634e53485",
+      "bytes": 24262
+    },
+    {
+      "path": "components/layout/Brand.tsx",
+      "sha256": "ace549f103dfd83a58329632b558f78e4bfee9bb5529436b9438f7b28ec2f186",
+      "bytes": 785
+    },
+    {
+      "path": "components/layout/Footer.tsx",
+      "sha256": "1fce0150d26af95fa8c0ba3c773f00c263e667d487b162ae3356a54b78b36988",
+      "bytes": 1186
+    },
+    {
+      "path": "components/layout/PublicNavigation.tsx",
+      "sha256": "3c168468ced740d26996a32095ae24837d2be969e56428fec9e0951241c87c36",
+      "bytes": 2942
+    },
+    {
+      "path": "components/layout/PublicPage.tsx",
+      "sha256": "458cf5c074830a0820893117fa4c70b00ef13fa41885c6f9a186e42b2e377f06",
+      "bytes": 1197
+    },
+    {
+      "path": "components/shared/ArticleContent.tsx",
+      "sha256": "fd7d014ff5e9ba19d0c144fd32d53403a7565d7ce937908eb355f1abc2a8de70",
+      "bytes": 1068
+    },
+    {
+      "path": "components/shared/Dialog.tsx",
+      "sha256": "c92e016c5cd640e2fc3655be4919df848f035baa0042d42410534528881de27b",
+      "bytes": 2271
+    },
+    {
+      "path": "components/shared/MediaViewer.tsx",
+      "sha256": "a042e240593b915e699d38dd729af154bc0b7bc5bad4aa1e6690b7bbcf7c3002",
+      "bytes": 3908
+    },
+    {
+      "path": "components/ui/SkeletonCard.tsx",
+      "sha256": "6ac6a69809a7c6c1aa4fe786ab6cb8885f2125fdeb7ba73e8fd77025c7cfa117",
+      "bytes": 1819
+    },
+    {
+      "path": "docs/AET_AI_Preview.jpg",
+      "sha256": "6bbbd6060a9a013d8e779a7f4bc4eaefc18f7393c7eea749926e3edf76ea7a0c",
+      "bytes": 390994
+    },
+    {
+      "path": "docs/AI_MODEL_CATALOG.md",
+      "sha256": "d30523b7355c55e01a827edce98b2b3d404452e258440f67e6f15582a8e5f1fe",
+      "bytes": 2148
+    },
+    {
+      "path": "docs/AI_PERSONA_SPECIFICATION.md",
+      "sha256": "34e81ee2ba9c6510dcb35e124d780698c91eebcecf3aaf438bb7d0a37afd545c",
+      "bytes": 2600
+    },
+    {
+      "path": "docs/AI_TOOL_ARCHITECTURE.md",
+      "sha256": "93dd40afac3cabe93e4847e8ab6de4e5e48e683681c043eb68df533d7d5f1ccf",
+      "bytes": 1997
+    },
+    {
+      "path": "docs/CHANGELOG_2_1.md",
+      "sha256": "e716bc9ea753dc2ff945e200f858a89194d61666a8fd044ba0ee415cf814e594",
+      "bytes": 1789
+    },
+    {
+      "path": "docs/DAFTAR_PERUBAHAN.md",
+      "sha256": "df77a7c80a4675cfae333d522f8075548f7b5faadcac187f39cfe15741755f9f",
+      "bytes": 1565
+    },
+    {
+      "path": "docs/DATABASE_MIGRATION.md",
+      "sha256": "9a2d21fd233c02d7d3958a4a774c231e55b9c85ab116bc4b998f1a8676d05efc",
+      "bytes": 1703
+    },
+    {
+      "path": "docs/FINAL_IMPLEMENTATION_REPORT.md",
+      "sha256": "9101082b09e112b7b1d820e8c5f814ee74b71570ac0383fe1f1d16bb2c723103",
+      "bytes": 6144
+    },
+    {
+      "path": "docs/FUNCTIONAL_AUDIT_2_1.md",
+      "sha256": "8f9720dd691ea76ad1bf77dd2ca1289406cbfc1febaf27933e7ab3c05cf301f8",
+      "bytes": 3129
+    },
+    {
+      "path": "docs/LAPORAN_IMPLEMENTASI.md",
+      "sha256": "e9bb2cc4acecf61c1a6b3f431e290bafd3e035c67b7b3f397a9b57ae7e65eb43",
+      "bytes": 13770
+    },
+    {
+      "path": "docs/REGRESSION_TEST_REPORT.md",
+      "sha256": "4dbfba2a1a3989291c9b9f487e59d53d5f7809ff4157edfdce1eb1fe9212c76f",
+      "bytes": 3564
+    },
+    {
+      "path": "docs/RESPONSE_QUALITY_BENCHMARK.md",
+      "sha256": "3e64f7b5b1edbbcabff67942272b2da0ec16fcd476139d825a754ea61718b4fe",
+      "bytes": 6115
+    },
+    {
+      "path": "docs/SCREENSHOTS.md",
+      "sha256": "7318f1d8f8f4bab819e55ff664bfeacba742fce3ea74e84a228164c859d99364",
+      "bytes": 810
+    },
+    {
+      "path": "docs/SECURITY_AUDIT_2_1.md",
+      "sha256": "00e961341b47d463b3ead92de0cd93766f4dcb420be0a0a888c913e6c9854ad7",
+      "bytes": 4146
+    },
+    {
+      "path": "docs/SUMOPOD_COMPATIBILITY.md",
+      "sha256": "afce38e3e6828c191409b976f73b337fbbf70df87141b8dd8f6c32a68bb730bf",
+      "bytes": 1952
+    },
+    {
+      "path": "docs/VERIFIKASI_BACKEND.json",
+      "sha256": "af679000c327258e2c246003f19464c5083cdc7737e530523bba69560dd7749d",
+      "bytes": 5815
+    },
+    {
+      "path": "docs/benchmark-code-execution.json",
+      "sha256": "b434e268e3335e92bdf870ef9bc1a6fb984c5ae9cdac7064893a24e8acd1bf25",
+      "bytes": 4883
+    },
+    {
+      "path": "docs/benchmark-deterministic-results.json",
+      "sha256": "64748cc6c8a8b8f136e06f42d8e93a57fcbac3e4d84ad181e87db0a133b61035",
+      "bytes": 11760
+    },
+    {
+      "path": "docs/benchmark-live-results.json",
+      "sha256": "43b5a4508b5d815a2d653907d6785316f26665a99296187f6b78851b4163b6da",
+      "bytes": 155559
+    },
+    {
+      "path": "docs/benchmark-manual-review.json",
+      "sha256": "4083602efc76415dfa845438baab02744920e89490b985280cb4cce6452d708f",
+      "bytes": 84490
+    },
+    {
+      "path": "docs/benchmark-refinement-results.json",
+      "sha256": "b87c1c356ff8267d955330e98e9b3e818601800bc050080dddc7eb171223e92f",
+      "bytes": 27355
+    },
+    {
+      "path": "docs/checks/build.log",
+      "sha256": "f2429edb5cddb4d3a02ee3f7b2e6264fb83edcaaffe69ded06b1a788cd78cb21",
+      "bytes": 1322
+    },
+    {
+      "path": "docs/checks/http.log",
+      "sha256": "053e787a47ba258741b413056019b7af80b1448a41c9b93e9fedcb851ac435b0",
+      "bytes": 192
+    },
+    {
+      "path": "docs/checks/install.log",
+      "sha256": "be3f4042829ae519f8e075f78f88e0d963a58503feab3394adb8265cf2a0ffcb",
+      "bytes": 126
+    },
+    {
+      "path": "docs/checks/lint.log",
+      "sha256": "8278b4348585a77625394eca956816b162db26f0e956a0bd346e180c13e7aca4",
+      "bytes": 130
+    },
+    {
+      "path": "docs/checks/prisma.log",
+      "sha256": "9b9e1837d7b220af5bdeaf761a99e774594c5e8f7546a30d5acd2e037e5a9a05",
+      "bytes": 284
+    },
+    {
+      "path": "docs/checks/test.log",
+      "sha256": "a2a25162dd93b2730dcb814228c91c2026792731512b52ff2cbfc80aaa65165a",
+      "bytes": 4941
+    },
+    {
+      "path": "docs/checks/types.log",
+      "sha256": "7125f194612fcff2f454c05d848e7cb71facc1967b4d5017e25b34fdee3ba74f",
+      "bytes": 99
+    },
+    {
+      "path": "docs/dependency-audit.json",
+      "sha256": "a22f5a5244881e931040f96371e7767c7fdbc48290502e52336b97ee36a13336",
+      "bytes": 6259
+    },
+    {
+      "path": "docs/http-regression-2-1.json",
+      "sha256": "aafa301d4a965ca495cc8efa2286f472f693d5a02f071f7c7ac905238bd9efd1",
+      "bytes": 6810
+    },
+    {
+      "path": "docs/http-regression-results.json",
+      "sha256": "f95a06b79802b51286c42be355fd5d2e410ce61c114931707e94e2d46a282c4b",
+      "bytes": 2030
+    },
+    {
+      "path": "docs/model-gateway-metadata.json",
+      "sha256": "68f472c42a1d8646bfde2ab3e5c76fbfeadb55518f4b5f615612072a0edb9784",
+      "bytes": 2805
+    },
+    {
+      "path": "docs/model-metadata.json",
+      "sha256": "d52ef8d43294ad317c1872dd4a3c577fa6539cb34728ae1a8a8a01e77c7b4c6a",
+      "bytes": 2533
+    },
+    {
+      "path": "docs/model-verification.json",
+      "sha256": "2c1794c40400882dfa24285bb3f8e429b940ce6d5dbce2c75084eed9094c6789",
+      "bytes": 3908
+    },
+    {
+      "path": "docs/screenshots/admin-dashboard.jpg",
+      "sha256": "7c26e9028b1ab4c0263971898c5b6c284fa588b500c040dfcb8d8e90b4ccac47",
+      "bytes": 58990
+    },
+    {
+      "path": "docs/screenshots/admin-editor.jpg",
+      "sha256": "9191a16f63e8ca0104036a899c777451dfb0ebaebe964d1ed1edb2f325104cb5",
+      "bytes": 142764
+    },
+    {
+      "path": "docs/screenshots/chat-desktop.jpg",
+      "sha256": "83e559342883a3415f7c4b431cf139af4ab9b0e23cc98921924b15c6db15b8c3",
+      "bytes": 63363
+    },
+    {
+      "path": "docs/screenshots/chat-mobile.jpg",
+      "sha256": "2d415e8538f7b2e64a737fca1750603c9e29d3cc8f32de0059cad36297a91fa1",
+      "bytes": 38402
+    },
+    {
+      "path": "docs/screenshots/landing-desktop.jpg",
+      "sha256": "1075c7b0aea8651b185e7949fd94302a01f9a727934d10950a556f6814198484",
+      "bytes": 80752
+    },
+    {
+      "path": "docs/screenshots/landing-mobile.jpg",
+      "sha256": "c69ba0a9c9ea03e6eadb52714e3e7a8ca18a59223cb7bfcb8fcb3a13f0dfca15",
+      "bytes": 41768
+    },
+    {
+      "path": "docs/screenshots/news.jpg",
+      "sha256": "6db3e3a36dfed8d5e1381e8bd54e64a0a786d9284e232262300afdccacc2f6ba",
+      "bytes": 78359
+    },
+    {
+      "path": "eslint.config.mjs",
+      "sha256": "275a07c13fc7c83a652efcfa9fb6a207c451a2f5088e6793415ce44281285720",
+      "bytes": 483
+    },
+    {
+      "path": "lib/aet-frontier-access.ts",
+      "sha256": "2a103f83de96e1beb3dec7985e75fbc8e29afc0b364a5783deb470a9e00ecbd1",
+      "bytes": 1278
+    },
+    {
+      "path": "lib/ai/attachments.ts",
+      "sha256": "c4b0415176b58da85f1ee2603c6925ade3b6ef70afadd71bcbe2dbb7578cd115",
+      "bytes": 4276
+    },
+    {
+      "path": "lib/ai/context.ts",
+      "sha256": "43e16986e897e89d34a4092a3946c572d69d40b814dfbdbb16e738103107ede2",
+      "bytes": 3011
+    },
+    {
+      "path": "lib/ai/knowledge.ts",
+      "sha256": "4603a31db3209f801a5665fab57189a6b6548933f311d0f5462b2c036fd153da",
+      "bytes": 2189
+    },
+    {
+      "path": "lib/ai/model-config.ts",
+      "sha256": "0847e8f6cfb3db01322877eb1dd0d603dff404fc781f35d8d2d834efcacf7371",
+      "bytes": 734
+    },
+    {
+      "path": "lib/ai/personas/academic-writer.ts",
+      "sha256": "0d7ff445e9ba16490e90fc357cf0287ff59ebe372650237837632362850b2c61",
+      "bytes": 1446
+    },
+    {
+      "path": "lib/ai/personas/coding-expert.ts",
+      "sha256": "1c7d7bb77a66dbb6a1dfb08b92c2ef629c3f4b7a37c30efc781eee5f136dc5f4",
+      "bytes": 780
+    },
+    {
+      "path": "lib/ai/personas/core.ts",
+      "sha256": "f8d4d2348f45e0fb7507eb05e9e32b39b4a04170a67b1f2b297235f9a8d3961b",
+      "bytes": 1106
+    },
+    {
+      "path": "lib/ai/personas/prompt-builder.ts",
+      "sha256": "022a5ef314201bfc44030043f5535f3e35627952e1baec261096d4e231c2d6ba",
+      "bytes": 1522
+    },
+    {
+      "path": "lib/ai/personas/response-policy.ts",
+      "sha256": "7ae966e111d3515e920f4aed0be99bfeb450495af2f9b9bc92a87c80e17f232b",
+      "bytes": 1995
+    },
+    {
+      "path": "lib/ai/personas/smart-companion.ts",
+      "sha256": "3f45c3a69f3cb35bf81b53099eeb695831f85d96b3f3d38091cfaf1e052c1fb9",
+      "bytes": 388
+    },
+    {
+      "path": "lib/ai/safe-web.ts",
+      "sha256": "65111a997d279c7684dfe85e31bc65d91345a0cf88f0449528761030a7c242fd",
+      "bytes": 4164
+    },
+    {
+      "path": "lib/ai/tools.ts",
+      "sha256": "dac881477c23c2eda71792ea313f59af898a952d402a83ab269aefd980dae76c",
+      "bytes": 7519
+    },
+    {
+      "path": "lib/ai-models.ts",
+      "sha256": "4c31c7a54a181af017bcc41e936b96126632372d1f5455a8cd5ccd7efbb8cf31",
+      "bytes": 7518
+    },
+    {
+      "path": "lib/auth.ts",
+      "sha256": "2947a66fddfa35ea9c255f3e11de40ee58f40ab2c5c5d7545d1b8a33ca682675",
+      "bytes": 2403
+    },
+    {
+      "path": "lib/chat-stream.ts",
+      "sha256": "a4d35c9c81e4ab9bbd34be061ea18bda41562aabe9753c85464d54304ab9f60c",
+      "bytes": 1646
+    },
+    {
+      "path": "lib/cms-validation.ts",
+      "sha256": "4c22505a3dca5785504df6250747d4837bc3175fae97047b63c1bf5947737f6b",
+      "bytes": 3994
+    },
+    {
+      "path": "lib/conversations.ts",
+      "sha256": "5baa96d4b97563043f75956e28069d5f745f446ca13d700a726d5c97b3d404cd",
+      "bytes": 3051
+    },
+    {
+      "path": "lib/files.ts",
+      "sha256": "170059137584d26a2c9201c3fe2b7510f69d97e1c176baae0bdca85b8a8d9ca4",
+      "bytes": 918
+    },
+    {
+      "path": "lib/http.ts",
+      "sha256": "8b88dafe3bc391c5fd9c16dcfbd77c8fc0f484e6ab99343314dc1409df8f6983",
+      "bytes": 2927
+    },
+    {
+      "path": "lib/ids.ts",
+      "sha256": "22f68f4a9650d042e6c5383a921c243cde903ed604891bc6333cd748ad943f75",
+      "bytes": 468
+    },
+    {
+      "path": "lib/prisma.ts",
+      "sha256": "cf4cf994058fe829b5d7650d76136d9324134c8d93ecf6b5179d970c8bc2ab3a",
+      "bytes": 293
+    },
+    {
+      "path": "lib/rate-limit.ts",
+      "sha256": "fe906173bfe40418d0acf075b10cf8cc81c6ef38da1186baafebce81357e0410",
+      "bytes": 1286
+    },
+    {
+      "path": "lib/sumopod.ts",
+      "sha256": "1d548cdf8b7017878478bec730098131c63c630ff70615db38b92a109c1603a1",
+      "bytes": 4197
+    },
+    {
+      "path": "next-env.d.ts",
+      "sha256": "0f70629890b72a0a82e91972cc032c04b658b26c265373cb711cf576bfbf8fcc",
+      "bytes": 296
+    },
+    {
+      "path": "next.config.ts",
+      "sha256": "5b31686608d59b77fa8076cb7f4c52cbb1fbc933b161b167f31287295c271371",
+      "bytes": 425
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "f52b81113d8294218f569d0149b8ec35e43f0a7cfbf3b74c299cc31f9848d0d1",
+      "bytes": 381948
+    },
+    {
+      "path": "package.json",
+      "sha256": "d115b90773bc67fba8e9d16f9d6d6d4a391acebb56fc4a100ffa1e7be7f15ea9",
+      "bytes": 1687
+    },
+    {
+      "path": "postcss.config.mjs",
+      "sha256": "7b299d3d3b16699ddda397c0b2373b3af4f25f8fc9ccc9b3d9e64ef083bc1c21",
+      "bytes": 101
+    },
+    {
+      "path": "prisma/dev.db",
+      "sha256": "dc579014c71daa611b500c291e6e3878678da4d9ba8d2f9a4a87dd9ad0b2f45e",
+      "bytes": 32768
+    },
+    {
+      "path": "prisma/schema.prisma",
+      "sha256": "e967a45b5ec1ed380efb9c6f354846f597e2067b124940280459bea28caa3b70",
+      "bytes": 978
+    },
+    {
+      "path": "proxy.ts",
+      "sha256": "1935996d09cca37108205c5e5a9ab8a1062bc03db0f4e7a3bb9b66994c66ae22",
+      "bytes": 509
+    },
+    {
+      "path": "public/AETPCR.docx",
+      "sha256": "21791ed051e5441aad6d1006cdfa240e7e672e727ba96f14353e31f67bd7629c",
+      "bytes": 27779
+    },
+    {
+      "path": "public/file.svg",
+      "sha256": "2b67812c325c199a02536cdbeea0c593a72f707d323b72ee3e08dbab06753bd4",
+      "bytes": 391
+    },
+    {
+      "path": "public/fonts/OFL.txt",
+      "sha256": "995c7199cab65954f545996326755daee7b63cc6b42b06c13da1f9502ab08a99",
+      "bytes": 4402
+    },
+    {
+      "path": "public/fonts/plus-jakarta-sans-latin.woff2",
+      "sha256": "cd8db90cd950e26bc8761f65d323588bd5cd112d326d6d322bc7c8ea86771215",
+      "bytes": 27272
+    },
+    {
+      "path": "public/globe.svg",
+      "sha256": "b614b9bf183925957661ac851498fe1d8029fd43a62fbfed86f9e2624a57e7cf",
+      "bytes": 1035
+    },
+    {
+      "path": "public/next.svg",
+      "sha256": "55995dfad6ecb4945a1e856ddca03c5e16aa5bf13fd21b4df6a74ae79357bcfc",
+      "bytes": 1375
+    },
+    {
+      "path": "public/vercel.svg",
+      "sha256": "f081337b2fee635b455b63275406a3e7f39d6a014e25ad90dab5a67e62a12ac4",
+      "bytes": 128
+    },
+    {
+      "path": "public/window.svg",
+      "sha256": "644768c4aaeb4767bce293344eeb0c125fb804a94d801440424072202d85e3a1",
+      "bytes": 385
+    },
+    {
+      "path": "scripts/benchmark-personas.mjs",
+      "sha256": "d219e520d513a312de3dd57724340ced0feaffff98a1cf463f50c1bec985ede2",
+      "bytes": 3280
+    },
+    {
+      "path": "scripts/check-benchmark-code.py",
+      "sha256": "b97e865adb429c9e9e7e54666e6ca9fd559ac649d39494b18ef75d939b7afb4c",
+      "bytes": 4724
+    },
+    {
+      "path": "scripts/check-http.mjs",
+      "sha256": "813a9a4d506d1f93dac55f800f1cda8b2da21415402a3ab38c01cbaa2b93e1e3",
+      "bytes": 3183
+    },
+    {
+      "path": "scripts/dev.mjs",
+      "sha256": "bc5a0f264e22626f94fa897fb83736b27bf8a446f3e71cf1b5de5e94b3356275",
+      "bytes": 520
+    },
+    {
+      "path": "scripts/evaluate-benchmark.py",
+      "sha256": "16a3bfb073d9204883cce710f29ac2a246c4a439f5013813df24b7273112a5a6",
+      "bytes": 6463
+    },
+    {
+      "path": "scripts/http-regression.mjs",
+      "sha256": "a688d75bcfde582c18fffa2f0e1b3357d5e3dad7c99bb99251c33b1e73ba396c",
+      "bytes": 14414
+    },
+    {
+      "path": "scripts/mock-gateway.mjs",
+      "sha256": "2da63540a9e6419dbf611776ef3bed557dae133060210c338db32c26138099b9",
+      "bytes": 1588
+    },
+    {
+      "path": "scripts/verify-sumopod.mjs",
+      "sha256": "e21ee4191d31731474f34b959a849b6fa3884e8d7642dfedf8647ae13af2a66d",
+      "bytes": 2351
+    },
+    {
+      "path": "tailwind.config.ts",
+      "sha256": "c7dd2fe5a0585121f5a6cfb2ec516e58d80e9e960a2bc0db8dbad30bc09af4b2",
+      "bytes": 363
+    },
+    {
+      "path": "tests/ai.test.mts",
+      "sha256": "86394c2569f13e6e11dc93c750722f5f8b035ce2fe56d74956b2016ba762ca0a",
+      "bytes": 5172
+    },
+    {
+      "path": "tests/attachments.test.mts",
+      "sha256": "8c5b36d2117359a3d411dbe00f48740ac769097ede1e1b20e1f4e516f33a2e3d",
+      "bytes": 2460
+    },
+    {
+      "path": "tests/cms-history.test.mts",
+      "sha256": "b59ba1c458e3d2b97e880437cff442188f0f970bd28c8de999b7bc3ddaf4c1ab",
+      "bytes": 3635
+    },
+    {
+      "path": "tests/fixtures/baseline-prompts.json",
+      "sha256": "fc483f7d2ed12f6df90c13117402c852af77686efb45c940871ea409138b9b4f",
+      "bytes": 9618
+    },
+    {
+      "path": "tests/fixtures/benchmark-cases.json",
+      "sha256": "5ef9b53a6e3d30639bc5beac01d5f3121181bb0bd9b9f13c5f5a1c937cc27792",
+      "bytes": 75854
+    },
+    {
+      "path": "tests/fixtures/encrypted.pdf",
+      "sha256": "cf4238366815f4d33402a3fa27ba608e210ab6c94b5b667c3356a69b213c9ffd",
+      "bytes": 1784
+    },
+    {
+      "path": "tests/fixtures/scan.pdf",
+      "sha256": "14cdf3f3fe31d29e1ceab8173be2f47c51561ee7ffdf7903ec5e1c37f54c9f86",
+      "bytes": 1331
+    },
+    {
+      "path": "tests/fixtures/too-many-pages.pdf",
+      "sha256": "0a077f39bdae0cd1f6a1b00ccfad93fa2060663b7ac56e56778c56c7f9e97326",
+      "bytes": 46304
+    },
+    {
+      "path": "tests/fixtures/valid.pdf",
+      "sha256": "0cb6033b7b4f1676499f9a22eb3a8653685f96b9bf01fcfa3976005f0a81919d",
+      "bytes": 1396
+    },
+    {
+      "path": "tests/rendering.test.mts",
+      "sha256": "fdb9a10636cdc18ecaa953bb4460c2264af8baa628bc30dcadfd0d3d03f94dbf",
+      "bytes": 1620
+    },
+    {
+      "path": "tests/security.test.mts",
+      "sha256": "ab213f8283f678a2587c1f08d6c956d4e1e5047c68bb09b2ec249c6e3ba6c7eb",
+      "bytes": 4327
+    },
+    {
+      "path": "tests/streaming.test.mts",
+      "sha256": "caa5c18624f514f89bc6ae9232670cea9d2e0a19f3028a8f35e29bd6a2cbef5c",
+      "bytes": 2239
+    },
+    {
+      "path": "tests/sumopod.test.mts",
+      "sha256": "02e140bb9d967198c5338087e453ef4a19224b8c358d306ed4a0d0b33f1c0409",
+      "bytes": 4614
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "5008ba7569f23bdd8aa3b0b34cb032b5f630d1e3394f067f494b7cc8b7a4cb94",
+      "bytes": 715
+    },
+    {
+      "path": "types/index.ts",
+      "sha256": "9e1b95ca82cff4116ac1e182f34f2a0e41508b6a30464b33472a2ffed84ecaba",
+      "bytes": 1310
+    }
+  ]
+}

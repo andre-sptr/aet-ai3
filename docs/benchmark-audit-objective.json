@@ -1,0 +1,291 @@
+{
+  "checkedAt": "2026-10-22T01:40:28.146Z",
+  "captureCounts": {
+    "optimized": 60,
+    "baseline": 60,
+    "production-policy": 2
+  },
+  "scope": "13 deterministic constraints out of 60 prompts; production-effective substitutes two deterministic citation-policy responses. Not an overall intelligence score.",
+  "summaries": [
+    {
+      "mode": "daily",
+      "version": "baseline",
+      "checked": 4,
+      "passed": 2
+    },
+    {
+      "mode": "report",
+      "version": "baseline",
+      "checked": 3,
+      "passed": 1
+    },
+    {
+      "mode": "coding",
+      "version": "baseline",
+      "checked": 6,
+      "passed": 4
+    },
+    {
+      "mode": "daily",
+      "version": "optimized",
+      "checked": 4,
+      "passed": 3
+    },
+    {
+      "mode": "report",
+      "version": "optimized",
+      "checked": 3,
+      "passed": 2
+    },
+    {
+      "mode": "coding",
+      "version": "optimized",
+      "checked": 6,
+      "passed": 6
+    },
+    {
+      "mode": "daily",
+      "version": "production-effective",
+      "checked": 4,
+      "passed": 3
+    },
+    {
+      "mode": "report",
+      "version": "production-effective",
+      "checked": 3,
+      "passed": 3
+    },
+    {
+      "mode": "coding",
+      "version": "production-effective",
+      "checked": 6,
+      "passed": 6
+    }
+  ],
+  "results": [
+    {
+      "batch": "completion-audit-final",
+      "caseId": "daily-06",
+      "mode": "daily",
+      "version": "baseline",
+      "check": "12 whitespace-separated words and no emoji",
+      "pass": false
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "daily-06",
+      "mode": "daily",
+      "version": "optimized",
+      "check": "12 whitespace-separated words and no emoji",
+      "pass": false
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "daily-09",
+      "mode": "daily",
+      "version": "optimized",
+      "check": "official foundation date 1 April 2008",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "daily-09",
+      "mode": "daily",
+      "version": "baseline",
+      "check": "official foundation date 1 April 2008",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "daily-14",
+      "mode": "daily",
+      "version": "baseline",
+      "check": "latest schedule contains 90 and 30 minutes",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "daily-14",
+      "mode": "daily",
+      "version": "optimized",
+      "check": "latest schedule contains 90 and 30 minutes",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "daily-18",
+      "mode": "daily",
+      "version": "optimized",
+      "check": "only numeric answer 36",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "daily-18",
+      "mode": "daily",
+      "version": "baseline",
+      "check": "only numeric answer 36",
+      "pass": false
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "report-05",
+      "mode": "report",
+      "version": "optimized",
+      "check": "placeholder citation; no invented numeric DOI",
+      "pass": false
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "report-05",
+      "mode": "report",
+      "version": "baseline",
+      "check": "placeholder citation; no invented numeric DOI",
+      "pass": false
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "report-05",
+      "mode": "report",
+      "version": "production-policy",
+      "check": "placeholder citation; no invented numeric DOI",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "report-06",
+      "mode": "report",
+      "version": "optimized",
+      "check": "no fabricated numeric DOI",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "report-06",
+      "mode": "report",
+      "version": "baseline",
+      "check": "no fabricated numeric DOI",
+      "pass": false
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "report-06",
+      "mode": "report",
+      "version": "production-policy",
+      "check": "no fabricated numeric DOI",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "report-09",
+      "mode": "report",
+      "version": "optimized",
+      "check": "mean 75 present (limited numeric check)",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "report-09",
+      "mode": "report",
+      "version": "baseline",
+      "check": "mean 75 present (limited numeric check)",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "coding-02",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "concept explanation without a fenced code block",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "coding-02",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "concept explanation without a fenced code block",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "coding-03",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "corrected Python only",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "coding-03",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "corrected Python only",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "coding-06",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "add implementation passes positive and negative checks",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "coding-06",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "add implementation passes positive and negative checks",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "coding-08",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "architecture comparison without a fenced code block",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "coding-08",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "architecture comparison without a fenced code block",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "coding-19",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "only numeric output 6",
+      "pass": false
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "coding-19",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "only numeric output 6",
+      "pass": true
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "coding-20",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "is_even code only and executable for zero, negatives, odds",
+      "pass": false
+    },
+    {
+      "batch": "completion-audit-final",
+      "caseId": "coding-20",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "is_even code only and executable for zero, negatives, odds",
+      "pass": true
+    }
+  ]
+}

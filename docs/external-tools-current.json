@@ -1,0 +1,175 @@
+{
+  "checkedAt": "2026-10-22T01:31:40.007Z",
+  "environment": "Current task execution environment; failures may reflect network/provider configuration.",
+  "results": [
+    {
+      "prompt": "10 km ke m",
+      "tools": [
+        "unit"
+      ],
+      "status": "PASS",
+      "evidence": [
+        {
+          "kind": "unit",
+          "source": "AET deterministic tool",
+          "status": "ok",
+          "data": {
+            "value": 10,
+            "from": "km",
+            "to": "m",
+            "result": 10000
+          }
+        }
+      ],
+      "durationMs": 7
+    },
+    {
+      "prompt": "rata-rata: 10, 20, 30",
+      "tools": [
+        "statistics"
+      ],
+      "status": "PASS",
+      "evidence": [
+        {
+          "kind": "statistics",
+          "source": "AET deterministic tool",
+          "status": "ok",
+          "data": {
+            "count": 3,
+            "sum": 60,
+            "mean": 20,
+            "median": 20,
+            "min": 10,
+            "max": 30
+          }
+        }
+      ],
+      "durationMs": 1
+    },
+    {
+      "prompt": "cek email hello@example.com",
+      "tools": [
+        "email"
+      ],
+      "status": "PASS",
+      "evidence": [
+        {
+          "kind": "email",
+          "source": "AET deterministic tool",
+          "status": "ok",
+          "data": {
+            "email": "hello@example.com",
+            "syntaxValid": true,
+            "note": "Pemeriksaan format saja; tidak memeriksa keberadaan mailbox."
+          }
+        }
+      ],
+      "durationMs": 0
+    },
+    {
+      "prompt": "konversi warna #ff0000",
+      "tools": [
+        "color"
+      ],
+      "status": "PASS",
+      "evidence": [
+        {
+          "kind": "color",
+          "source": "AET deterministic tool",
+          "status": "ok",
+          "data": {
+            "hex": "#ff0000",
+            "rgb": [
+              255,
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "durationMs": 1
+    },
+    {
+      "prompt": "buatkan password 16 simbol",
+      "tools": [
+        "password"
+      ],
+      "status": "PASS",
+      "evidence": [],
+      "directResponse": "Secure random password generated; value omitted.",
+      "durationMs": 1
+    },
+    {
+      "prompt": "cuaca di Pekanbaru",
+      "tools": [
+        "weather"
+      ],
+      "status": "BLOCKED",
+      "evidence": [
+        {
+          "kind": "weather",
+          "source": "https://open-meteo.com",
+          "status": "error",
+          "data": {
+            "message": "Tool gagal atau belum dikonfigurasi. Jangan mengarang hasil."
+          }
+        }
+      ],
+      "durationMs": 5013
+    },
+    {
+      "prompt": "10 USD ke IDR",
+      "tools": [
+        "currency"
+      ],
+      "status": "BLOCKED",
+      "evidence": [
+        {
+          "kind": "currency",
+          "source": "https://api.frankfurter.app",
+          "status": "error",
+          "data": {
+            "message": "Tool gagal atau belum dikonfigurasi. Jangan mengarang hasil."
+          }
+        }
+      ],
+      "durationMs": 4231
+    },
+    {
+      "prompt": "ringkas https://example.com",
+      "tools": [
+        "web"
+      ],
+      "status": "BLOCKED",
+      "evidence": [
+        {
+          "kind": "web",
+          "source": "AET deterministic tool",
+          "status": "error",
+          "data": {
+            "message": "Tool gagal atau belum dikonfigurasi. Jangan mengarang hasil."
+          }
+        }
+      ],
+      "durationMs": 5
+    },
+    {
+      "prompt": "cari sumber terbaru tentang elektronika",
+      "tools": [
+        "search"
+      ],
+      "status": "BLOCKED",
+      "evidence": [
+        {
+          "kind": "search",
+          "source": "https://api.tavily.com/search",
+          "status": "error",
+          "data": {
+            "message": "Tool gagal atau belum dikonfigurasi. Jangan mengarang hasil."
+          }
+        }
+      ],
+      "durationMs": 0
+    }
+  ]
+}

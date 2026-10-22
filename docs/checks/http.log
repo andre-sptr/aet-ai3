@@ -1,0 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> aet-ai@2.1.1 test:http
+> node scripts/check-http.mjs
+
+{"total":84,"passed":84,"failed":0}

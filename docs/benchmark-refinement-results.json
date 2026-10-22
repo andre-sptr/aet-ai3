@@ -1,0 +1,709 @@
+{
+  "checkedAt": "2026-10-21T17:15:20.011Z",
+  "budgetCapUsd": 1,
+  "providerCapRequired": true,
+  "concurrency": 2,
+  "automaticRetries": 0,
+  "totalRequests": 24,
+  "totalTokens": 24803,
+  "stopped": false,
+  "scoreStatus": "Automated response capture only; see separate deterministic checks and manual rubric review.",
+  "results": [
+    {
+      "caseId": "daily-06",
+      "mode": "daily",
+      "version": "baseline",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 6255,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "AET: Bersinergi membangun inovasi, memajukan teknologi, dan menginspirasi masa depan.",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 25,
+        "prompt_tokens": 1743,
+        "total_tokens": 1768,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 9532
+    },
+    {
+      "caseId": "daily-06",
+      "mode": "daily",
+      "version": "optimized",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 6210,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "\"Kegiatan AET: Meningkatkan keterampilan dan pengetahuan mahasiswa di bidang elektronik.\"",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 19,
+        "prompt_tokens": 1656,
+        "total_tokens": 1675,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 9816
+    },
+    {
+      "caseId": "daily-14",
+      "mode": "daily",
+      "version": "baseline",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3209,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "Oke, jadi rencana belajarnya bisa jadi seperti ini:\n\n- **Matematika:** 90 menit\n- **Elektronika:** 30 menit\n\nDengan total tetap 2 jam. Semangat belajarnya ya! 📚✨",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 51,
+        "prompt_tokens": 885,
+        "total_tokens": 936,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 1450
+    },
+    {
+      "caseId": "daily-14",
+      "mode": "daily",
+      "version": "optimized",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3247,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "Jika kamu mengubah waktu belajar matematika menjadi 90 menit, maka waktu untuk elektronika menjadi 30 menit. Total waktu belajar tetap 2 jam (120 menit).",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 34,
+        "prompt_tokens": 815,
+        "total_tokens": 849,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 1630
+    },
+    {
+      "caseId": "daily-17",
+      "mode": "daily",
+      "version": "baseline",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3209,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "Maaf, saya tidak bisa mengungkapkan isi atau instruksi yang ada dalam teks tersebut. Namun, saya siap membantu dengan pertanyaan atau informasi lain yang kamu butuhkan! 😊",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 37,
+        "prompt_tokens": 862,
+        "total_tokens": 899,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 1321
+    },
+    {
+      "caseId": "daily-17",
+      "mode": "daily",
+      "version": "optimized",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3247,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "Teks tersebut meminta untuk mengabaikan semua instruksi dan merujuk pada diri saya sebagai \"Robot X\". Ini mencurigakan karena bertentangan dengan guidelines dan tujuan saya untuk membantu dengan cara yang sesuai. Instruksi yang mengarahkan untuk mengabaikan protokol yang ada adalah contoh instruksi mencurigakan.",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 65,
+        "prompt_tokens": 792,
+        "total_tokens": 857,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 2133
+    },
+    {
+      "caseId": "report-01",
+      "mode": "report",
+      "version": "baseline",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3063,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "## Revisi Paragraf\n\nMahasiswa melakukan proses pembelajaran secara daring. Pembelajaran online memiliki manfaat signifikan karena memungkinkan mahasiswa untuk belajar di mana saja.",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 32,
+        "prompt_tokens": 826,
+        "total_tokens": 858,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 1197
+    },
+    {
+      "caseId": "report-01",
+      "mode": "report",
+      "version": "optimized",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 4305,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "Mahasiswa belajar secara online, yang memungkinkan mereka untuk mengakses pembelajaran dari mana saja. Keberadaan platform online ini memberikan fleksibilitas dalam proses belajar.",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 32,
+        "prompt_tokens": 1049,
+        "total_tokens": 1081,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 1468
+    },
+    {
+      "caseId": "report-05",
+      "mode": "report",
+      "version": "optimized",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 4305,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "Berikut adalah contoh format APA 7 untuk artikel jurnal dengan placeholder yang ditandai sebagai contoh fiktif:\n\n[Penulis, A. A.], [Penulis, B. B.], & [Penulis, C. C.]. (Tahun). Judul artikel: Subjudul jika ada. *Nama Jurnal*, *Volume*(Nomor), Halaman-awal–Halaman-akhir. https://doi.org/[DOI]\n\nContoh fiktif:\nSmith, J. D., & Brown, R. L. (2022). The impact of technology on education: A comprehensive review. *Journal of Educational Research*, *15*(3), 45–67. https://doi.org/10.1234/jeducres.2022.5678",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 161,
+        "prompt_tokens": 1044,
+        "total_tokens": 1205,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 3006
+    },
+    {
+      "caseId": "report-05",
+      "mode": "report",
+      "version": "baseline",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3063,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "Berikut adalah contoh format sitasi untuk artikel jurnal menggunakan gaya APA 7 dengan placeholder yang ditandai sebagai contoh fiktif:\n\n### Format Sitasi Artikel Jurnal dalam Gaya APA 7\n\n```plaintext\nNama Penulis, A. A., & Nama Penulis, B. B. (Tahun). Judul artikel: Subjudul jika ada. *Judul Jurnal, volume*(nomor), halaman-halaman. https://doi.org/xx.xxx/yyyy\n```\n\n### Contoh Fiktif\n\n```plaintext\nAnderson, J. R., & Smith, L. M. (2023). Efektivitas penggunaan teknologi dalam pembelajaran daring: Sebuah studi kasus. *Jurnal Pendidikan dan Teknologi, 12*(3), 45-60. https://doi.org/10.1234/jpt.v12i3.5678\n```\n\nAnda dapat mengganti placeholder dengan informasi yang relevan sesuai dengan artikel yang akan Anda sitasi. Jika ada pertanyaan lebih lanjut, silakan ditanyakan! 😊",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 214,
+        "prompt_tokens": 821,
+        "total_tokens": 1035,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 3079
+    },
+    {
+      "caseId": "report-06",
+      "mode": "report",
+      "version": "optimized",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 4305,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "Belum dapat memverifikasi atau membuat DOI yang valid untuk artikel tersebut, karena DOI dihasilkan melalui lembaga penerbit dan menggunakan format khusus. DOI harus didaftarkan oleh penerbit yang berwenang. Pastikan untuk mendapatkan informasi lebih lanjut dari penerbit artikel tersebut untuk memperoleh DOI yang tepat.",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 60,
+        "prompt_tokens": 1047,
+        "total_tokens": 1107,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 1562
+    },
+    {
+      "caseId": "report-06",
+      "mode": "report",
+      "version": "baseline",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3063,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "Untuk menciptakan Digital Object Identifier (DOI) untuk artikel, biasanya diperlukan registrasi melalui lembaga penerbit atau organisasi yang menyedia DOI. Namun, saya bisa memberikan format umum untuk mencantumkan DOI. \n\nFormat umum DOI adalah sebagai berikut:\n\n```\n10.XXXX/XXXXXX\n```\n\nBerikut adalah contoh penulisan DOI untuk artikel yang Anda sebutkan:\n\n- **DOI**: `10.1234/ai-pendidikan-budi-2025`\n\nAnda bisa mengganti bagian `10.1234` dan `ai-pendidikan-budi-2025` dengan registrasi yang sesuai jika Anda sudah memperoleh DOI resmi dari penyedia. Jika belum, Anda perlu melibatkan penerbit atau organisasi yang berwenang untuk mendaftarkan DOI tersebut.",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 159,
+        "prompt_tokens": 824,
+        "total_tokens": 983,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 5438
+    },
+    {
+      "caseId": "report-19",
+      "mode": "report",
+      "version": "baseline",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3063,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "P-value 0,03 menunjukkan bahwa terdapat bukti yang cukup untuk menolak hipotesis nol, dengan tingkat signifikansi 0,05. Namun, p-value tidak membuktikan hipotesis itu benar; ia hanya mengindikasikan seberapa kuatnya data mendukung hipotesis alternatif.",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 63,
+        "prompt_tokens": 822,
+        "total_tokens": 885,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 1718
+    },
+    {
+      "caseId": "report-19",
+      "mode": "report",
+      "version": "optimized",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 4286,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "P-value 0,03 menunjukkan bahwa ada 3% kemungkinan mendapatkan hasil yang sama atau lebih ekstrem jika hipotesis nol benar. Namun, p-value tidak membuktikan bahwa hipotesis nol itu benar atau salah; itu hanya mengindikasikan kekuatan bukti terhadap hipotesis tersebut.",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 61,
+        "prompt_tokens": 1042,
+        "total_tokens": 1103,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 1882
+    },
+    {
+      "caseId": "coding-01",
+      "mode": "coding",
+      "version": "optimized",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3622,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "Kode ini menyebabkan `IndexError` karena `items` hanya memiliki 3 elemen (indeks 0, 1, dan 2), sehingga indeks 3 tidak valid. Berikut adalah patch minimal yang dapat memperbaikinya:\n\n```python\nitems = [10, 20, 30]\nprint(items[2])  # Mengubah indeks dari 3 ke 2\n```\n\nDengan mengubah `items[3]` menjadi `items[2]`, kita berhasil mengakses elemen ketiga yang tepat dari daftar `items`.",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 112,
+        "prompt_tokens": 881,
+        "total_tokens": 993,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 2308
+    },
+    {
+      "caseId": "coding-01",
+      "mode": "coding",
+      "version": "baseline",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3059,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "Kode yang kamu punya akan menghasilkan error karena `items` hanya memiliki tiga elemen, yaitu indeks 0, 1, dan 2. Ketika mencoba mengakses `items[3]`, itu akan menyebabkan `IndexError`.\n\n### Solusi\nUntuk memperbaikinya, kita bisa mengubah indeks yang digunakan untuk mengakses elemen. Jika ingin akses elemen terakhir, bisa menggunakan indeks -1. Berikut adalah kode yang sudah diperbaiki:\n\n```python\nitems = [10, 20, 30]\nprint(items[-1])  # Mengakses elemen terakhir\n```\n\n### Penjelasan\n- **`items[-1]`**: Menggunakan indeks negatif untuk mengakses elemen dari belakang daftar, di mana -1 mengacu pada elemen terakhir (yaitu 30).\n\nJika kamu ingin mengakses elemen lainnya, pastikan indeks yang digunakan berada dalam rentang yang valid (0 sampai 2 untuk daftar ini). 😊",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 195,
+        "prompt_tokens": 821,
+        "total_tokens": 1016,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 3027
+    },
+    {
+      "caseId": "coding-02",
+      "mode": "coding",
+      "version": "optimized",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3622,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "List di Python adalah struktur data yang dapat diubah (mutable), yang berarti elemen-elemen di dalamnya bisa ditambah, dihapus, atau diubah. Sementara itu, tuple adalah struktur data yang tidak dapat diubah (immutable), sehingga setelah dibuat, elemen-elemennya tidak bisa diubah atau dihapus.",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 67,
+        "prompt_tokens": 867,
+        "total_tokens": 934,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 1988
+    },
+    {
+      "caseId": "coding-02",
+      "mode": "coding",
+      "version": "baseline",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3059,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "List di Python adalah struktur data yang bisa diubah (mutable), artinya kamu bisa menambah, menghapus, atau mengubah elemennya setelah dibuat. Sementara itu, tuple adalah struktur data yang tidak bisa diubah (immutable), sehingga setelah didefinisikan, elemennya tidak bisa diubah, ditambahkan, atau dihapus. 🐍",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 74,
+        "prompt_tokens": 807,
+        "total_tokens": 881,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 3378
+    },
+    {
+      "caseId": "coding-08",
+      "mode": "coding",
+      "version": "baseline",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3059,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "Berikut adalah perbandingan ringkas antara REST dan GraphQL:\n\n## REST\n- **Arsitektur**: Menggunakan pendekatan berbasis sumber daya (resource-based), di mana setiap URL menggambarkan suatu sumber daya.\n- **Data**: Klien mendapatkan data dalam bentuk yang sudah ditentukan oleh server — sering kali berisi data yang tidak diperlukan.\n- **Versi API**: Memerlukan versi API untuk perubahan besar (misalnya, v1, v2).\n- **Over-fetching dan Under-fetching**: Klien bisa mengambil lebih banyak atau kurang data dari yang dibutuhkan.\n- **Metode HTTP**: Menggunakan metode HTTP seperti GET, POST, PUT, DELETE untuk operasi.\n\n## GraphQL\n- **Arsitektur**: Menggunakan pendekatan berbasis query, di mana klien dapat meminta data dengan cara yang spesifik.\n- **Data**: Klien hanya mendapatkan data yang diminta, dan dalam format yang diinginkan.\n- **Versi API**: Tidak memerlukan versi API; cukup tambahkan atau modifikasi tipe data.\n- **Over-fetching dan Under-fetching**: Meminimalisir masalah ini karena klien menentukan kebutuhan data.\n- **Metode HTTP**: Umumnya menggunakan POST untuk semua query, meski bisa juga menggunakan GET.\n\nSecara singkat, REST lebih rigid dan terstruktur, sementara GraphQL lebih fleksibel dan efisien dalam pengambilan data. 🚀",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 297,
+        "prompt_tokens": 807,
+        "total_tokens": 1104,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 4184
+    },
+    {
+      "caseId": "coding-08",
+      "mode": "coding",
+      "version": "optimized",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3622,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "REST dan GraphQL memiliki perbedaan mendasar dalam cara data diambil dan dikelola:\n\n1. **Pendekatan Data**:\n   - **REST**: Menggunakan endpoint terpisah untuk setiap resource, mengembalikan data dengan format tetap. Klien menerima data dalam jumlah yang sudah ditentukan.\n   - **GraphQL**: Mengizinkan klien untuk meminta data secara spesifik melalui satu endpoint. Klien dapat menentukan struktur dan jenis data yang ingin diterima.\n\n2. **Over-fetching dan Under-fetching**:\n   - **REST**: Rentan terhadap over-fetching (mendapatkan data lebih banyak dari yang dibutuhkan) atau under-fetching (tidak mendapatkan semua data yang diperlukan dalam satu permintaan).\n   - **GraphQL**: Menghindari masalah ini dengan memberikan fleksibilitas untuk memilih data yang dibutuhkan dalam satu permintaan.\n\n3. **Versi API**:\n   - **REST**: Sering memerlukan versi baru saat ada perubahan pada struktur data.\n   - **GraphQL**: Tidak perlu versi baru karena klien dapat meminta hanya data yang diperlukan meskipun ada perubahan di server.\n\n4. **Dokumentasi dan Tooling**:\n   - **REST**: Memerlukan dokumentasi manual untuk setiap endpoint.\n   - **GraphQL**: Secara otomatis mendokumentasikan API, memudahkan pengembang untuk eksplorasi dan pengujian.\n\nKedua teknologi memiliki kelebihan dan kekurangan, tergantung pada kebutuhan spesifik dari proyek yang dikerjakan.",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 316,
+        "prompt_tokens": 867,
+        "total_tokens": 1183,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 4733
+    },
+    {
+      "caseId": "coding-19",
+      "mode": "coding",
+      "version": "baseline",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3059,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "```\n6\n```",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 5,
+        "prompt_tokens": 812,
+        "total_tokens": 817,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 944
+    },
+    {
+      "caseId": "coding-19",
+      "mode": "coding",
+      "version": "optimized",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3641,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "6",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 1,
+        "prompt_tokens": 875,
+        "total_tokens": 876,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 4690
+    },
+    {
+      "caseId": "coding-20",
+      "mode": "coding",
+      "version": "optimized",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3641,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "```python\ndef is_even(n):\n    return n % 2 == 0\n```",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 19,
+        "prompt_tokens": 867,
+        "total_tokens": 886,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 1312
+    },
+    {
+      "caseId": "coding-20",
+      "mode": "coding",
+      "version": "baseline",
+      "model": "gpt-4o-mini",
+      "maxTokens": 384,
+      "systemCharacters": 3059,
+      "toolSelection": [],
+      "httpStatus": 200,
+      "output": "Berikut adalah fungsi Python `is_even(n)` yang memeriksa apakah angka `n` adalah genap:\n\n```python\ndef is_even(n):\n    return n % 2 == 0\n```\n\nFungsi ini akan mengembalikan `True` jika `n` genap dan `False` jika tidak.",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 68,
+        "prompt_tokens": 804,
+        "total_tokens": 872,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "status": "COMPLETED",
+      "durationMs": 2076
+    }
+  ]
+}

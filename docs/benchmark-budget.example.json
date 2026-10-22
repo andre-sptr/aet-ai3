@@ -1,0 +1,11 @@
+{
+  "strategy": "provider-enforced-key-cap",
+  "operatorVerified": false,
+  "dedicatedKey": false,
+  "currency": "USD",
+  "hardLimitUsd": 3,
+  "providerBaseUrl": "https://ai.sumopod.com/v1",
+  "keySha256": "REPLACE_WITH_SHA256_OF_THE_VERIFIED_DEDICATED_KEY",
+  "verifiedAt": "REPLACE_AFTER_CHECKING_PROVIDER_DASHBOARD",
+  "evidence": "Record how the dedicated key spending cap was verified in the provider dashboard. Do not include the key, authorization headers, or billing personal data."
+}
