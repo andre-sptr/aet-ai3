@@ -1,0 +1,59 @@
+{
+  "checkedAt": "2026-10-22T01:31:14.678Z",
+  "budgetCapUsd": 3,
+  "concurrency": 1,
+  "requests": 2,
+  "scope": "Basic gateway image input smoke only; not an accuracy benchmark for arbitrary images.",
+  "results": [
+    {
+      "model": "gpt-4o-mini",
+      "test": "128x64 image: red left half, blue right half",
+      "expected": "RED BLUE",
+      "httpStatus": 200,
+      "output": "red blue",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 8549,
+        "total_tokens": 8551,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "finishReason": "stop",
+      "status": "PASS",
+      "durationMs": 9566
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "test": "128x64 image: red left half, blue right half",
+      "expected": "RED BLUE",
+      "httpStatus": 200,
+      "output": "Green Pink",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 61,
+        "total_tokens": 63,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        }
+      },
+      "finishReason": "stop",
+      "status": "INCONCLUSIVE",
+      "durationMs": 1393
+    }
+  ]
+}

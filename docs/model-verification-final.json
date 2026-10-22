@@ -1,0 +1,177 @@
+{
+  "checkedAt": "2026-10-22T01:27:22.548Z",
+  "budgetCapUsd": 3,
+  "concurrency": 1,
+  "requests": 14,
+  "scope": "12 initial text checks plus 2 targeted Gemini checks. Final verdict uses the strict production stream parser.",
+  "results": [
+    {
+      "model": "gpt-4o-mini",
+      "parameters": [
+        "max_tokens"
+      ],
+      "inputCharacters": 86,
+      "maxOutputTokens": 64,
+      "httpStatus": 200,
+      "status": "PASS",
+      "output": "AET OK",
+      "sseDone": true,
+      "finishReason": "stop",
+      "durationMs": 5295
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "parameters": [
+        "max_tokens"
+      ],
+      "inputCharacters": 86,
+      "maxOutputTokens": 64,
+      "httpStatus": 200,
+      "status": "PASS",
+      "output": "AET OK",
+      "sseDone": true,
+      "finishReason": "stop",
+      "durationMs": 1114
+    },
+    {
+      "model": "gpt-5-mini",
+      "parameters": [
+        "max_completion_tokens"
+      ],
+      "inputCharacters": 86,
+      "maxOutputTokens": 512,
+      "httpStatus": 200,
+      "status": "PASS",
+      "output": "AET OK",
+      "sseDone": true,
+      "finishReason": "stop",
+      "durationMs": 1730
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "parameters": [
+        "max_completion_tokens"
+      ],
+      "inputCharacters": 86,
+      "maxOutputTokens": 512,
+      "httpStatus": 200,
+      "status": "PASS",
+      "output": "AET OK",
+      "sseDone": true,
+      "finishReason": "stop",
+      "durationMs": 1282
+    },
+    {
+      "model": "gpt-5.4",
+      "parameters": [
+        "max_completion_tokens"
+      ],
+      "inputCharacters": 86,
+      "maxOutputTokens": 512,
+      "httpStatus": 200,
+      "status": "PASS",
+      "output": "AET OK",
+      "sseDone": true,
+      "finishReason": "stop",
+      "durationMs": 1355
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "parameters": [
+        "max_tokens"
+      ],
+      "inputCharacters": 86,
+      "maxOutputTokens": 64,
+      "httpStatus": 200,
+      "status": "PASS",
+      "output": "AET OK",
+      "sseDone": true,
+      "finishReason": "stop",
+      "durationMs": 1268
+    },
+    {
+      "model": "claude-sonnet-5",
+      "parameters": [
+        "max_tokens"
+      ],
+      "inputCharacters": 86,
+      "maxOutputTokens": 64,
+      "httpStatus": 200,
+      "status": "PASS",
+      "output": "AET OK",
+      "sseDone": true,
+      "finishReason": "stop",
+      "durationMs": 5461
+    },
+    {
+      "model": "claude-opus-5",
+      "parameters": [
+        "max_tokens"
+      ],
+      "inputCharacters": 86,
+      "maxOutputTokens": 64,
+      "httpStatus": 200,
+      "status": "PASS",
+      "output": "AET OK",
+      "sseDone": true,
+      "finishReason": "stop",
+      "durationMs": 1574
+    },
+    {
+      "model": "gemini/gemini-3.5-flash",
+      "parameters": [
+        "max_tokens"
+      ],
+      "inputCharacters": 86,
+      "maxOutputTokens": 1024,
+      "httpStatus": 200,
+      "status": "PASS",
+      "output": "AET OK",
+      "sseDone": true,
+      "finishReason": "stop",
+      "durationMs": 12957
+    },
+    {
+      "model": "gemini/gemini-3.1-pro-preview",
+      "parameters": [
+        "max_tokens"
+      ],
+      "inputCharacters": 86,
+      "maxOutputTokens": 1024,
+      "httpStatus": 200,
+      "status": "PASS",
+      "output": "AET OK",
+      "sseDone": true,
+      "finishReason": "stop",
+      "durationMs": 7182
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "parameters": [
+        "max_tokens"
+      ],
+      "inputCharacters": 86,
+      "maxOutputTokens": 64,
+      "httpStatus": 200,
+      "status": "PASS",
+      "output": "AET OK",
+      "sseDone": true,
+      "finishReason": "stop",
+      "durationMs": 2608
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "parameters": [
+        "max_tokens"
+      ],
+      "inputCharacters": 86,
+      "maxOutputTokens": 64,
+      "httpStatus": 200,
+      "status": "PASS",
+      "output": "AET OK",
+      "sseDone": true,
+      "finishReason": "stop",
+      "durationMs": 4554
+    }
+  ]
+}

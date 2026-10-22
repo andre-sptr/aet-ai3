@@ -1,0 +1,475 @@
+{
+  "checkedAt": "2026-10-21T23:29:50.639093+00:00",
+  "method": "deterministic subset; no judge-model calls, no general quality score",
+  "summaries": [
+    {
+      "batch": "initial-60-pairs",
+      "version": "baseline",
+      "mode": "daily",
+      "checked": 4,
+      "passed": 2
+    },
+    {
+      "batch": "initial-60-pairs",
+      "version": "baseline",
+      "mode": "report",
+      "checked": 3,
+      "passed": 1
+    },
+    {
+      "batch": "initial-60-pairs",
+      "version": "baseline",
+      "mode": "coding",
+      "checked": 6,
+      "passed": 4
+    },
+    {
+      "batch": "initial-60-pairs",
+      "version": "optimized",
+      "mode": "daily",
+      "checked": 4,
+      "passed": 2
+    },
+    {
+      "batch": "initial-60-pairs",
+      "version": "optimized",
+      "mode": "report",
+      "checked": 3,
+      "passed": 2
+    },
+    {
+      "batch": "initial-60-pairs",
+      "version": "optimized",
+      "mode": "coding",
+      "checked": 6,
+      "passed": 5
+    },
+    {
+      "batch": "targeted-refinement",
+      "version": "baseline",
+      "mode": "daily",
+      "checked": 2,
+      "passed": 1
+    },
+    {
+      "batch": "targeted-refinement",
+      "version": "baseline",
+      "mode": "report",
+      "checked": 2,
+      "passed": 0
+    },
+    {
+      "batch": "targeted-refinement",
+      "version": "baseline",
+      "mode": "coding",
+      "checked": 4,
+      "passed": 2
+    },
+    {
+      "batch": "targeted-refinement",
+      "version": "optimized",
+      "mode": "daily",
+      "checked": 2,
+      "passed": 1
+    },
+    {
+      "batch": "targeted-refinement",
+      "version": "optimized",
+      "mode": "report",
+      "checked": 2,
+      "passed": 1
+    },
+    {
+      "batch": "targeted-refinement",
+      "version": "optimized",
+      "mode": "coding",
+      "checked": 4,
+      "passed": 4
+    }
+  ],
+  "checks": [
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "daily-06",
+      "mode": "daily",
+      "version": "optimized",
+      "check": "12 whitespace-separated words and no emoji",
+      "pass": false
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "daily-06",
+      "mode": "daily",
+      "version": "baseline",
+      "check": "12 whitespace-separated words and no emoji",
+      "pass": false
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "daily-09",
+      "mode": "daily",
+      "version": "baseline",
+      "check": "official foundation date 1 April 2008",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "daily-09",
+      "mode": "daily",
+      "version": "optimized",
+      "check": "official foundation date 1 April 2008",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "daily-14",
+      "mode": "daily",
+      "version": "baseline",
+      "check": "latest schedule contains 90 and 30 minutes",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "daily-14",
+      "mode": "daily",
+      "version": "optimized",
+      "check": "latest schedule contains 90 and 30 minutes",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "daily-18",
+      "mode": "daily",
+      "version": "optimized",
+      "check": "only numeric answer 36",
+      "pass": false
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "daily-18",
+      "mode": "daily",
+      "version": "baseline",
+      "check": "only numeric answer 36",
+      "pass": false
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "report-05",
+      "mode": "report",
+      "version": "optimized",
+      "check": "placeholder citation; no invented numeric DOI",
+      "pass": false
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "report-05",
+      "mode": "report",
+      "version": "baseline",
+      "check": "placeholder citation; no invented numeric DOI",
+      "pass": false
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "report-06",
+      "mode": "report",
+      "version": "optimized",
+      "check": "no fabricated numeric DOI",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "report-06",
+      "mode": "report",
+      "version": "baseline",
+      "check": "no fabricated numeric DOI",
+      "pass": false
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "report-09",
+      "mode": "report",
+      "version": "optimized",
+      "check": "mean 75 present (limited numeric check)",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "report-09",
+      "mode": "report",
+      "version": "baseline",
+      "check": "mean 75 present (limited numeric check)",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "coding-02",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "concept explanation without a fenced code block",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "coding-02",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "concept explanation without a fenced code block",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "coding-03",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "corrected Python only",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "coding-03",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "corrected Python only",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "coding-06",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "add implementation passes positive and negative checks",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "coding-06",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "add implementation passes positive and negative checks",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "coding-08",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "architecture comparison without a fenced code block",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "coding-08",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "architecture comparison without a fenced code block",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "coding-19",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "only numeric output 6",
+      "pass": false
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "coding-19",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "only numeric output 6",
+      "pass": false
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "coding-20",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "is_even code only and executable for zero, negatives, odds",
+      "pass": true
+    },
+    {
+      "batch": "initial-60-pairs",
+      "caseId": "coding-20",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "is_even code only and executable for zero, negatives, odds",
+      "pass": false
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "daily-06",
+      "mode": "daily",
+      "version": "baseline",
+      "check": "12 whitespace-separated words and no emoji",
+      "pass": false
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "daily-06",
+      "mode": "daily",
+      "version": "optimized",
+      "check": "12 whitespace-separated words and no emoji",
+      "pass": false
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "daily-14",
+      "mode": "daily",
+      "version": "baseline",
+      "check": "latest schedule contains 90 and 30 minutes",
+      "pass": true
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "daily-14",
+      "mode": "daily",
+      "version": "optimized",
+      "check": "latest schedule contains 90 and 30 minutes",
+      "pass": true
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "report-05",
+      "mode": "report",
+      "version": "optimized",
+      "check": "placeholder citation; no invented numeric DOI",
+      "pass": false
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "report-05",
+      "mode": "report",
+      "version": "baseline",
+      "check": "placeholder citation; no invented numeric DOI",
+      "pass": false
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "report-06",
+      "mode": "report",
+      "version": "optimized",
+      "check": "no fabricated numeric DOI",
+      "pass": true
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "report-06",
+      "mode": "report",
+      "version": "baseline",
+      "check": "no fabricated numeric DOI",
+      "pass": false
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "coding-02",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "concept explanation without a fenced code block",
+      "pass": true
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "coding-02",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "concept explanation without a fenced code block",
+      "pass": true
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "coding-08",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "architecture comparison without a fenced code block",
+      "pass": true
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "coding-08",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "architecture comparison without a fenced code block",
+      "pass": true
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "coding-19",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "only numeric output 6",
+      "pass": false
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "coding-19",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "only numeric output 6",
+      "pass": true
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "coding-20",
+      "mode": "coding",
+      "version": "optimized",
+      "check": "is_even code only and executable for zero, negatives, odds",
+      "pass": true
+    },
+    {
+      "batch": "targeted-refinement",
+      "caseId": "coding-20",
+      "mode": "coding",
+      "version": "baseline",
+      "check": "is_even code only and executable for zero, negatives, odds",
+      "pass": false
+    }
+  ],
+  "reviewedPythonExecution": [
+    {
+      "caseId": "coding-03",
+      "version": "optimized",
+      "pass": true
+    },
+    {
+      "caseId": "coding-03",
+      "version": "baseline",
+      "pass": true
+    },
+    {
+      "caseId": "coding-06",
+      "version": "baseline",
+      "pass": true
+    },
+    {
+      "caseId": "coding-06",
+      "version": "optimized",
+      "pass": true
+    },
+    {
+      "caseId": "coding-20",
+      "version": "optimized",
+      "pass": true
+    },
+    {
+      "caseId": "coding-20",
+      "version": "baseline",
+      "pass": true
+    },
+    {
+      "caseId": "coding-20",
+      "version": "optimized",
+      "pass": true
+    },
+    {
+      "caseId": "coding-20",
+      "version": "baseline",
+      "pass": true
+    }
+  ],
+  "limitations": [
+    "Checks cover 13 of 60 prompts, not all factual, naturalness or scholarly dimensions.",
+    "Refinement uses a selected subset and separate baseline samples; do not combine as a controlled 60-prompt final comparison.",
+    "A successful request or executable snippet does not prove every user instruction was followed."
+  ]
+}
