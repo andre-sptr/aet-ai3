@@ -34,6 +34,10 @@ PowerShell: gunakan `Copy-Item .env.example .env`. Buka `http://localhost:3000`;
 
 Buat dua secret berbeda dengan generator kriptografis pengelola. Jangan memakai `NEXT_PUBLIC_*` untuk secret. Untuk menjalankan production build lokal, set `APP_ORIGIN=http://localhost:3000`.
 
+Jika login admin ditolak, periksa respons `POST /api/auth/login` di Network browser. Halaman login menampilkan pesan dari field `error` API. Status `401` berarti kredensial tidak cocok, `403` berarti origin tidak cocok, `429` berarti batas percobaan tercapai, dan `503` berarti konfigurasi belum lengkap. `ADMIN_PASSWORD` harus minimal 12 karakter dan `ADMIN_SESSION_SECRET` minimal 32 karakter. Buat secret sendiri dengan `node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"`.
+
+Simpan `.env.local` di folder yang sama dengan `package.json`, lalu restart proses aplikasi setelah mengubahnya. `APP_ORIGIN` harus sama persis dengan protokol, hostname, dan port alamat di browser; `localhost` berbeda dengan `127.0.0.1` dan IP jaringan. Environment proses atau aaPanel dapat menimpa nilai file; `.env.production.local`/`.env.development.local` juga memiliki prioritas lebih tinggi daripada `.env.local`. Jika password mengandung `$`, tulis sebagai `\$` di file environment Next.js. Login pada production memerlukan HTTPS karena cookie sesi memakai `Secure`.
+
 ## Kemampuan
 
 - `daily`: Smart Companion; `report`: Academic Writer; `coding`: Coding Expert.

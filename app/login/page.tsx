@@ -31,7 +31,7 @@ export default function LoginPage() {
         router.push("/admin");
         router.refresh();
       } else {
-        setError(data.message || "Login gagal. Silakan coba lagi.");
+        setError(data.error || data.message || "Login gagal. Silakan coba lagi.");
       }
     } catch {
       setError("Terjadi kesalahan sistem. Periksa koneksi Anda.");

@@ -9,7 +9,13 @@ export async function POST(request: Request) {
     const body = await readJson(request, 4096);
     const username = process.env.ADMIN_USERNAME;
     const password = process.env.ADMIN_PASSWORD;
-    if (!username || !password || password.length < 12) throw new ApiError(503, 'Akun admin belum dikonfigurasi.', 'SERVER_CONFIG');
+    if (!username || !password || password.length < 8) {
+      throw new ApiError(
+        503,
+        'Akun admin belum dikonfigurasi. Password minimal 8 karakter.',
+        'SERVER_CONFIG'
+      );
+    }
     if (typeof body.username !== 'string' || typeof body.password !== 'string' || body.username.length > 200 || body.password.length > 512) throw new ApiError(400, 'Username dan password wajib diisi.');
     const usernameOk = constantEqual(body.username, username);
     const passwordOk = constantEqual(body.password, password);
