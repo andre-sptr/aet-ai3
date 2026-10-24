@@ -53,6 +53,9 @@
     "typescript": "^5"
   },
   "overrides": {
-    "katex": "$katex"
+    "katex": "$katex",
+    "@vercel/cli-config": {
+      "zod": "4.6.7"
+    }
   }
 }
