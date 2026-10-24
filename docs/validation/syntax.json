@@ -1,0 +1,7 @@
+{
+  "check": "Syntax only; not semantic TypeScript, ESLint or a Next.js build",
+  "parser": "Playwright bundled Babel",
+  "checkedAt": "2026-10-24T09:34:31.944Z",
+  "files": 123,
+  "errors": []
+}

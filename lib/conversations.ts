@@ -1,11 +1,12 @@
 import { createId } from './ids.ts';
-import type { ChatMode, Message } from '../types/index.ts';
-export type Conversation = { id: string; title: string; mode: ChatMode; modelId: string; messages: Message[]; updatedAt: string };
+import type { ChatMode, Message, ResponseMode } from '../types/index.ts';
+import { deriveConversationState, type ConversationState } from './ai/conversation-state.ts';
+export type Conversation = { id: string; title: string; mode: ChatMode; modelId: string; responseMode?: ResponseMode; derivedState?: ConversationState; messages: Message[]; updatedAt: string };
 export type ConversationStore = { version: 2; activeId: string; conversations: Conversation[] };
 export const conversationKey = (mode: ChatMode) => `aet_ai_conversations_v2_${mode}`;
 export const legacyKey = (mode: ChatMode) => `aet_ai_chat_history_${mode}`;
 export function newConversation(mode: ChatMode, messages: Message[] = []): Conversation {
-  return { id: createId(), title: 'Percakapan baru', mode, modelId: 'gpt-4o-mini', messages, updatedAt: new Date().toISOString() };
+  return { id: createId(), title: 'Percakapan baru', mode, modelId: 'gpt-4o-mini', responseMode:'normal', messages, updatedAt: new Date().toISOString() };
 }
 function hydrate(messages: unknown): Message[] {
   if(!Array.isArray(messages))throw new Error('Riwayat tidak valid.');
@@ -22,7 +23,8 @@ export function loadConversationStore(storage: Pick<Storage,'getItem'>, mode: Ch
     if(data.version!==2||!Array.isArray(data.conversations))throw new Error('Format riwayat baru tidak valid. Data asli tetap disimpan.');
     const conversations=data.conversations.map((c:Conversation)=>{
       if(c.mode!==mode||typeof c.id!=='string'||typeof c.title!=='string'||typeof c.modelId!=='string')throw new Error('Format percakapan tidak valid.');
-      return{...c,messages:hydrate(c.messages)};
+      const messages = hydrate(c.messages);
+      return{...c,messages,responseMode:c.responseMode === 'fast' || c.responseMode === 'think' ? c.responseMode : 'normal',derivedState:deriveConversationState(historyForModel(messages))};
     });
     if(new Set(conversations.map((c:Conversation)=>c.id)).size!==conversations.length)throw new Error('ID percakapan ganda. Data asli tetap disimpan.');
     // A durable empty v2 store is a tombstone: never re-import deleted legacy data.
@@ -35,7 +37,7 @@ export function loadConversationStore(storage: Pick<Storage,'getItem'>, mode: Ch
   return{version:2,activeId:chat.id,conversations:[chat]};
 }
 export function lightweightStore(store: ConversationStore): ConversationStore {
-  const conversations=savedConversations(store).map(c=>({...c,messages:c.messages.map(m=>m.attachment?{...m,attachment:{...m.attachment,content:''}}:m)}));
+  const conversations=savedConversations(store).map(c=>({...c,derivedState:deriveConversationState(historyForModel(c.messages)),messages:c.messages.map(m=>m.attachment?{...m,attachment:{...m.attachment,content:''}}:m)}));
   return{...store,activeId:conversations.some(c=>c.id===store.activeId)?store.activeId:'',conversations};
 }
 /** Drafts and greeting-only sessions exist in memory, not in the history list. */

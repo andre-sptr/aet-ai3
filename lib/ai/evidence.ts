@@ -12,13 +12,13 @@ function publicUrl(value: unknown): string | undefined {
 }
 /** Provenance is derived from executed tools, never from model-generated links. */
 export function evidenceSources(evidence: Evidence[]): ChatSource[] {
-  return evidence.flatMap(e => {
+  return evidence.flatMap<ChatSource>(e => {
     if (e.kind === 'search' && e.status === 'ok' && Array.isArray(e.data)) {
-      return e.data.slice(0, 3).flatMap(item => {
+      return e.data.slice(0, 3).flatMap<ChatSource>(item => {
         const url = publicUrl(item?.url);
-        return url ? [{ kind: e.kind, source: url, status: e.status, title: String(item.title || 'Hasil pencarian').slice(0, 200), url }] : [];
+        return url ? [{ kind: e.kind, source: url, status: e.status, title: String(item.title || 'Hasil pencarian').slice(0, 200), url, id:e.id,accessedAt:e.accessedAt,coverage:'search_snippet' as const,excerpt:String(item.excerpt || '').slice(0,1500) }] : [];
       });
     }
-    return [{ kind: e.kind, source: e.source.slice(0, 2048), status: e.status, title: names[e.kind] || e.kind, url: publicUrl(e.source) }];
+    return [{ kind: e.kind, source: e.source.slice(0, 2048), status: e.status, title: names[e.kind] || e.kind, url: publicUrl(e.source),id:e.id,accessedAt:e.accessedAt,coverage:e.coverage,excerpt:e.status==='ok'?(typeof e.data==='string'?e.data.slice(0,1500):JSON.stringify(e.data).slice(0,1500)):undefined }];
   }).slice(0, 10);
 }

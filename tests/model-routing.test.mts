@@ -29,10 +29,10 @@ test('default/off, missing evidence, and shadow never change the default or call
   assert.equal(routeModel(input,'shadow',policy(),now).recommendedModelId,'gpt-4.1-mini');
   assert.equal(routeModel(input,'adaptive',policy(),now).modelId,'gpt-4.1-mini');
 });
-test('manual selection including explicit default wins over every routing mode',()=>{
+test('legacy client selections cannot override server policy, including Frontier and retired IDs',()=>{
   for(const mode of ['off','shadow','adaptive'] as const)for(const model of ['gpt-4o-mini','gpt-5.4','retired-id']){
     const result=routeModel({...input,manualModelId:model},mode,policy(),now);
-    assert.equal(result.modelId,model);assert.equal(result.reason,'manual_selection');
+    assert.equal(result.modelId, mode === 'adaptive' ? 'gpt-4.1-mini' : 'gpt-4o-mini');assert.notEqual(result.reason,'manual_selection');
   }
 });
 test('unknown, mock, stale, mismatched, undersampled, costly and unreviewed candidates never promote',()=>{

@@ -7,6 +7,7 @@ export type TaskCategory = 'daily' | 'academic' | 'coding' | 'reasoning' | 'long
 export type RoutingInput = {
   manualModelId?: string; mode: ChatMode; text: string; contextChars: number;
   hasDocument?: boolean; hasImages?: boolean; frontierAllowed?: boolean;
+  unavailableModelIds?: string[];
 };
 export type RoutingEvidence = {
   modelId: string; category: TaskCategory; sourceKind: 'live'; reportRef: string;
@@ -42,7 +43,7 @@ const nonnegative = (n: unknown): n is number => typeof n === 'number' && Number
 function qualifies(e: RoutingEvidence, input: RoutingInput, category: TaskCategory, policy: RoutingPolicy, now: number): boolean {
   const model = getModelById(e?.modelId);
   const verified = Date.parse(e?.verifiedAt);
-  return Boolean(model && model.availability === 'available' && (!model.isFrontier || input.frontierAllowed)
+  return Boolean(model && !input.unavailableModelIds?.includes(model.id) && model.availability === 'available' && (!model.isFrontier || input.frontierAllowed)
     && (!input.hasImages || model.supportsImageInput === true) && e.category === category && e.sourceKind === 'live'
     && typeof e.reportRef === 'string' && /^docs\/[\w./-]+\.json$/.test(e.reportRef) && !e.reportRef.includes('..')
     && /^[a-f0-9]{64}$/.test(e.comparisonSet) && Array.isArray(e.caseIds) && e.caseIds.length >= 3
@@ -60,8 +61,8 @@ function qualifies(e: RoutingEvidence, input: RoutingInput, category: TaskCatego
 
 export function routeModel(input: RoutingInput, mode: RoutingMode = 'off', policy?: RoutingPolicy, now = Date.now()): RoutingDecision {
   const category = classifyTask(input);
-  const base = { mode, category, modelId: input.manualModelId || DEFAULT_SUMOPOD_MODEL, recommendedModelId: null, evidenceRef: null };
-  if (input.manualModelId) return { ...base, reason: 'manual_selection' };
+  // Legacy manualModelId is deliberately ignored, including Frontier IDs.
+  const base = { mode, category, modelId: DEFAULT_SUMOPOD_MODEL, recommendedModelId: null, evidenceRef: null };
   if (mode === 'off') return { ...base, reason: 'routing_off' };
   if (!policy || policy.schemaVersion !== 1 || !/^[a-f0-9]{64}$/.test(policy.datasetSha256) || !Array.isArray(policy.evidence)
     || !nonnegative(policy.maxLatencyMs) || !nonnegative(policy.maxCostUsdPerRequest)) return { ...base, reason: 'insufficient_evidence' };

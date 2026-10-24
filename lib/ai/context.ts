@@ -1,10 +1,11 @@
 import { ApiError, object } from '../http.ts';
-import type { ChatMode, Message } from '../../types/index.ts';
-export function validateChat(body: Record<string, unknown>): { mode: ChatMode; messages: Message[]; model?: string; frontierAccessToken?: unknown } {
+import type { ChatMode, Message, ResponseMode } from '../../types/index.ts';
+import { normalizeResponseMode } from './mode-policy.ts';
+export function validateChat(body: Record<string, unknown>): { mode: ChatMode; responseMode: ResponseMode; messages: Message[]; legacyModelIgnored: boolean; frontierAccessToken?: unknown } {
   if (!['daily','report','coding'].includes(String(body.mode))) throw new ApiError(400, 'Mode percakapan tidak valid.');
-  if (!Array.isArray(body.messages) || !body.messages.length || body.messages.length > 200) throw new ApiError(400, 'Percakapan harus berisi 1–200 pesan.');
+  if (!Array.isArray(body.messages) || !body.messages.length || body.messages.length > 2000) throw new ApiError(400, 'Percakapan harus berisi 1–2000 pesan.');
   let characters = 0;
-  const messages = body.messages.map(value => {
+  const messages = body.messages.map((value, index) => {
     const d = object(value);
     if (!['user','assistant','model'].includes(String(d.role)) || typeof d.content !== 'string' || d.content.length > 40_000) throw new ApiError(400, 'Format pesan tidak valid.');
     characters += d.content.length;
@@ -16,13 +17,16 @@ export function validateChat(body: Record<string, unknown>): { mode: ChatMode; m
       attachment = a as unknown as Message['attachment'];
       characters += typeof a.extractedText === 'string' ? a.extractedText.length : 0;
     }
-    return { id: typeof d.id === 'string' ? d.id.slice(0,100) : '', role: d.role as Message['role'], content: d.content, timestamp: new Date(), attachment };
+    return { id: typeof d.id === 'string' && d.id.trim() ? d.id.slice(0,100) : `legacy-${index}`, role: d.role as Message['role'], content: d.content, timestamp: new Date(), attachment };
   });
   if (characters > 200_000) throw new ApiError(413, 'Percakapan terlalu panjang. Buka percakapan baru.');
   const last = messages.at(-1)!;
   if (last.role !== 'user' || (!last.content.trim() && !last.attachment)) throw new ApiError(400, 'Pesan terakhir harus berupa permintaan pengguna.');
   if (body.model !== undefined && typeof body.model !== 'string') throw new ApiError(400, 'Model tidak valid.');
-  return { mode: body.mode as ChatMode, messages, model: body.model as string | undefined, frontierAccessToken: body.frontierAccessToken };
+  if (new Set(messages.map(m => m.id)).size !== messages.length) throw new ApiError(400, 'ID pesan harus unik.');
+  let responseMode: ResponseMode;
+  try { responseMode = normalizeResponseMode(body.responseMode); } catch (e) { throw new ApiError(400, (e as Error).message, 'INVALID_RESPONSE_MODE'); }
+  return { mode: body.mode as ChatMode, responseMode, messages, legacyModelIgnored: body.model !== undefined, frontierAccessToken: body.frontierAccessToken };
 }
 export function selectContext(messages: Message[], maxChars = 48_000): { messages: Message[]; truncated: boolean } {
   const selected: Message[] = [];

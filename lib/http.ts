@@ -42,5 +42,6 @@ export function sameOrigin(request: Request) {
 export function errorResponse(error: unknown): Response {
   const databaseCode = (error as { code?: string })?.code;
   const known = error instanceof ApiError ? error : databaseCode === 'P2002' ? new ApiError(409, 'Slug sudah digunakan.') : databaseCode === 'P2025' ? new ApiError(404, 'Data tidak ditemukan.') : new ApiError(500, 'Permintaan gagal diproses. Silakan coba lagi.', 'INTERNAL_ERROR');
-  return Response.json({ error: known.message, code: known.code }, { status: known.status, headers: { 'Cache-Control': 'no-store', ...(known.status === 429 ? { 'Retry-After': '60' } : {}) } });
+  const retryAfter=(error as {retryAfter?:string})?.retryAfter;
+  return Response.json({ error: known.message, code: known.code }, { status: known.status, headers: { 'Cache-Control': 'no-store', ...(typeof retryAfter==='string'&&/^\d{1,6}$/.test(retryAfter)?{'Retry-After':retryAfter}:known.status === 429 ? { 'Retry-After': '60' } : {}) } });
 }

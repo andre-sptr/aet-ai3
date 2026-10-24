@@ -1,6 +1,6 @@
 {
   "name": "aet-ai",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "private": true,
   "scripts": {
     "dev": "node scripts/dev.mjs",
@@ -16,7 +16,13 @@
     "postinstall": "prisma generate",
     "test:tools": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-tools.mjs",
     "test:vision": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-vision.mjs",
-    "test:live-app": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-live-app.mjs"
+    "test:live-app": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-live-app.mjs",
+    "test:adaptive": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/adaptive.test.mts tests/chat-route.test.mts tests/conversation-deletion.test.mts tests/model-routing.test.mts tests/streaming.test.mts tests/security.test.mts tests/tool-integrity.test.mts tests/evaluation.test.mts",
+    "test:ai": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/evaluate-ai.mjs",
+    "test:ai:plan": "npm run test:ai -- --plan",
+    "test:ai:mock": "npm run test:ai -- --mock",
+    "test:ai:setup": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/setup-ai-evaluation.mjs",
+    "test:ai:models": "npm run test:benchmark"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

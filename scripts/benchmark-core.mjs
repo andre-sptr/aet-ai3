@@ -1,3 +1,4 @@
+import { validatePricing } from '../lib/ai/pricing.ts';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { randomUUID, createHash } from 'node:crypto';
@@ -46,16 +47,7 @@ export async function loadBudgetGuard(env = process.env) {
   return { ...guard, keyBound: true };
 }
 
-export function validatePricing(pricing, modelIds, now = Date.now()) {
-  const checked = Date.parse(pricing?.verifiedAt);
-  let official = false;
-  try { const u = new URL(pricing.sourceUrl); official = u.protocol === 'https:' && ['sumopod.com', 'ai.sumopod.com', 'docs.sumopod.com'].includes(u.hostname) && !u.username && !u.password; } catch { /* fail closed */ }
-  if (!official || pricing?.operatorVerified !== true || !Number.isFinite(checked) || checked > now || now - checked > 86_400_000
-    || modelIds.some(id => ![pricing?.models?.[id]?.inputUsdPerMillion, pricing?.models?.[id]?.outputUsdPerMillion].every(n => typeof n === 'number' && Number.isFinite(n) && n >= 0))) {
-    return { allowed: false, reason: 'Recent official gateway input/output rates for every exact model ID have not been verified.' };
-  }
-  return { allowed: true, ...pricing };
-}
+export { validatePricing } from '../lib/ai/pricing.ts';
 
 export async function loadPricing(env = process.env, modelIds = []) {
   try { return validatePricing(JSON.parse(await fs.readFile(env.AET_BENCHMARK_PRICING_FILE || '', 'utf8')), modelIds); }

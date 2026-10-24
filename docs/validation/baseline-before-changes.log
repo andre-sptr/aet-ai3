@@ -1,0 +1,277 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> aet-ai@2.1.1 test
+> node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/*.test.mts
+
+✔ persona daily composes identity, language, evidence, mode (55.679658ms)
+✔ persona report composes identity, language, evidence, mode (0.564365ms)
+✔ persona coding composes identity, language, evidence, mode (0.268272ms)
+✔ parameters are bounded, family-aware and optional guesses omitted (1.67854ms)
+✔ model retirement preserves historical label without silently selecting another (0.337662ms)
+✔ chat validation rejects spoofed system role, malformed mode, missing final user (0.617395ms)
+✔ failed model outputs cannot become factual context (0.203301ms)
+✔ context cap retains latest correction without changing stored history (0.543536ms)
+✔ deterministic router avoids weather, currency and search false positives (3.537014ms)
+✔ unit conversions respect dimensions, zero, negative and absolute zero (0.536473ms)
+✔ passwords use secure random output with classes and enforced length (4.92395ms)
+✖ AET retrieval detects followup, caches official data and records provenance (21.933502ms)
+✔ benchmark contains exactly 20 cases per mode with explicit rubric and constraints (4.510115ms)
+✖ PDF text extraction uses the installed pdf-parse v2 API (7.016953ms)
+✖ rejects scan.pdf with a clear document error (1.033373ms)
+✖ rejects encrypted.pdf with a clear document error (5.73683ms)
+✖ rejects too-many-pages.pdf with a clear document error (0.699098ms)
+✖ DOCX extraction uses installed Mammoth (0.779418ms)
+✔ UTF-8 TXT extraction supports bounded text (0.820816ms)
+✔ invalid, empty, oversized and spoofed attachments rejected (1.928827ms)
+✔ unknown vision capability blocks image payload before calling gateway (0.928677ms)
+✔ missing legacy attachment is acknowledged rather than hallucinated (0.60978ms)
+✔ budget guard fails closed without real-cap evidence and never accepts a budget over USD 3 (29.23675ms)
+✔ deterministic dataset has reference answers and exactly the promised matrix (11.772058ms)
+✔ code validator executes only its fully whitelisted program templates (1.157054ms)
+✔ missing budget evidence sends no generations, preserves all 96 BLOCKED cells and no invented scores (420.672879ms)
+✔ LOCAL MOCK matrix uses all exact IDs, actual production personas, family parameters and immutable per-case requests (1284.054436ms)
+✔ LOCAL MOCK foreign model identity fails integration, never silently replaces requested IDs (1263.253649ms)
+✔ LOCAL MOCK metadata 403 and absent IDs do not prevent authorized direct generations (2469.064051ms)
+✔ LOCAL MOCK starts with a balanced smoke wave over all 12 models before other cases (357.746583ms)
+✔ LOCAL MOCK direct generation permission error opens circuit with safe provider evidence (465.300696ms)
+✔ LOCAL MOCK wrong key binding, absent prices and unaffordable full wave send no generations (944.123187ms)
+✔ price validation, actual Gemini output cap, and partial scoring keep unknown data explicit (1.266609ms)
+✔ production daily route composes real persona and streams the exact requested model through LOCAL MOCK (44.65273ms)
+✔ production report route composes real persona and streams the exact requested model through LOCAL MOCK (4.268222ms)
+✔ production coding route composes real persona and streams the exact requested model through LOCAL MOCK (2.335277ms)
+✔ retired model, Frontier without permission, and valid Frontier token while disabled never contact gateway (4.477445ms)
+✔ origin and input validation stay enforced before any gateway request (1.052458ms)
+✔ provider HTTP failures, JSON instead of SSE and missing stop are never successful answers (7.552275ms)
+✔ request cancellation interrupts production upstream and releases its concurrency slot (2.722412ms)
+✔ latest correction and context truncation survive the production request pipeline (10.805561ms)
+✔ real TXT upload endpoint, extracted document bounds, and model request use untrusted text (5.545311ms)
+✔ tool provenance comes from executed tools; password response does not call a model (5.842207ms)
+✔ production route distinguishes upstream statuses and transport without exposing provider text (16.652867ms)
+✖ production routing uses reviewed policy, preserves context, respects manual choice and shadow mode (7.521207ms)
+✔ news validates slug, publication boolean and safe image URL (2.050555ms)
+✔ event calendar dates, ordering and explicit WIB parse are correct (2.67326ms)
+✔ team ordering and social links validated (0.647621ms)
+✔ legacy migration preserves stable IDs, content, key and date (2.288851ms)
+✔ new store restores chosen historical model, strips binary only, no silent substitution (0.64717ms)
+✔ retry targets last user exactly once and excludes failed responses from context (1.266178ms)
+✔ invalid store never silently falls back and overwrites legacy data (0.33109ms)
+✔ client message IDs use secure random bytes without requiring randomUUID (2.047249ms)
+✔ explicit word targets receive room to finish and remain bounded (2.241852ms)
+✔ Gemini has tested headroom for invisible generation within output allowance (0.475399ms)
+✔ latest message and resolved attachment cannot exceed context budget (1.958112ms)
+✔ application SSE completes immediately at done even if server keeps socket open (10.719198ms)
+✔ application SSE ignores trailing frames after done and rejects primitive payloads (4.928758ms)
+✔ source provenance exposes actual search URLs and tool failure without trusting model links (0.628295ms)
+✔ negative instructions suppress deterministic tool execution (2.222316ms)
+✔ an aborted request cannot initiate external tool calls (2.567532ms)
+✔ events distinguish future, in progress and ended at exact boundaries (0.383617ms)
+✔ verified vision sends actual image parts and text-only continuation preserves historical messages (15.132011ms)
+✔ image context limit keeps the newest four images with an explicit older-image notice (1.328415ms)
+✔ citation examples and invented DOI requests cannot produce plausible fake sources (0.718344ms)
+✔ active deletion removes exactly its ID and payload from state and the per-mode storage key (21.164224ms)
+✔ inactive item deletion retains the active conversation and all other items (0.811508ms)
+✔ active deletion prefers another saved conversation over an old greeting-only draft (0.799856ms)
+✔ last deletion leaves an empty session, durable empty history, and no resurrection after repeated reloads (1.070021ms)
+✔ durable empty v2 store prevents legacy re-import; deleting migrated history removes its old local copy (0.658622ms)
+✔ a pending autosave and effect cleanup cannot restore a deleted conversation (10.834133ms)
+✔ request and attachment invalidation block deferred responses after deletion or switching (5.69436ms)
+✔ stopping keeps ownership for cancelled status; finishing an old request cannot release a new request (0.847174ms)
+✔ write failure throws before callers publish deletion; original durable data remains (1.149861ms)
+✔ failed legacy removal preserves a durable migration and does not silently delete anything (0.740404ms)
+✔ mode isolation, search, rename, new session, edit and retry still work after deletion (0.972269ms)
+✔ gateway diagnostics classify observations without claiming an exact root cause (16.917632ms)
+✔ provider error capture is bounded, cancelled and redacted (1.752979ms)
+✔ untrusted Markdown rejects script schemes, active data documents, credentials and obfuscation (2.508862ms)
+✔ safe web, relative, mail links and supported raster/video previews are retained (0.230441ms)
+✔ routing classifies six supported tasks using direct intent and context size (2.145453ms)
+✔ default/off, missing evidence, and shadow never change the default or call a model (1.826226ms)
+✔ manual selection including explicit default wins over every routing mode (0.459269ms)
+✔ unknown, mock, stale, mismatched, undersampled, costly and unreviewed candidates never promote (1.315681ms)
+✔ Frontier gate, image capability, context length, and category all restrict candidates (0.571388ms)
+✔ no promotion without comparable default, safe policy loader and invalid flags fail closed (10.695594ms)
+node:internal/modules/package_json_reader:331
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'react' imported from /workspace/scratch/6d4f25583b06/work/aet-aiv3/tests/rendering.test.mts
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+    at packageResolve (node:internal/modules/esm/resolve:784:25)
+    at moduleResolve (node:internal/modules/esm/resolve:873:18)
+    at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+    at #resolve (node:internal/modules/esm/loader:687:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:276:33) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.22.1
+✖ tests/rendering.test.mts (183.040401ms)
+✔ forged cookie and purpose substitution cannot authorize admin (4.326291ms)
+✔ signature tampering, future tokens, extra segments and expiry rejected (0.79675ms)
+✔ Frontier has no public fallback secret or permissive answer matching (0.436637ms)
+✔ cross-site origin and fetch-site denied (2.966378ms)
+✔ JSON rejects wrong content type, malformed body, primitives, oversized chunked bodies (8.4156ms)
+✔ rate limit blocks excess then resets at window boundary (0.434052ms)
+✔ SSRF blocks 127.0.0.1 (0.405779ms)
+✔ SSRF blocks 10.2.3.4 (0.196177ms)
+✔ SSRF blocks 172.16.0.1 (0.161141ms)
+✔ SSRF blocks 192.168.1.1 (0.239147ms)
+✔ SSRF blocks 169.254.169.254 (0.204232ms)
+✔ SSRF blocks 100.64.0.1 (0.136405ms)
+✔ SSRF blocks 0.0.0.0 (0.102482ms)
+✔ SSRF blocks ::1 (4.572201ms)
+✔ SSRF blocks ::ffff:127.0.0.1 (0.148077ms)
+✔ SSRF blocks fc00::1 (0.432018ms)
+✔ SSRF blocks fe80::1 (0.088014ms)
+✔ SSRF blocks 2001:db8::1 (1.626302ms)
+✔ SSRF blocks 2002:7f00:1:: (0.312745ms)
+✔ public IP and safe HTTPS URL accepted, credentials and unsafe schemes rejected (0.858765ms)
+✔ explicit origin supports a trusted reverse-proxy host while rejecting other origins (0.603869ms)
+✔ UTF-8 and SSE frame boundaries may split at every byte (11.076777ms)
+✔ malformed provider frame, provider error, empty output, interrupted EOF rejected (7.10528ms)
+✔ generation output limit signals incomplete answer rather than silent success (0.917607ms)
+✔ reader is cancelled when consumer stops before completion (0.699067ms)
+✔ client application SSE requires done and rejects error events (2.427831ms)
+✔ DONE without a stop finish reason and unsupported tool endings are not complete text (0.950649ms)
+✔ model mismatch is rejected before foreign model text is exposed (0.596104ms)
+✔ metadata records reported identity, usage and finish without storing private reasoning (1.049643ms)
+✔ benchmark reader captures usage sent after stop without appending any extra answer (0.80204ms)
+✔ whitespace-only responses and primitive frames fail closed (0.896106ms)
+✔ abort interrupts a reader waiting without another chunk, on server and client parsers (1.431528ms)
+✔ buildSumopodChatRequest creates a streaming OpenAI-compatible chat request (2.745494ms)
+✔ toSumopodMessages preserves image data URLs for multimodal chat payloads (0.234819ms)
+✔ parseOpenAITextStream yields content deltas from Server-Sent Events (5.077957ms)
+✔ AI model catalog contains the requested models exactly once (0.264114ms)
+✔ frontier model detection separates gated and open models (0.242614ms)
+✔ validateAetFrontierAnswers accepts normalized AET knowledge answers only (0.493402ms)
+✔ frontier access token verifies valid tokens and rejects expired tokens (1.639326ms)
+✔ multi-word negative tool instructions suppress implicit unit/currency calls (3.921895ms)
+✔ malformed external responses never become successful source evidence (8.739076ms)
+✔ non-success external HTTP bodies are cancelled to release resources (1.227366ms)
+ℹ tests 129
+ℹ suites 0
+ℹ pass 121
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7526.427362
+
+✖ failing tests:
+
+test at tests/ai.test.mts:49:1
+✖ AET retrieval detects followup, caches official data and records provenance (21.933502ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'error' !== 'ok'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/6d4f25583b06/work/aet-aiv3/tests/ai.test.mts:52:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'error',
+    expected: 'ok',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/attachments.test.mts:7:1
+✖ PDF text extraction uses the installed pdf-parse v2 API (7.016953ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'pdf-parse' imported from /workspace/scratch/6d4f25583b06/work/aet-aiv3/tests/attachments.test.mts
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+      at #resolve (node:internal/modules/esm/loader:687:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at tests/attachments.test.mts:11:69
+✖ rejects scan.pdf with a clear document error (1.033373ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'pdf-parse' imported from /workspace/scratch/6d4f25583b06/work/aet-aiv3/tests/attachments.test.mts
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+      at #resolve (node:internal/modules/esm/loader:687:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at tests/attachments.test.mts:11:69
+✖ rejects encrypted.pdf with a clear document error (5.73683ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'pdf-parse' imported from /workspace/scratch/6d4f25583b06/work/aet-aiv3/tests/attachments.test.mts
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+      at #resolve (node:internal/modules/esm/loader:687:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at tests/attachments.test.mts:11:69
+✖ rejects too-many-pages.pdf with a clear document error (0.699098ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'pdf-parse' imported from /workspace/scratch/6d4f25583b06/work/aet-aiv3/tests/attachments.test.mts
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+      at #resolve (node:internal/modules/esm/loader:687:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at tests/attachments.test.mts:15:1
+✖ DOCX extraction uses installed Mammoth (0.779418ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'mammoth' imported from /workspace/scratch/6d4f25583b06/work/aet-aiv3/tests/attachments.test.mts
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+      at #resolve (node:internal/modules/esm/loader:687:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at tests/chat-route.test.mts:126:1
+✖ production routing uses reviewed policy, preserves context, respects manual choice and shadow mode (7.521207ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/workspace/scratch/6d4f25583b06/work/aet-aiv3/docs/benchmarks/route-policy-test-LjSJef'
+      at async mkdtemp (node:internal/fs/promises:1909:10)
+      at async TestContext.<anonymous> (file:///workspace/scratch/6d4f25583b06/work/aet-aiv3/tests/chat-route.test.mts:127:19)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/workspace/scratch/6d4f25583b06/work/aet-aiv3/docs/benchmarks/route-policy-test-LjSJef'
+  }
+
+test at tests/rendering.test.mts:1:1
+✖ tests/rendering.test.mts (183.040401ms)
+  'test failed'

@@ -681,12 +681,16 @@ export default function MessageBubble({
 
         {message.sources && message.sources.length > 0 && (
           <details className="text-xs text-slate-600 border-t border-slate-200 mt-3 pt-2">
-            <summary className="cursor-pointer font-medium">Sumber dan pemeriksaan ({message.sources.length})</summary>
+            <summary className="cursor-pointer font-medium">Sumber dan status ({message.sources.length})</summary>
             <ul className="mt-2 space-y-2 list-none pl-0">
               {message.sources.map((source, index) => (
                 <li key={`${source.kind}-${index}`}>
                   {source.url && /^https:\/\//i.test(source.url) ? <a href={source.url} target="_blank" rel="noopener noreferrer" className="underline">{source.title}</a> : <span>{source.title}</span>}
                   <span> · {source.status === 'ok' ? 'Diperoleh pada permintaan ini' : 'Tidak berhasil diperoleh'}</span>
+                  {source.status === 'ok' && source.coverage === 'search_snippet' && <span> · Cuplikan pencarian; halaman belum dibaca</span>}
+                  {source.status === 'ok' && source.coverage === 'page_read' && <span> · Halaman dibaca</span>}
+                  {source.status === 'ok' && source.coverage === 'local_document' && <span> · Dokumen lokal</span>}
+                  {source.status === 'ok' && source.coverage === 'deterministic' && <span> · Alat deterministik</span>}
                 </li>
               ))}
             </ul>

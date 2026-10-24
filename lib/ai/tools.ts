@@ -1,6 +1,7 @@
 import { randomInt } from 'node:crypto';
 import { boundedJson, safeReadWeb } from './safe-web.ts';
 import type { Evidence } from './personas/prompt-builder.ts';
+import { validateWebUrl } from './safe-web.ts';
 export type ToolCall = { name: string; args: string[] };
 export function routeTools(text: string): ToolCall[] {
   // Explanations, quoted examples, and code must not trigger external actions.
@@ -37,18 +38,58 @@ export function generatePassword(length=16,symbols=true): string {
   for(let i=out.length-1;i>0;i--){const j=randomInt(i+1);[out[i],out[j]]=[out[j],out[i]];}
   return out.join('');
 }
-export async function runTools(text: string, signal?: AbortSignal): Promise<{ evidence: Evidence[]; directResponse?: string }> {
+export function validateToolCalls(value: unknown, max = 6): ToolCall[] {
+  if (!Array.isArray(value) || value.length > max) throw new Error('Tool plan exceeds bounds.');
+  const sizes: Record<string, number> = {unit:3,currency:3,weather:1,web:1,search:1,password:2,statistics:1,email:1,color:1,calculator:1};
+  return value.map(v => {
+    if (!v || typeof v !== 'object' || !(v.name in sizes) || !Object.hasOwn(sizes,v.name) || !Array.isArray(v.args) || v.args.length !== sizes[v.name]
+      || v.args.some((s: unknown) => typeof s !== 'string' || s.length > (v.name === 'web' ? 2048 : v.name === 'statistics' ? 12000 : 400))) throw new Error('Invalid tool schema.');
+    if (v.name === 'web') validateWebUrl(v.args[0]);
+    if (v.name === 'search' && v.args[0].trim().length < 3) throw new Error('Empty search query.');
+    return {name:v.name,args:[...v.args]};
+  });
+}
+/** Arithmetic grammar only. No eval, functions, identifiers or code execution. */
+export function calculate(expression: string): number {
+  const tokens = expression.match(/\d+(?:\.\d+)?|[()+\-*/%]/g) ?? [];
+  if (!expression.trim() || expression.length > 400 || tokens.join('') !== expression.replace(/\s/g,'')) throw new Error('Ekspresi aritmetika tidak didukung.');
+  let i = 0;
+  const atom = (): number => {
+    const t = tokens[i++];
+    if (t === '+' || t === '-') return (t === '-' ? -1 : 1) * atom();
+    if (t === '(') { const n = sum(); if (tokens[i++] !== ')') throw new Error('Kurung tidak seimbang.'); return n; }
+    if (!t || !/^\d/.test(t)) throw new Error('Ekspresi tidak valid.');
+    return Number(t);
+  };
+  const product = (): number => { let n = atom(); while (['*','/','%'].includes(tokens[i])) { const op = tokens[i++], b = atom(); n = op === '*' ? n*b : op === '/' ? n/b : n%b; } return n; };
+  const sum = (): number => { let n = product(); while (['+','-'].includes(tokens[i])) { const op = tokens[i++], b = product(); n = op === '+' ? n+b : n-b; } return n; };
+  const n = sum(); if (i !== tokens.length || !Number.isFinite(n) || Math.abs(n) > Number.MAX_SAFE_INTEGER) throw new Error('Hasil di luar batas aritmetika.'); return n;
+}
+export function contextualToolCalls(text: string, relevantGoal = ''): ToolCall[] {
+  const direct = routeTools(text);
+  if (direct.length) return direct;
+  if (/```|\b(?:jangan|tanpa|do not|don't|no)\b.*\b(?:tools?|web|search|cari|alat)\b/i.test(text)) return [];
+  const url=text.match(/https:\/\/[^\s<>]+/i)?.[0]?.replace(/[.,;!]+$/,'');
+  if(url && /\b(?:baca|read|ringkas|rangkum|summarize|isi|content|menurut|according|analisis|analyze)\b/i.test(text))return [{name:'web',args:[url]}];
+  const expression = text.match(/^(?:hitung|calculate)\s*:?\s*([\d\s()+\-*/%.]+)[?]?$/i)?.[1];
+  if (expression) return [{name:'calculator',args:[expression]}];
+  if (/\b(?:terbaru|hari ini|saat ini|latest|current|today|telusuri|penelusuran|search)\b/i.test(text)) return [{name:'search',args:[`${relevantGoal} ${text}`.trim().slice(0,400)]}];
+  return [];
+}
+export async function runTools(text: string, signal?: AbortSignal, options: { calls?: ToolCall[]; beforeCall?: () => void } = {}): Promise<{ evidence: Evidence[]; directResponse?: string }> {
   const evidence: Evidence[]=[];
-  for(const call of routeTools(text)) {
+  for(const call of validateToolCalls(options.calls ?? routeTools(text))) {
     signal?.throwIfAborted();
+    options.beforeCall?.();
     const {name,args}=call;
     let source='AET deterministic tool'; let data: unknown;
     try {
       if(name==='password') {
         const password=generatePassword(Number(args[0]),Boolean(args[1]));
-        return { evidence: [], directResponse: `Password acak (${password.length} karakter):\n\n\`\`\`text\n${password}\n\`\`\`\n\nDibuat dengan generator kriptografis di server.` };
+        return { evidence: [], directResponse: /^generate\b/i.test(text.trim())?`Random password (${password.length} characters):\n\n\`\`\`text\n${password}\n\`\`\`\n\nCreated using a cryptographic generator on the server.`:`Password acak (${password.length} karakter):\n\n\`\`\`text\n${password}\n\`\`\`\n\nDibuat dengan generator kriptografis di server.` };
       }
       if(name==='unit') data={value:Number(args[0]),from:args[1],to:args[2],result:convertUnit(Number(args[0]),args[1],args[2])};
+      if(name==='calculator') data={expression:args[0],result:calculate(args[0]),arithmetic:'IEEE-754, bukan aljabar simbolik'};
       if(name==='statistics') {
         const values=args[0].split(/[,;]/).map(Number);if(values.length>1000||values.some(n=>!Number.isFinite(n)))throw new Error('Maksimal 1000 angka valid.');
         const sorted=[...values].sort((a,b)=>a-b);const n=values.length;
@@ -79,8 +120,8 @@ export async function runTools(text: string, signal?: AbortSignal): Promise<{ ev
         if(!current||typeof current.time!=='string'||!Number.isFinite(current.temperature_2m))throw new Error('Data cuaca saat ini tidak tersedia.');
         data={city:city.name,country:city.country,weather};
       }
-      evidence.push({kind:name,source,status:'ok',data});
-    }catch(error){signal?.throwIfAborted();evidence.push({kind:name,source,status:'error',data:{message:name==='password'||name==='unit' ? (error as Error).message : 'Tool gagal atau belum dikonfigurasi. Jangan mengarang hasil.'}});}
+      evidence.push({kind:name,source,status:'ok',data,accessedAt:new Date().toISOString(),coverage:name==='search'?'search_snippet':name==='web'?'page_read':'deterministic'});
+    }catch(error){signal?.throwIfAborted();evidence.push({kind:name,source,status:'error',data:{message:name==='password'||name==='unit'||name==='calculator' ? (error as Error).message : 'Tool gagal atau belum dikonfigurasi. Jangan mengarang hasil.'},accessedAt:new Date().toISOString()});}
   }
   return { evidence };
 }

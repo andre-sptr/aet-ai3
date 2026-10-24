@@ -1,0 +1,154 @@
+{
+  "checkedAt": "2026-10-24T09:37:03.833117+00:00",
+  "inputCommit": "0147f5b9b3ab0073bfce05ca79a38f2cc6a04563",
+  "core": {
+    "tests": 103,
+    "pass": 103,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "full": {
+    "tests": 168,
+    "pass": 161,
+    "fail": 7,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "syntax": {
+    "check": "Syntax only; not semantic TypeScript, ESLint or a Next.js build",
+    "parser": "Playwright bundled Babel",
+    "checkedAt": "2026-10-24T09:34:31.944Z",
+    "files": 123,
+    "errors": []
+  },
+  "dependencyInstall": {
+    "status": "BLOCKED",
+    "observed": "HTTP 403 on registry.npmjs.org/zwitch/-/zwitch-2.0.4.tgz; offline cache unavailable"
+  },
+  "lint": "BLOCKED: eslint not installed",
+  "typecheck": "BLOCKED: typescript not installed; npm exec offline failed",
+  "build": "BLOCKED: next not installed",
+  "productionHttp": "BLOCKED: no .next/BUILD_ID",
+  "browserQa": "NOT_RUN: no built/running application",
+  "liveProvider": "NOT_RUN: no verified paid-test credentials/budget/pricing supplied",
+  "mockEvaluation": {
+    "sourceKind": "LOCAL_MOCK",
+    "samples": 120,
+    "generations": 126,
+    "summary": [
+      {
+        "variant": "baseline",
+        "attempted": 30,
+        "objectiveMeasured": 27,
+        "objectivePassRate": 0.8888888888888888,
+        "reviewRequired": 3,
+        "errors": 0,
+        "p50LatencyMs": 1,
+        "p95LatencyMs": 1,
+        "usageBasedCostUsd": 0.0006000000000000003
+      },
+      {
+        "variant": "fast",
+        "attempted": 30,
+        "objectiveMeasured": 27,
+        "objectivePassRate": 1,
+        "reviewRequired": 3,
+        "errors": 0,
+        "p50LatencyMs": 1,
+        "p95LatencyMs": 8,
+        "usageBasedCostUsd": null
+      },
+      {
+        "variant": "normal",
+        "attempted": 30,
+        "objectiveMeasured": 27,
+        "objectivePassRate": 1,
+        "reviewRequired": 3,
+        "errors": 0,
+        "p50LatencyMs": 1,
+        "p95LatencyMs": 9,
+        "usageBasedCostUsd": null
+      },
+      {
+        "variant": "think",
+        "attempted": 30,
+        "objectiveMeasured": 27,
+        "objectivePassRate": 1,
+        "reviewRequired": 3,
+        "errors": 0,
+        "p50LatencyMs": 1,
+        "p95LatencyMs": 9,
+        "usageBasedCostUsd": null
+      }
+    ],
+    "actualBilledCostUsd": null
+  },
+  "protectedFiles": {
+    "prisma/dev.db": {
+      "unchanged": true,
+      "sha256": "dc579014c71daa611b500c291e6e3878678da4d9ba8d2f9a4a87dd9ad0b2f45e"
+    },
+    "prisma/schema.prisma": {
+      "unchanged": true,
+      "sha256": "e967a45b5ec1ed380efb9c6f354846f597e2067b124940280459bea28caa3b70"
+    },
+    "app/AETPCR.docx": {
+      "unchanged": true,
+      "sha256": "21791ed051e5441aad6d1006cdfa240e7e672e727ba96f14353e31f67bd7629c"
+    },
+    "lib/auth.ts": {
+      "unchanged": true,
+      "sha256": "3d8245fce35ed1501e8ce8685a228b546bfd27016def2ec47a9f281261432c78"
+    },
+    "lib/files.ts": {
+      "unchanged": true,
+      "sha256": "24b3b23035daf0aded3c06b2e200bcd6438ca96f4431c9bead32d711c06de18e"
+    },
+    "lib/aet-frontier-access.ts": {
+      "unchanged": true,
+      "sha256": "36bac7a15266a1f6c2ec10d18e8fe60ed39b86e5225aa5fcf780b6cc1bf537cd"
+    },
+    "app/api/upload/route.ts": {
+      "unchanged": true,
+      "sha256": "d889084470f44423edbf055eb3de3aeab21a015d24badeae4c9deb9b55a759b4"
+    },
+    "app/api/attachments/route.ts": {
+      "unchanged": true,
+      "sha256": "b0a185f0c165de0eb06498bca8b090f7365414ea19394fd28b31185adf2f9cc7"
+    },
+    "app/api/auth/login/route.ts": {
+      "unchanged": true,
+      "sha256": "8ceb0646f642668f08bacc7b9884ca0ac33b66602fdae04c004d64f62c870132"
+    },
+    "app/api/auth/logout/route.ts": {
+      "unchanged": true,
+      "sha256": "fce7130fb9aea775b340bdf214c94fc7c5f74b5d81cd5b9756d2ccbb06040e41"
+    }
+  },
+  "dependencyGraphUnchanged": true,
+  "changedOriginalFiles": [
+    ".env.example",
+    "app/api/chat/route.ts",
+    "app/globals.css",
+    "components/ChatInterface.tsx",
+    "components/MessageBubble.tsx",
+    "lib/ai/context.ts",
+    "lib/ai/evidence.ts",
+    "lib/ai/model-router.ts",
+    "lib/ai/personas/prompt-builder.ts",
+    "lib/ai/tools.ts",
+    "lib/chat-stream.ts",
+    "lib/conversations.ts",
+    "lib/http.ts",
+    "package-lock.json",
+    "package.json",
+    "README.md",
+    "scripts/benchmark-core.mjs",
+    "scripts/http-regression.mjs",
+    "tests/chat-route.test.mts",
+    "tests/model-routing.test.mts",
+    "types/index.ts"
+  ],
+  "noPushOrDeployment": true
+}

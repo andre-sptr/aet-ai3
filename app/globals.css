@@ -3333,3 +3333,15 @@ img {
 .dialog-conversations { max-height:45dvh; }
 .model-option:disabled { opacity:.45; cursor:not-allowed; }
 .feedback button { text-decoration:underline; margin-left:10px; font-weight:600; }
+
+/* Response modes are independent from persona and never select a provider. */
+.response-modes { display:flex; gap:3px; margin:0; padding:3px; border:1px solid #e2e8f0; border-radius:12px; min-width:0; background:#f8fafc; }
+.response-modes label { position:relative; display:flex; flex-direction:column; align-items:center; padding:6px 9px; border-radius:8px; cursor:pointer; font-size:12px; line-height:1.2; color:#64748b; }
+.response-modes label.active { color:#4338ca; background:white; box-shadow:0 1px 4px #0f172a14; }
+.response-modes label:focus-within { outline:2px solid #6366f1; outline-offset:2px; }
+.response-modes input { position:absolute; width:1px; height:1px; opacity:0; }
+.response-modes small { margin-top:3px; font-size:9px; white-space:nowrap; }
+.response-modes:disabled { opacity:.65; }
+.composer-progress { margin:8px 0; font-size:12px; color:#475569; }
+.access-button { margin-left:8px; text-decoration:underline; color:#64748b; }
+@media(max-width:600px) { .response-modes label { padding:6px 7px; } .response-modes small { display:none; } .composer-hint { display:none; } }

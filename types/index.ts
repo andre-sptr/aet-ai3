@@ -1,4 +1,5 @@
 export type ChatMode = 'coding' | 'report' | 'daily';
+export type ResponseMode = 'fast' | 'normal' | 'think';
 
 export interface ChatSource {
   kind: string;
@@ -6,6 +7,10 @@ export interface ChatSource {
   status: 'ok' | 'error';
   title: string;
   url?: string;
+  id?: string;
+  accessedAt?: string;
+  excerpt?: string;
+  coverage?: 'search_snippet' | 'page_read' | 'local_document' | 'deterministic';
 }
 
 export interface Message {
@@ -15,6 +20,7 @@ export interface Message {
   timestamp: Date;
   status?: "complete" | "streaming" | "error" | "cancelled";
   modelId?: string;
+  responseMode?: ResponseMode;
   sources?: ChatSource[];
   attachment?: {
     type: 'image' | 'file';
@@ -37,6 +43,8 @@ export interface ChatModeConfig {
 export interface ChatRequest {
   messages: Message[];
   mode: ChatMode;
+  responseMode?: ResponseMode;
+  /** Legacy input, accepted but ignored. Only the server selects models. */
   model?: string;
   frontierAccessToken?: string;
 }

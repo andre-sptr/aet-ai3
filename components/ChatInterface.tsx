@@ -9,17 +9,13 @@ import {
   ChangeEvent,
   FormEvent,
 } from "react";
-import { Message, ChatMode } from "@/types";
+import { Message, ChatMode, ResponseMode } from "@/types";
 import {
   AET_FRONTIER_QUESTIONS,
-  AI_MODELS,
-  isFrontierModel,
   type AetFrontierQuestionId,
-  type AiModel,
 } from "@/lib/ai-models";
 import MessageBubble from "./MessageBubble";
 import { createId } from "@/lib/ids";
-import { historicalModelLabel, isAvailableModel } from "@/lib/ai-models";
 import { readChatEvents } from "@/lib/chat-stream";
 import { loadConversationStore, newConversation, persistConversationStore, saveCurrentSnapshot, deleteStoredConversation, savedConversations, historyForModel, retryHistory, type Conversation, type ConversationStore } from "@/lib/conversations";
 import { RequestLifecycle } from "@/lib/request-lifecycle";
@@ -35,12 +31,8 @@ import {
   FileText,
   Code,
   MessageCircle,
-  ChevronDown,
   ArrowDown,
   ArrowUpRight,
-  Check,
-  Bot,
-  KeyRound,
   Home,
   Newspaper,
   Plus,
@@ -80,13 +72,11 @@ export default function ChatInterface({
     extractedText?: string;
   } | null>(null);
   const [editingMessageId, setEditingMessageId] = useState<string | null>(null);
-  const [isModelOpen, setIsModelOpen] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("gpt-4o-mini");
+  const [responseMode, setResponseMode] = useState<ResponseMode>("normal");
+  const [processStatus, setProcessStatus] = useState("");
   const [frontierAccessToken, setFrontierAccessToken] = useState<string | null>(
     null,
   );
-  const [frontierTargetModel, setFrontierTargetModel] =
-    useState<AiModel | null>(null);
   const [frontierAnswers, setFrontierAnswers] = useState<
     Record<AetFrontierQuestionId, string>
   >(createEmptyFrontierAnswers);
@@ -95,8 +85,6 @@ export default function ChatInterface({
   const [frontierError, setFrontierError] = useState("");
   const [isAttachmentLoading, setIsAttachmentLoading] = useState(false);
   const [showScrollBtn, setShowScrollBtn] = useState(false);
-  const [modelSearch, setModelSearch] = useState("");
-  const [modelPosition, setModelPosition] = useState({ left: 16, bottom: 150 });
   const [storageError, setStorageError] = useState("");
   const [requestError, setRequestError] = useState("");
   const [contextNotice, setContextNotice] = useState("");
@@ -116,8 +104,6 @@ export default function ChatInterface({
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
-  const modelsRef = useRef<HTMLDivElement>(null);
-  const modelsBtnRef = useRef<HTMLButtonElement>(null);
 
 
   // === Mode Config ===
@@ -147,20 +133,6 @@ export default function ChatInterface({
   const currentMode = MODE_CONFIG[mode];
   const ModeIcon = currentMode.icon;
 
-  // === Available Models ===
-  const models = AI_MODELS;
-
-  const activeModel = models.find((m) => m.id === selectedModel);
-  const modelName = historicalModelLabel(selectedModel);
-  const hasFrontierAccess = Boolean(frontierAccessToken);
-
-  useEffect(() => {
-    if (!isModelOpen) return;
-    const close = () => setIsModelOpen(false);
-    window.addEventListener("resize", close);
-    return () => window.removeEventListener("resize", close);
-  }, [isModelOpen]);
-
   const greetingMessages = useCallback((): Message[] => {
     const greetingMap: Record<ChatMode, string> = {
       daily:
@@ -179,23 +151,6 @@ export default function ChatInterface({
       },
     ];
   }, [mode]);
-
-  // === Click Outside Close Dropdowns ===
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Node;
-      if (
-        isModelOpen &&
-        modelsRef.current &&
-        !modelsRef.current.contains(target) &&
-        !modelsBtnRef.current?.contains(target)
-      ) {
-        setIsModelOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isModelOpen]);
 
   useEffect(() => {
     let active = true;
@@ -254,7 +209,7 @@ export default function ChatInterface({
       storeRef.current = store;
       setConversationStore(store);
       setMessages(active.messages);
-      setSelectedModel(active.modelId);
+      setResponseMode(active.responseMode ?? "normal");
     });
     return () => { mounted = false; cancelPending(); };
   }, [mode, greetingMessages, cancelPending]);
@@ -262,7 +217,7 @@ export default function ChatInterface({
   useEffect(() => {
     const current = storeRef.current;
     if (!current || !messages.length || current.conversations.some(c => c.mode !== mode)) return;
-    const next = { ...current, conversations: current.conversations.map(c => c.id === current.activeId ? { ...c, messages, modelId: selectedModel, title: c.title === "Percakapan baru" && messages.some(m => m.role === "user") ? messages.find(m => m.role === "user")!.content.slice(0, 50) || "Percakapan dengan lampiran" : c.title, updatedAt: new Date().toISOString() } : c) };
+    const next = { ...current, conversations: current.conversations.map(c => c.id === current.activeId ? { ...c, messages, responseMode, derivedState: undefined, title: c.title === "Percakapan baru" && messages.some(m => m.role === "user") ? messages.find(m => m.role === "user")!.content.slice(0, 50) || "Percakapan dengan lampiran" : c.title, updatedAt: new Date().toISOString() } : c) };
     storeRef.current = next;
     setConversationStore(next);
     const save = () => {
@@ -274,7 +229,7 @@ export default function ChatInterface({
     const flush = () => save();
     window.addEventListener("pagehide", flush);
     return () => { clearTimeout(timer); save(); window.removeEventListener("pagehide", flush); };
-  }, [messages, selectedModel, mode]);
+  }, [messages, responseMode, mode]);
 
   const publishStore = (store: ConversationStore) => {
     storeRef.current = store;
@@ -289,10 +244,10 @@ export default function ChatInterface({
   const displayConversation = (chat: Conversation) => {
     cancelPending();
     setIsAttachmentLoading(false); setIsLoading(false);
-    setRequestError(""); setContextNotice(""); setInput("");
+    setRequestError(""); setContextNotice(""); setProcessStatus(""); setInput("");
     setAttachment(null); setEditingMessageId(null);
     setMessages(chat.messages.length ? chat.messages : greetingMessages());
-    setSelectedModel(chat.modelId); setHistoryOpen(false);
+    setResponseMode(chat.responseMode ?? "normal"); setHistoryOpen(false);
   };
   const activateConversation = (chat: Conversation, store = storeRef.current!) => {
     persistStore({ ...store, activeId: chat.id });
@@ -346,25 +301,24 @@ export default function ChatInterface({
   // Abort and request IDs prevent late replies from modifying a different conversation.
   const processMessageToAI = async (currentHistory: Message[]) => {
     if (requests.current.pending) return;
-    if (!isAvailableModel(selectedModel)) { setRequestError("Model percakapan ini tidak lagi aktif. Pilih model lain untuk melanjutkan."); return; }
     const apiMessages = historyForModel(currentHistory);
     if (!apiMessages.length) return;
     const ticket = requests.current.begin();
     const { controller } = ticket;
-    const timeout = setTimeout(() => controller.abort("timeout"), 70000);
+    const timeout = setTimeout(() => controller.abort("timeout"), 65000);
     const assistantId = createId();
     let started = false;
     let content = "";
-    setIsLoading(true); setRequestError(""); setContextNotice("");
+    setIsLoading(true); setRequestError(""); setContextNotice(""); setProcessStatus("Menyiapkan permintaan.");
     try {
       const response = await fetch("/api/chat", {
         method: "POST", signal: controller.signal,
         headers: { "Content-Type": "application/json", Accept: "text/event-stream" },
-        body: JSON.stringify({ messages: apiMessages.slice(-200), mode, model: selectedModel, frontierAccessToken: isFrontierModel(selectedModel) ? frontierAccessToken : undefined }),
+        body: JSON.stringify({ messages: apiMessages, mode, responseMode, frontierAccessToken: frontierAccessToken ?? undefined }),
       });
       if (!requests.current.canApply(ticket)) { await response.body?.cancel(); return; }
       if (!response.ok) {
-        if (response.status === 403 && isFrontierModel(selectedModel)) {
+        if (response.status === 403 && frontierAccessToken) {
           try { localStorage.removeItem(FRONTIER_ACCESS_STORAGE_KEY); } catch { /* optional storage */ }
           setFrontierAccessToken(null);
         }
@@ -373,7 +327,7 @@ export default function ChatInterface({
       }
       if (!requests.current.owns(ticket)) return;
       started = true;
-      setMessages(prev => requests.current.owns(ticket) ? [...prev, { id: assistantId, role: "assistant", content: "", timestamp: new Date(), modelId: selectedModel, status: "streaming" }] : prev);
+      setMessages(prev => requests.current.owns(ticket) ? [...prev, { id: assistantId, role: "assistant", content: "", timestamp: new Date(), responseMode, status: "streaming" }] : prev);
       const append = (delta: string) => {
         content += delta;
         if (requests.current.canApply(ticket)) setMessages(prev => prev.map(m => requests.current.owns(ticket) && m.id === assistantId ? { ...m, content } : m));
@@ -381,6 +335,9 @@ export default function ChatInterface({
       if (response.headers.get("content-type")?.includes("text/event-stream")) {
         for await (const event of readChatEvents(response, controller.signal)) {
           if (event.event === "delta") append(String(event.data.text || ""));
+          if (event.event === "status" && requests.current.canApply(ticket)) setProcessStatus(String(event.data.message || ""));
+          if (event.event === "sources" && requests.current.canApply(ticket)) setMessages(prev => prev.map(m => requests.current.owns(ticket) && m.id === assistantId ? { ...m, sources: event.data.sources as Message['sources'] } : m));
+          if (event.event === "meta" && typeof event.data.requestedModel === "string" && requests.current.canApply(ticket)) setMessages(prev => prev.map(m => requests.current.owns(ticket) && m.id === assistantId ? { ...m, modelId: event.data.requestedModel as string } : m));
           if (event.event === "meta" && Array.isArray(event.data.sources) && requests.current.canApply(ticket)) setMessages(prev => prev.map(m => requests.current.owns(ticket) && m.id === assistantId ? { ...m, sources: event.data.sources as Message['sources'] } : m));
           if (event.event === "meta" && event.data.contextTruncated && requests.current.canApply(ticket)) setContextNotice("Sebagian riwayat lama tidak dikirim karena batas konteks. Riwayat lengkap tetap tersimpan di browser.");
         }
@@ -402,7 +359,7 @@ export default function ChatInterface({
       if (started) setMessages(prev => prev.map(m => requests.current.owns(ticket) && m.id === assistantId ? { ...m, status: cancelled ? "cancelled" : "error" } : m));
     } finally {
       clearTimeout(timeout);
-      if (requests.current.owns(ticket)) { setIsLoading(false); inputRef.current?.focus(); }
+      if (requests.current.owns(ticket)) { setIsLoading(false); setProcessStatus(""); inputRef.current?.focus(); }
       requests.current.finish(ticket);
     }
   };
@@ -465,7 +422,6 @@ export default function ChatInterface({
       let extractedText: string | undefined;
       if (mimeType.startsWith("image/")) {
         if (!["image/png", "image/jpeg", "image/webp"].includes(mimeType)) throw new Error("Gunakan gambar PNG, JPEG, atau WebP.");
-        if (activeModel?.supportsImageInput !== true) throw new Error("Analisis gambar belum terverifikasi pada model ini. Gunakan PDF, DOCX, TXT, atau jelaskan isi gambar.");
         base64Content = await compressImage(file, controller.signal); mimeType = "image/jpeg";
       } else {
         const response = await fetch("/api/attachments", { method: "POST", signal: controller.signal, headers: { "Content-Type": mimeType }, body: file });
@@ -495,21 +451,6 @@ export default function ChatInterface({
     }
   };
 
-  const handleModelSelect = (model: AiModel) => {
-    if (model.availability !== "available") return;
-    if (model.isFrontier && !hasFrontierAccess) {
-      setIsModelOpen(false);
-      setFrontierTargetModel(model);
-      setFrontierAnswers(createEmptyFrontierAnswers());
-      setFrontierError("");
-      setIsFrontierModalOpen(true);
-      return;
-    }
-
-    setSelectedModel(model.id);
-    setIsModelOpen(false);
-  };
-
   const handleFrontierAnswerChange = (
     questionId: AetFrontierQuestionId,
     value: string,
@@ -519,7 +460,7 @@ export default function ChatInterface({
 
   const handleFrontierSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!frontierTargetModel || isVerifyingFrontier) return;
+    if (isVerifyingFrontier) return;
 
     setIsVerifyingFrontier(true);
     setFrontierError("");
@@ -540,10 +481,7 @@ export default function ChatInterface({
 
       try { localStorage.setItem(FRONTIER_ACCESS_STORAGE_KEY, data.token); } catch { /* access remains usable in this session */ }
       setFrontierAccessToken(data.token);
-      setSelectedModel(frontierTargetModel.id);
       setIsFrontierModalOpen(false);
-      setIsModelOpen(false);
-      setFrontierTargetModel(null);
       setFrontierAnswers(createEmptyFrontierAnswers());
     } catch (error: unknown) {
       const err = error as Error;
@@ -555,7 +493,7 @@ export default function ChatInterface({
 
   // === Send Message ===
   const handleSend = async () => {
-    if ((!input.trim() && !attachment) || isLoading || isAttachmentLoading || !isAvailableModel(selectedModel) || !storeRef.current)
+    if ((!input.trim() && !attachment) || isLoading || isAttachmentLoading || !storeRef.current)
       return;
     const userMessage: Message = {
       id: createId(),
@@ -606,7 +544,7 @@ export default function ChatInterface({
   };
 
   const canSend =
-    (input.trim() || !!attachment) && !isLoading && !isAttachmentLoading && isAvailableModel(selectedModel) && Boolean(conversationStore);
+    (input.trim() || !!attachment) && !isLoading && !isAttachmentLoading && Boolean(conversationStore);
   const isStreamingAssistant =
     isLoading && messages[messages.length - 1]?.role === "assistant";
   const canVerifyFrontier =
@@ -634,22 +572,6 @@ export default function ChatInterface({
   const historyConversations = conversationStore ? savedConversations(conversationStore).filter(c => `${c.title} ${c.messages.map(m => m.content).join(" ")}`.toLowerCase().includes(conversationSearch.toLowerCase())) : [];
   const deleteTarget = conversationStore?.conversations.find(c => c.id === deleteTargetId);
   const hasSavedActive = Boolean(conversationStore && savedConversations(conversationStore).some(c => c.id === conversationStore.activeId));
-  const filteredModels = models.filter((model) =>
-    `${model.name} ${model.provider} ${model.tier}`
-      .toLowerCase()
-      .includes(modelSearch.toLowerCase()),
-  );
-  const openModelPicker = () => {
-    const rect = modelsBtnRef.current?.getBoundingClientRect();
-    if (rect)
-      setModelPosition({
-        left: Math.max(16, Math.min(rect.right - 360, window.innerWidth - 376)),
-        bottom: window.innerHeight - rect.top + 10,
-      });
-    setModelSearch("");
-    setIsModelOpen((value) => !value);
-  };
-
   return (
     <div className="chat-shell">
       <aside className="chat-rail" aria-label="Navigasi workspace">
@@ -713,8 +635,7 @@ export default function ChatInterface({
             <button onClick={() => setHistoryOpen(true)} className="icon-button" aria-label="Daftar percakapan"><History size={17} /></button>
             <button onClick={createConversation} className="icon-button" disabled={!conversationStore} aria-label="Percakapan baru"><Plus size={17} /></button>
             <span className="chat-model-badge">
-              <Bot size={13} />
-              {modelName}
+              {responseMode === "fast" ? "Fast" : responseMode === "think" ? "Think" : "Normal"}
             </span>
             <button
               onClick={() => conversationStore && requestDeleteConversation(conversationStore.activeId)}
@@ -815,7 +736,6 @@ export default function ChatInterface({
           <div className="chat-composer-inner">
             {requestError && <div className="feedback error" role="alert">{requestError} <button onClick={handleReload} disabled={isLoading}>Coba ulang</button></div>}
             {contextNotice && <p className="feedback" role="status">{contextNotice}</p>}
-            {!isAvailableModel(selectedModel) && <p className="feedback error" role="alert">{modelName} sudah tidak aktif. Riwayat tetap dapat dibaca. Pilih model lain untuk melanjutkan.</p>}
             {storageError && (
               <p className="feedback error" role="alert">
                 {storageError}
@@ -902,8 +822,8 @@ export default function ChatInterface({
                     onClick={() => cameraInputRef.current?.click()}
                     className="icon-button"
                     aria-label="Kamera"
-                    title={activeModel?.supportsImageInput === true ? "Kamera" : "Analisis gambar belum terverifikasi"}
-                    disabled={isLoading || isAttachmentLoading || activeModel?.supportsImageInput !== true}
+                    title="Kamera"
+                    disabled={isLoading || isAttachmentLoading}
                   >
                     <Camera size={17} />
                   </button>
@@ -912,20 +832,15 @@ export default function ChatInterface({
                   </span>
                 </div>
                 <div className="composer-send">
-                  <button
-                    ref={modelsBtnRef}
-                    onClick={openModelPicker}
-                    disabled={isLoading}
-                    className="model-trigger"
-                    aria-haspopup="dialog"
-                    aria-expanded={isModelOpen}
-                    aria-controls="model-picker"
-                    title="Ganti model AI"
-                  >
-                    <Bot size={13} />
-                    <span>{modelName}</span>
-                    <ChevronDown size={12} />
-                  </button>
+                  <fieldset className="response-modes" disabled={isLoading} aria-label="Mode respons">
+                    <legend className="sr-only">Mode respons</legend>
+                    {([['fast','Fast','Cepat'],['normal','Normal','Seimbang'],['think','Think','Analisis mendalam']] as const).map(([id,label,description]) => (
+                      <label key={id} title={description} className={responseMode === id ? "active" : ""}>
+                        <input type="radio" name="response-mode" value={id} checked={responseMode === id} onChange={() => setResponseMode(id)} />
+                        <span>{label}</span><small>{description}</small>
+                      </label>
+                    ))}
+                  </fieldset>
                   <button
                     onClick={() => isLoading ? requests.current.stop() : handleSend()}
                     disabled={!isLoading && !canSend}
@@ -941,8 +856,10 @@ export default function ChatInterface({
                 </div>
               </div>
             </div>
+            {isLoading && <p className="composer-progress" role="status" aria-live="polite">{processStatus}</p>}
             <p className="composer-disclaimer">
               AI dapat melakukan kesalahan. Periksa kembali informasi penting.
+              <button type="button" className="access-button" onClick={() => { setFrontierError(""); setIsFrontierModalOpen(true); }} disabled={isLoading}>{frontierAccessToken ? "Akses AET tersimpan" : "Verifikasi AET"}</button>
             </p>
           </div>
         </div>
@@ -962,107 +879,14 @@ export default function ChatInterface({
           <button className="button button-primary" type="submit">Simpan nama</button>
         </form>
       </Dialog>
-      {isModelOpen && (
-        <div
-          ref={modelsRef}
-          id="model-picker"
-          className="model-popover"
-          role="dialog"
-          aria-label="Pilih model AI"
-          style={modelPosition}
-          onKeyDown={(event) => {
-            if (event.key === "Escape") {
-              setIsModelOpen(false);
-              modelsBtnRef.current?.focus();
-            }
-            if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-              event.preventDefault();
-              const options = Array.from(
-                event.currentTarget.querySelectorAll<HTMLButtonElement>(
-                  ".model-option:not(:disabled)",
-                ),
-              );
-              const index = options.indexOf(
-                document.activeElement as HTMLButtonElement,
-              );
-              options[
-                (index +
-                  (event.key === "ArrowDown" ? 1 : -1) +
-                  options.length) %
-                  options.length
-              ]?.focus();
-            }
-          }}
-        >
-          <div className="model-popover-title">
-            <span>Pilih model AI</span>
-            <button
-              onClick={() => {
-                setIsModelOpen(false);
-                modelsBtnRef.current?.focus();
-              }}
-              className="icon-button"
-              aria-label="Tutup pilihan model"
-            >
-              <X size={16} />
-            </button>
-          </div>
-          <input
-            autoFocus
-            value={modelSearch}
-            onChange={(event) => setModelSearch(event.target.value)}
-            className="model-search"
-            placeholder="Cari model atau provider..."
-            aria-label="Cari model atau provider"
-          />
-          <div className="model-options custom-scrollbar">
-            {filteredModels.length === 0 && (
-              <p className="small muted p-4">Model tidak ditemukan.</p>
-            )}
-            {filteredModels.map((model) => {
-              const locked = model.isFrontier && !hasFrontierAccess;
-              return (
-                <button
-                  key={model.id}
-                  onClick={() => {
-                    handleModelSelect(model);
-                    modelsBtnRef.current?.focus();
-                  }}
-                  disabled={model.availability !== "available"}
-                  aria-pressed={selectedModel === model.id}
-                  className="model-option"
-                >
-                  {locked ? <KeyRound size={16} /> : <Bot size={16} />}
-                  <span className="model-option-info">
-                    <strong>
-                      {model.name}
-                      <span className={`tier ${locked ? "locked" : ""}`}>
-                        {model.availability !== "available" ? "Belum tersedia" : locked ? "Frontier · Terkunci" : model.tier}
-                      </span>
-                    </strong>
-                    <small>
-                      {model.provider} · {model.desc}
-                    </small>
-                  </span>
-                  {selectedModel === model.id && <Check size={16} />}
-                </button>
-              );
-            })}
-          </div>
-          <p className="small muted px-2 pt-3 pb-1">
-            Model Frontier memerlukan verifikasi AET.
-          </p>
-        </div>
-      )}
       <Dialog
-        open={isFrontierModalOpen && Boolean(frontierTargetModel)}
+        open={isFrontierModalOpen}
         onClose={() => setIsFrontierModalOpen(false)}
-        title="Akses model Frontier"
+        title="Verifikasi akses AET"
         busy={isVerifyingFrontier}
       >
         <p>
-          Verifikasi pengetahuan AET untuk menggunakan{" "}
-          <strong>{frontierTargetModel?.name}</strong>.
+          Verifikasi AET membuka kelayakan akses lanjutan jika diaktifkan pengelola. Server tetap memilih strategi yang tersedia.
         </p>
         <form onSubmit={handleFrontierSubmit} className="frontier-form">
           {AET_FRONTIER_QUESTIONS.map((question) => (
