@@ -1,0 +1,56 @@
+{
+  "logicalSamples": 132,
+  "gatewayCalls": 96,
+  "applicationAttemptCeiling": 72,
+  "batchDeadlineMs": 1800000,
+  "maxReportedTokens": 180000,
+  "maxReservedTokens": 5000000,
+  "maximumDispatches": 168,
+  "globalRequestCeiling": 168,
+  "gatewayReservationEstimateUsd": null,
+  "applicationConservativeReservationCeilingUsd": null,
+  "localReservationCapUsd": null,
+  "actualOutputCaps": {
+    "gpt-4o-mini": 512,
+    "gpt-4.1-mini": 512,
+    "gpt-5-mini": 512,
+    "gpt-5.4-mini": 512,
+    "gpt-5.4": 512,
+    "claude-haiku-4-5": 512,
+    "claude-sonnet-5": 512,
+    "claude-opus-5": 512,
+    "gemini/gemini-3.5-flash": 1024,
+    "gemini/gemini-3.1-pro-preview": 1024,
+    "deepseek-v4-flash": 512,
+    "deepseek-v4-pro": 512
+  },
+  "applicationOutputCaps": "Production persona/length policy; gateway --output-cap/--caps do not alter application output limits.",
+  "untested": [
+    "provider model authenticity",
+    "human persona quality",
+    "real billing",
+    "scopes not selected",
+    "HTTP endpoint transport (application profile calls server orchestrator directly)"
+  ],
+  "kind": "minimum-combined-retest-plan",
+  "status": "PLAN_ONLY_NO_PAID_REQUESTS",
+  "screening": "12 models x 8 cases x 1 repeat = 96 calls",
+  "application": "2 public candidates x 6 cases x 3 repeats = 36 logical samples; maximum 72 calls including retries",
+  "scope": "Daily/Fast answer candidate; other scopes remain uncalibrated",
+  "historicalEstimateOnly": {
+    "sourceReport": "docs/benchmarks/run-2026-10-25T11-17-41-534Z-6f4ddf0d/report.json",
+    "sourceReportSha256": "782091c2b0eabe5290ad01b472a24759e4cbff3db08f9e7a85e44cb0fc5bfc03",
+    "gatewayUsd": 1.19248108,
+    "applicationPolicyCeilingUsd": 1.1536128,
+    "combinedUsd": 2.34609388,
+    "currentPriceVerified": false,
+    "actualBilledUsd": null,
+    "note": "Do not renew timestamps or attestations on these historical rates. Current valid guards and sufficient remaining provider allowance are required."
+  },
+  "powershellPlanCommand": "npm run test:all -- --plan --profiles screening,application --application-models gpt-4o-mini,gpt-5.4-mini --screening-repeat 1 --application-repeat 3 --fixture tests/fixtures/routing-retest-daily.json --modes fast --max-requests 168",
+  "currentFingerprint": {
+    "pipelineSha256": "84abdf05c2a79f1c78b77899d19c5bf7e1168b8c8ea0f64b702dbefcfbef4cc4",
+    "productionPromptSha256": "fd913dd42fd9f8eaf07e4a9e244a2ce777ea9fe52dc987b8bec7d5ac38a62297",
+    "promptFingerprintClock": "2026-01-01T00:00:00Z"
+  }
+}

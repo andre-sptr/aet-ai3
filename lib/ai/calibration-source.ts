@@ -5,7 +5,8 @@ import { buildSystemPrompt } from './personas/prompt-builder.ts';
 /** Dirty working trees and platform line endings are handled explicitly.
  * Hashes bind operator-controlled evidence to code; they do not authenticate a provider. */
 export async function calibrationSource() {
-  const files = ['lib/sumopod.ts','lib/ai-models.ts','lib/http.ts','lib/rate-limit.ts','lib/aet-frontier-access.ts','types/index.ts','scripts/evaluate-ai.mjs'];
+  const files = ['lib/sumopod.ts','lib/ai-models.ts','lib/http.ts','lib/rate-limit.ts','lib/aet-frontier-access.ts','types/index.ts','scripts/evaluate-ai.mjs',
+    'scripts/evaluate-all-models.mjs','scripts/batch-ledger.mjs','scripts/benchmark-core.mjs','scripts/benchmark-dimensions.mjs','scripts/benchmark-recovery.mjs'];
   async function walk(dir: string) {
     for (const entry of await readdir(dir,{withFileTypes:true})) {
       const file = `${dir}/${entry.name}`;

@@ -3,6 +3,7 @@
   "version": "2.2.0",
   "private": true,
   "scripts": {
+    "test:all": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/evaluate-all-models.mjs",
     "dev": "node scripts/dev.mjs",
     "build": "next build",
     "start": "next start",

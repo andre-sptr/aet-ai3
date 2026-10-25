@@ -9,6 +9,7 @@ import { boundedResponseText, readGatewayError } from '../lib/ai/gateway-errors.
 import { balancedSchedule, benchmarkMarkdown, DIMENSION_WEIGHTS, emptyScores, estimateRequestCost, evaluateOutput, loadBudgetGuard, loadPricing, partialComposite, redact } from './benchmark-core.mjs';
 
 import { persistCheckpoint, restoreResults, inheritedCircuit, scheduleRemaining } from './benchmark-recovery.mjs';
+import { assessScreening, screeningSummary, dimensionMarkdown, usageState, usageCost, DIMENSION_RUBRIC_VERSION } from './benchmark-dimensions.mjs';
 
 const key = process.env.SUMOPOD_API_KEY || '';
 const resumeIndex = process.argv.indexOf('--resume');
@@ -76,6 +77,8 @@ if (previous) {
 let latestReportFile = path.join(root, 'report.json');
 let warnedJsonFallback = false, warnedMarkdownFallback = false;
 async function checkpoint() {
+  report.dimensionRubricVersion = DIMENSION_RUBRIC_VERSION;
+  report.dimensionSummary = screeningSummary(report,cases);
   for (const row of report.results) row.partialComposite = partialComposite(row.scores);
   const json = JSON.stringify(report, (_name,value) => typeof value === 'string' ? redact(value,key) : value, 2);
   const saved = await persistCheckpoint(path.join(root, 'report.json'), json);
@@ -85,7 +88,7 @@ async function checkpoint() {
     warnedJsonFallback = true;
   }
   try {
-    const md = benchmarkMarkdown(report) + (report.resume ? `\nContinuation started ${report.resume.startedAt}; retained attempts: ${report.resume.retainedAttempts}; historical reservations remain in the same total cap.\n` : '');
+    const md = benchmarkMarkdown(report) + '\n' + dimensionMarkdown(report.dimensionSummary) + (report.resume ? `\nContinuation started ${report.resume.startedAt}; retained attempts: ${report.resume.retainedAttempts}; historical reservations remain in the same total cap.\n` : '');
     const savedMarkdown = await persistCheckpoint(path.join(root, 'report.md'), redact(md, key));
     if (!savedMarkdown.canonical && !warnedMarkdownFallback) {
       console.warn('Markdown replacement blocked; JSON checkpoint remains authoritative.');
@@ -155,8 +158,9 @@ for (let index = 0; index < report.results.length; index++) {
   await checkpoint();
   row.reason = undefined;
   try {
+    const requestSignal = AbortSignal.timeout(45000);
     const response = await fetch(row.request.url, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
-      body: JSON.stringify(row.request.body), redirect: 'error', signal: AbortSignal.timeout(45000) });
+      body: JSON.stringify(row.request.body), redirect: 'error', signal: requestSignal });
     row.httpStatus = response.status;
     if (!response.ok) {
       row.providerError = await readGatewayError(response, key); row.status = 'FAIL'; row.error = `Provider HTTP ${response.status} (${row.providerError.kind})`;
@@ -167,13 +171,14 @@ for (let index = 0; index < report.results.length; index++) {
     } else {
       let text = '';
       try {
-        for await (const delta of parseOpenAITextStream(response, { expectedModel: row.model, readUsageAfterStop: true, onMetadata(meta) {
+        for await (const delta of parseOpenAITextStream(response, { expectedModel: row.model, signal: requestSignal, readUsageAfterStop: true, onMetadata(meta) {
           if (meta.model) row.reportedModel = meta.model;
           if (meta.finishReason) row.finishReason = meta.finishReason;
-          if (meta.usage && Object.keys(meta.usage).length) row.usage = meta.usage;
+          if (meta.usage && Object.keys(meta.usage).length) row.usage = {...row.usage,...meta.usage};
+          if (meta.drainOutcome) row.metadataDrain = meta.drainOutcome;
         } })) {
           text += delta;
-          if (text.length > 64_000) throw new StreamFailure('Benchmark output exceeds bound.');
+          if (text.length > 64_000) throw new StreamFailure('Benchmark output exceeds bound.','STREAM_LIMIT');
         }
         report.completedRequests++;
         const evaluation = evaluateOutput(cases.find(c => c.id === row.caseId), text);
@@ -185,11 +190,15 @@ for (let index = 0; index < report.results.length; index++) {
     }
   } catch (error) {
     row.status = error instanceof StreamFailure ? 'FAIL' : 'BLOCKED'; row.error = redact(error.message, key);
+    row.errorCode = error instanceof StreamFailure ? error.code : error.name === 'TimeoutError' ? 'UPSTREAM_TIMEOUT' : 'UPSTREAM_TRANSPORT';
     if (error instanceof StreamFailure) row.scores.streaming_integration = 0;
     else if (error.name === 'TimeoutError') unavailableModels.set(row.model, 'Timed out once; remaining cases for this model were not sent automatically.');
     else stopReason = 'Transport/runtime failure; circuit opened without retries: ' + row.error;
   }
   row.durationMs = Date.now() - started;
+  row.dimensions = assessScreening(cases.find(c=>c.id===row.caseId),row);
+  row.usageUnknownReason = usageState(row).reason;
+  row.usageBasedCostUsd = usageCost(row,pricing);
   if (row.usage?.total_tokens !== undefined) { report.recordedTokens += row.usage.total_tokens; report.usageUnknownRequests--; }
   await checkpoint();
   console.log(`${row.model} ${row.caseId}: ${row.status}`);

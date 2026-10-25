@@ -8,7 +8,7 @@ export type EvaluationCase = {
 };
 export function evaluationMessages(c: EvaluationCase): Message[] {
   const messages=c.messages ?? [{role:'user',content:c.prompt}];
-  const expanded=messages.flatMap(m=>m.filler?Array.from({length:m.filler},(_,i)=>({role:i%2?'assistant':'user',content:`Obrolan sampingan ${i}.`})):m);
+  const expanded=messages.flatMap<NonNullable<EvaluationCase['messages']>[number]>(m=>m.filler?Array.from({length:m.filler},(_,i)=>({role:i%2?'assistant':'user',content:`Obrolan sampingan ${i}.`})):m);
   return expanded.map((m,i)=>({...m,id:`case-${c.id}-${i}`,status:'complete',timestamp:new Date(0)}) as Message);
 }
 export function evaluateApplicationOutput(c: EvaluationCase, answer: string) {

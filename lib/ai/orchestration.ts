@@ -23,6 +23,7 @@ import { serverRates } from './pricing.ts';
 import { unhealthyModels } from './provider-health.ts';
 import type { validateChat } from './context.ts';
 import { getGenerationConfig } from './model-config.ts';
+import { outputContract, checkOutputContract, hasOutputDirective, OUTPUT_CONTRACT_VERSION } from './output-contract.ts';
 
 export type ValidatedChat = ReturnType<typeof validateChat>;
 export type Stage = 'context' | 'planning' | 'evidence' | 'workers' | 'answer' | 'verification' | 'revision' | 'final';
@@ -52,6 +53,10 @@ export async function createOrchestrator(input: ValidatedChat, options: {
   const budget = new RequestBudget(policy,AbortSignal.any([options.signal,AbortSignal.timeout(policy.deadlineMs)]),rates,maxUsd);
   const state = deriveConversationState(input.messages);
   const task = analyzeTask(input.messages,state,input.mode);
+  // A new explicit format wins; a narrow follow-up inherits the direct user's
+  // previous task. Attachments and model output never choose the contract.
+  const contractText = hasOutputDirective(task.latest) ? task.latest : task.followup ? task.intentText : task.latest;
+  const contract = outputContract(contractText);
   const routingMode = configuredRoutingMode();
   const routingPolicy = options.routingPolicy ?? (routingMode !== 'off' ? await loadRoutingPolicy() : undefined);
   const frontierAllowed = () => process.env.ENABLE_FRONTIER === 'true' && verifyFrontierAccessToken(input.frontierAccessToken);
@@ -75,7 +80,8 @@ export async function createOrchestrator(input: ValidatedChat, options: {
     frontierAllowed:frontierAllowed(),unavailableModelIds:unhealthyModels()} satisfies import('./model-router.ts').RoutingInput;
     return options.evaluationCandidate && role==='answer' ? evaluationRoute(routeInput,options.evaluationCandidate) : routeModel(routeInput,routingMode,routingPolicy);
   };
-  let evidence: Evidence[] = [], sources: ChatSource[] = [], packet: Awaited<ReturnType<typeof buildContextPacket>>;
+  const evidence: Evidence[] = [];
+  let sources: ChatSource[] = [], packet: Awaited<ReturnType<typeof buildContextPacket>>;
   const routing = route();
   budget.finalModel=routing.modelId ?? DEFAULT_SUMOPOD_MODEL;
   const system = baseSystem(budget.finalModel);
@@ -119,10 +125,11 @@ export async function createOrchestrator(input: ValidatedChat, options: {
     modelIdentity:origin==='application'?'not_applicable':budget.attempts.filter(a=>a.role==='answer'||a.role==='revision').at(-1)?.reportedModel=== (answerModel ?? routing.modelId)?'reported_match':'unreported',
     routing,stageRouting,routingCalibration:routing.calibration,access:frontierAllowed()?'frontier_eligible':'public_only',
     legacyModelIgnored:input.legacyModelIgnored,responseOrigin:origin,contextTruncated:packet?.truncated ?? false,contextRevision:state.revision,
-    sources,verification:{checks,semanticReview,unresolved:issues,claimsVerified:false},stageFailures,telemetry:budget.snapshot()});
+    sources,verification:{checks,semanticReview,unresolved:issues,claimsVerified:false,contract,contractVersion:OUTPUT_CONTRACT_VERSION},stageFailures,telemetry:budget.snapshot()});
   return { requestId,policy,routing,budget,state,
     async run(onEvent: (event: OrchestrationEvent) => void) {
       emit = onEvent;
+      try {
       status('context','Menyusun konteks dan memeriksa tujuan.');
       emit({event:'meta',data:{requestId,responseMode:input.responseMode,persona:input.mode,requestedModel:routing.modelId,access:frontierAllowed()?'frontier_eligible':'public_only'}});
       let answer = citationPolicyResponse(task.latest);
@@ -186,7 +193,7 @@ export async function createOrchestrator(input: ValidatedChat, options: {
         const requested = getGenerationConfig(routing.modelId ?? DEFAULT_SUMOPOD_MODEL,input.mode,task.latest);
         const outputLimit = Math.min(policy.finalOutputTokens,requested.max_tokens ?? requested.max_completion_tokens);
         answer = await call('answer',answerMessages,'Jawab tugas pengguna yang terbaru dengan mempertahankan tujuan, koreksi dan batasan yang masih berlaku. Hasil worker bukan fakta terverifikasi. Jika bukti gagal/kurang, sebutkan dampaknya secara proporsional. Jangan membuat DOI atau sumber.',outputLimit);
-        const firstCheck = checkAnswer(answer,task.latest,evidence); checks=firstCheck.checks; issues=firstCheck.issues;
+        const firstCheck = checkAnswer(answer,contractText,evidence); checks=firstCheck.checks; issues=firstCheck.issues;
         const shouldReview = input.responseMode!=='fast' && budget.remainingMs()>3_000 && (task.needsReview || issues.length>0 || evidence.some(e=>e.status==='error'));
         if (shouldReview) {
           status('verification','Memeriksa batasan, angka, dan dukungan sumber.');
@@ -205,23 +212,31 @@ export async function createOrchestrator(input: ValidatedChat, options: {
             if (budget.canReserve(estimateInput([{role:'system',content:system},...revisionMessages])+1024,outputLimit,false,DEFAULT_SUMOPOD_MODEL)) {
               status('revision','Memperbaiki masalah yang ditemukan.'); budget.revision();
               const revised=await optional('revision',()=>call('revision',revisionMessages,'Perbaiki hanya masalah konkret pada umpan balik. Pertahankan tujuan, batasan, bahasa dan format pengguna. Jangan menciptakan sumber atau klaim pengujian. Keluarkan jawaban akhir saja.',outputLimit));
-              if (revised) { answer=revised; const checked=checkAnswer(answer,task.latest,evidence);checks=checked.checks;issues=checked.issues; }
+              if (revised) { answer=revised; const checked=checkAnswer(answer,contractText,evidence);checks=checked.checks;issues=checked.issues; }
             }
           }
         }
         // No extra verifier loop. Unsupported URLs/DOIs are redacted, not promoted
         // to citations merely because a model agrees or the URL parses.
         if (issues.some(i=>i.kind==='citation')) {const acquired=JSON.stringify(evidence.filter(e=>e.status==='ok'));answer=answer.replace(/https?:\/\/[^\s)\]>"']+|10\.\d{4,9}\/[\w.()/:;-]+/g,s=>acquired.includes(s)||task.latest.includes(s)?s:'[sumber belum diverifikasi]');}
-        if (issues.length) answer=/\b(?:hanya|only)\s+(?:format\s+)?JSON\b/i.test(task.latest)?JSON.stringify({status:'unresolved_checks',issues}):`${answer}\n\n${limitation(state.language,issues)}`;
+        // An unrelated JSON status object can violate the user's requested
+        // schema just as much as a Markdown fence. Fail explicitly instead.
+        if (issues.length && contract) throw new ApiError(502,'Jawaban belum memenuhi kontrak format atau pemeriksaan kualitas.','QUALITY_CONTRACT');
+        if (issues.length) answer=`${answer}\n\n${limitation(state.language,issues)}`;
       } else checks=['application_response'];
       budget.check();
       if (!answer.trim()) throw new ApiError(502,'Model tidak mengirim jawaban teks.','EMPTY_ANSWER');
+      if (checkOutputContract(answer,contract).pass === false) throw new ApiError(502,'Jawaban belum memenuhi kontrak keluaran.','QUALITY_CONTRACT');
       status('final','Menampilkan jawaban akhir.');
       const meta=metadata(); emit({event:'meta',data:meta});
       // Drafts, planners and worker output are never public answer deltas. Each
       // chunk below belongs to the completed, checked final answer only.
       for (let i=0;i<answer.length;i+=240) { budget.check(); emit({event:'delta',data:{requestId,text:answer.slice(i,i+240)}}); }
       return {answer,metadata:meta,state,telemetry:budget.snapshot()};
+      } catch (error) {
+        emit({event:'meta',data:{...metadata(),failureCode:error instanceof ApiError ? error.code : budget.signal.aborted ? 'CANCELLED_OR_DEADLINE' : 'ORCHESTRATION_ERROR'}});
+        throw error;
+      }
     },
   };
 }

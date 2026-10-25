@@ -1,0 +1,22 @@
+✔ one serialized ledger charges every model and role before dispatch, retaining uncertain reservations (3.760067ms)
+✔ cost, token and deadline ceilings fail before another dispatch and resume rejects altered accounting (0.632733ms)
+✔ all-model default plan dispatches nothing and combined mock retains shared limits across profiles and roles (456.006062ms)
+✔ resume retains a failed or uncertain original sample and never redispatches it (362.122842ms)
+✔ length drains trailing usage and preserves the original failure despite malformed or foreign trailers (5.475383ms)
+✔ stop and length metadata drains terminate on idle sockets and bound coalesced trailer bytes (43.698828ms)
+✔ abort during a terminal failure drain honors cancellation without erasing length (3.059993ms)
+✔ negative, fractional and unsafe usage values never become observed token counts (1.965633ms)
+✔ explicit raw JSON in either word order, numeric and raw-code contracts are checked separately (1.686492ms)
+✔ failed raw output never becomes a done answer or arbitrary schema; failure telemetry remains available (49.854801ms)
+✔ length telemetry includes trailing cost, stays failed, and is never automatically retried (3.676131ms)
+✔ a latest explicit prose correction releases the earlier JSON contract (5.040502ms)
+✔ explicit calculator intent permits only a narrow numeric suffix, never a general word problem or negated tool (1.02197ms)
+✔ historical report and rubric remain immutable while fenced JSON gets separate content and format results (12.901345ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 939.088684

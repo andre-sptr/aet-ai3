@@ -1,5 +1,6 @@
 import { ApiError } from '../http.ts';
 import type { ModePolicy } from './mode-policy.ts';
+import type { DrainOutcome } from '../sumopod.ts';
 
 export type CallRole = 'planner' | 'worker' | 'answer' | 'verifier' | 'revision' | 'classifier' | 'summary';
 export type Usage = { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number };
@@ -9,6 +10,9 @@ export type Attempt = {
   status: 'reserved' | 'complete' | 'failed'; usage: Usage | null;
   estimatedCeilingUsd: number | null; usageBasedCostUsd: number | null;
   reportedModel: string | null; durationMs: number | null; errorCode?: string;
+  httpStatus?: number | null; finishReason?: string | null; metadataDrain?: DrainOutcome;
+  usageRequested?: boolean;
+  usageUnknownReason?: 'not_requested' | 'not_sent' | 'not_observed_before_eof' | 'stream_interrupted' | 'reading_ended_early' | 'partial_usage' | null;
 };
 export class BudgetExceeded extends ApiError {
   constructor(detail = 'Anggaran pemrosesan habis.') { super(429, detail, 'BUDGET_EXHAUSTED'); }
@@ -71,10 +75,15 @@ export class RequestBudget {
   snapshot() {
     const usages = this.attempts.map(a => a.usage);
     const completeUsage = this.attempts.length > 0 && usages.every(u => u?.prompt_tokens !== undefined && u?.completion_tokens !== undefined);
+    const knownUsage = this.attempts.filter(a => a.usage?.prompt_tokens !== undefined && a.usage?.completion_tokens !== undefined);
+    const knownCosts = this.attempts.filter(a => a.usageBasedCostUsd !== null);
     return { attempts: this.attempts.map(a => ({ ...a })), llmAttempts: this.attempts.length, toolCalls: this.toolCalls, revisions: this.revisions,
       inputReserved: this.inputReserved, outputReserved: this.outputReserved,
       usage: completeUsage ? { inputTokens: usages.reduce((n,u) => n + u!.prompt_tokens!, 0), outputTokens: usages.reduce((n,u) => n + u!.completion_tokens!, 0) } : null,
       usageBasedCostUsd: completeUsage && this.attempts.every(a => a.usageBasedCostUsd !== null) ? this.attempts.reduce((n,a) => n + a.usageBasedCostUsd!, 0) : null,
+      usageCoverage: { known: knownUsage.length, attempted: this.attempts.length, unknown: this.attempts.length - knownUsage.length },
+      costCoverage: { known: knownCosts.length, attempted: this.attempts.length, unknown: this.attempts.length - knownCosts.length },
+      knownUsageBasedCostSubtotalUsd: knownCosts.length ? knownCosts.reduce((n,a) => n + a.usageBasedCostUsd!, 0) : null,
       actualBilledCostUsd: null, estimatedReservedCostUsd: this.attempts.length && this.attempts.every(a => a.estimatedCeilingUsd !== null) ? this.costReserved : null,
       tokenAccounting: 'conservative_text_bytes_plus_image_estimate', visionTokenAccounting:'estimate_not_gateway_calibrated', elapsedMs: Date.now() - this.startedAt };
   }

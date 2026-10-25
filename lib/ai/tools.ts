@@ -71,7 +71,9 @@ export function contextualToolCalls(text: string, relevantGoal = ''): ToolCall[]
   if (/```|\b(?:jangan|tanpa|do not|don't|no)\b.*\b(?:tools?|web|search|cari|alat)\b/i.test(text)) return [];
   const url=text.match(/https:\/\/[^\s<>]+/i)?.[0]?.replace(/[.,;!]+$/,'');
   if(url && /\b(?:baca|read|ringkas|rangkum|summarize|isi|content|menurut|according|analisis|analyze)\b/i.test(text))return [{name:'web',args:[url]}];
-  const expression = text.match(/^(?:hitung|calculate)\s*:?\s*([\d\s()+\-*/%.]+)[?]?$/i)?.[1];
+  // Only an explicit arithmetic expression is accepted. A narrow numeric-output
+  // suffix does not turn a word problem, quoted code, or document into a tool.
+  const expression = text.match(/^(?:hitung|calculate)\s*:?\s*([\d\s()+\-*/%.]+?)[?]?(?:[.;]\s*(?:jawab|reply|return)\s+(?:hanya\s+)?(?:angka|number)(?:\s+(?:bulat|saja|only)){0,2}[.!]?)?$/i)?.[1];
   if (expression) return [{name:'calculator',args:[expression]}];
   if (/\b(?:terbaru|hari ini|saat ini|latest|current|today|telusuri|penelusuran|search)\b/i.test(text)) return [{name:'search',args:[`${relevantGoal} ${text}`.trim().slice(0,400)]}];
   return [];

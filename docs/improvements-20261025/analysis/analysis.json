@@ -1,0 +1,3075 @@
+{
+  "schemaVersion": 1,
+  "kind": "offline-screening-analysis",
+  "sourceReport": {
+    "ref": "docs/benchmarks/run-2026-10-25T11-17-41-534Z-6f4ddf0d/report.json",
+    "sha256": "782091c2b0eabe5290ad01b472a24759e4cbff3db08f9e7a85e44cb0fc5bfc03"
+  },
+  "checkedAt": "2026-10-25T12:11:05.322Z",
+  "audit": [
+    {
+      "name": "unique-model-case-pairs",
+      "pass": true,
+      "observed": 96
+    },
+    {
+      "name": "catalog-exact-ids",
+      "pass": true,
+      "observed": [
+        "gpt-4o-mini",
+        "gpt-4.1-mini",
+        "gpt-5-mini",
+        "gpt-5.4-mini",
+        "gpt-5.4",
+        "claude-haiku-4-5",
+        "claude-sonnet-5",
+        "claude-opus-5",
+        "gemini/gemini-3.5-flash",
+        "gemini/gemini-3.1-pro-preview",
+        "deepseek-v4-flash",
+        "deepseek-v4-pro"
+      ]
+    },
+    {
+      "name": "complete-matrix",
+      "pass": true,
+      "observed": 96
+    },
+    {
+      "name": "dataset-hash",
+      "pass": true,
+      "observed": "5162b0e7f786b046ea927338bc25189c6125a1610563119f3199595f1e45b3bb"
+    },
+    {
+      "name": "reproduced-request-bodies",
+      "pass": true,
+      "observed": 96
+    },
+    {
+      "name": "historical-validator-unchanged",
+      "pass": true,
+      "observed": {
+        "matches": 87,
+        "complete": 87
+      }
+    },
+    {
+      "name": "request-counter",
+      "pass": true,
+      "observed": 96
+    },
+    {
+      "name": "completion-counter",
+      "pass": true,
+      "observed": 87
+    },
+    {
+      "name": "recorded-token-counter",
+      "pass": true,
+      "observed": 24435
+    },
+    {
+      "name": "reservation-counter",
+      "pass": true,
+      "observed": 1.1924810799999999
+    }
+  ],
+  "status": "CONSISTENT_OPERATOR_ARTIFACTS",
+  "observed": {
+    "rows": 96,
+    "uniquePairs": 96,
+    "statuses": {
+      "FAIL": 18,
+      "INCONCLUSIVE": 15,
+      "PASS": 63
+    },
+    "finishReasons": {
+      "length": 9,
+      "stop": 87
+    },
+    "httpStatuses": {
+      "200": 96
+    },
+    "modelMatches": 96,
+    "objectivePass": 78,
+    "objectiveFail": 9,
+    "usageKnown": 23,
+    "usageUnknown": 73,
+    "recordedTokens": 24435,
+    "reservedEstimateUsd": 1.1924810799999999,
+    "knownUsageCostSubtotalUsd": 0.0114558,
+    "totalUsageCostUsd": null,
+    "actualBilledUsd": null
+  },
+  "models": [
+    {
+      "model": "gpt-4o-mini",
+      "planned": 8,
+      "attempted": 8,
+      "technicalPass": 8,
+      "historicalObjectivePass": 5,
+      "historicalObjectiveFail": 3,
+      "content": {
+        "measured": 7,
+        "passed": 5
+      },
+      "format": {
+        "measured": 7,
+        "passed": 6
+      },
+      "truncated": 0,
+      "reviewPending": 2,
+      "latency": {
+        "n": 8,
+        "medianMs": 1026,
+        "p95Ms": 2209,
+        "definition": "Total request duration for complete responses; median averages two central values; p95 uses nearest rank. Not TTFT."
+      },
+      "usage": {
+        "known": 8,
+        "attempted": 8
+      },
+      "cost": {
+        "known": 8,
+        "attempted": 8,
+        "knownSubtotalUsd": 0.00132225,
+        "completeUsageBasedTotalUsd": 0.00132225,
+        "actualBilledUsd": null
+      }
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "planned": 8,
+      "attempted": 8,
+      "technicalPass": 8,
+      "historicalObjectivePass": 6,
+      "historicalObjectiveFail": 2,
+      "content": {
+        "measured": 7,
+        "passed": 6
+      },
+      "format": {
+        "measured": 7,
+        "passed": 6
+      },
+      "truncated": 0,
+      "reviewPending": 2,
+      "latency": {
+        "n": 8,
+        "medianMs": 870,
+        "p95Ms": 1468,
+        "definition": "Total request duration for complete responses; median averages two central values; p95 uses nearest rank. Not TTFT."
+      },
+      "usage": {
+        "known": 0,
+        "attempted": 8
+      },
+      "cost": {
+        "known": 0,
+        "attempted": 8,
+        "knownSubtotalUsd": null,
+        "completeUsageBasedTotalUsd": null,
+        "actualBilledUsd": null
+      }
+    },
+    {
+      "model": "gpt-5-mini",
+      "planned": 8,
+      "attempted": 8,
+      "technicalPass": 6,
+      "historicalObjectivePass": 6,
+      "historicalObjectiveFail": 0,
+      "content": {
+        "measured": 6,
+        "passed": 6
+      },
+      "format": {
+        "measured": 5,
+        "passed": 5
+      },
+      "truncated": 2,
+      "reviewPending": 0,
+      "latency": {
+        "n": 6,
+        "medianMs": 3983,
+        "p95Ms": 9253,
+        "definition": "Total request duration for complete responses; median averages two central values; p95 uses nearest rank. Not TTFT."
+      },
+      "usage": {
+        "known": 0,
+        "attempted": 8
+      },
+      "cost": {
+        "known": 0,
+        "attempted": 8,
+        "knownSubtotalUsd": null,
+        "completeUsageBasedTotalUsd": null,
+        "actualBilledUsd": null
+      }
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "planned": 8,
+      "attempted": 8,
+      "technicalPass": 8,
+      "historicalObjectivePass": 8,
+      "historicalObjectiveFail": 0,
+      "content": {
+        "measured": 7,
+        "passed": 7
+      },
+      "format": {
+        "measured": 7,
+        "passed": 7
+      },
+      "truncated": 0,
+      "reviewPending": 2,
+      "latency": {
+        "n": 8,
+        "medianMs": 925,
+        "p95Ms": 1836,
+        "definition": "Total request duration for complete responses; median averages two central values; p95 uses nearest rank. Not TTFT."
+      },
+      "usage": {
+        "known": 8,
+        "attempted": 8
+      },
+      "cost": {
+        "known": 8,
+        "attempted": 8,
+        "knownSubtotalUsd": 0.00695175,
+        "completeUsageBasedTotalUsd": 0.00695175,
+        "actualBilledUsd": null
+      }
+    },
+    {
+      "model": "gpt-5.4",
+      "planned": 8,
+      "attempted": 8,
+      "technicalPass": 8,
+      "historicalObjectivePass": 8,
+      "historicalObjectiveFail": 0,
+      "content": {
+        "measured": 7,
+        "passed": 7
+      },
+      "format": {
+        "measured": 7,
+        "passed": 7
+      },
+      "truncated": 0,
+      "reviewPending": 2,
+      "latency": {
+        "n": 8,
+        "medianMs": 1775,
+        "p95Ms": 2410,
+        "definition": "Total request duration for complete responses; median averages two central values; p95 uses nearest rank. Not TTFT."
+      },
+      "usage": {
+        "known": 0,
+        "attempted": 8
+      },
+      "cost": {
+        "known": 0,
+        "attempted": 8,
+        "knownSubtotalUsd": null,
+        "completeUsageBasedTotalUsd": null,
+        "actualBilledUsd": null
+      }
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "planned": 8,
+      "attempted": 8,
+      "technicalPass": 8,
+      "historicalObjectivePass": 6,
+      "historicalObjectiveFail": 2,
+      "content": {
+        "measured": 7,
+        "passed": 6
+      },
+      "format": {
+        "measured": 7,
+        "passed": 6
+      },
+      "truncated": 0,
+      "reviewPending": 2,
+      "latency": {
+        "n": 8,
+        "medianMs": 957,
+        "p95Ms": 2448,
+        "definition": "Total request duration for complete responses; median averages two central values; p95 uses nearest rank. Not TTFT."
+      },
+      "usage": {
+        "known": 0,
+        "attempted": 8
+      },
+      "cost": {
+        "known": 0,
+        "attempted": 8,
+        "knownSubtotalUsd": null,
+        "completeUsageBasedTotalUsd": null,
+        "actualBilledUsd": null
+      }
+    },
+    {
+      "model": "claude-sonnet-5",
+      "planned": 8,
+      "attempted": 8,
+      "technicalPass": 8,
+      "historicalObjectivePass": 7,
+      "historicalObjectiveFail": 1,
+      "content": {
+        "measured": 7,
+        "passed": 7
+      },
+      "format": {
+        "measured": 7,
+        "passed": 6
+      },
+      "truncated": 0,
+      "reviewPending": 2,
+      "latency": {
+        "n": 8,
+        "medianMs": 1191.5,
+        "p95Ms": 4916,
+        "definition": "Total request duration for complete responses; median averages two central values; p95 uses nearest rank. Not TTFT."
+      },
+      "usage": {
+        "known": 0,
+        "attempted": 8
+      },
+      "cost": {
+        "known": 0,
+        "attempted": 8,
+        "knownSubtotalUsd": null,
+        "completeUsageBasedTotalUsd": null,
+        "actualBilledUsd": null
+      }
+    },
+    {
+      "model": "claude-opus-5",
+      "planned": 8,
+      "attempted": 8,
+      "technicalPass": 6,
+      "historicalObjectivePass": 5,
+      "historicalObjectiveFail": 1,
+      "content": {
+        "measured": 6,
+        "passed": 6
+      },
+      "format": {
+        "measured": 5,
+        "passed": 4
+      },
+      "truncated": 2,
+      "reviewPending": 0,
+      "latency": {
+        "n": 6,
+        "medianMs": 1423,
+        "p95Ms": 2335,
+        "definition": "Total request duration for complete responses; median averages two central values; p95 uses nearest rank. Not TTFT."
+      },
+      "usage": {
+        "known": 0,
+        "attempted": 8
+      },
+      "cost": {
+        "known": 0,
+        "attempted": 8,
+        "knownSubtotalUsd": null,
+        "completeUsageBasedTotalUsd": null,
+        "actualBilledUsd": null
+      }
+    },
+    {
+      "model": "gemini/gemini-3.5-flash",
+      "planned": 8,
+      "attempted": 8,
+      "technicalPass": 6,
+      "historicalObjectivePass": 6,
+      "historicalObjectiveFail": 0,
+      "content": {
+        "measured": 6,
+        "passed": 6
+      },
+      "format": {
+        "measured": 5,
+        "passed": 5
+      },
+      "truncated": 2,
+      "reviewPending": 0,
+      "latency": {
+        "n": 6,
+        "medianMs": 3693.5,
+        "p95Ms": 6460,
+        "definition": "Total request duration for complete responses; median averages two central values; p95 uses nearest rank. Not TTFT."
+      },
+      "usage": {
+        "known": 0,
+        "attempted": 8
+      },
+      "cost": {
+        "known": 0,
+        "attempted": 8,
+        "knownSubtotalUsd": null,
+        "completeUsageBasedTotalUsd": null,
+        "actualBilledUsd": null
+      }
+    },
+    {
+      "model": "gemini/gemini-3.1-pro-preview",
+      "planned": 8,
+      "attempted": 8,
+      "technicalPass": 7,
+      "historicalObjectivePass": 7,
+      "historicalObjectiveFail": 0,
+      "content": {
+        "measured": 6,
+        "passed": 6
+      },
+      "format": {
+        "measured": 6,
+        "passed": 6
+      },
+      "truncated": 1,
+      "reviewPending": 1,
+      "latency": {
+        "n": 7,
+        "medianMs": 5669,
+        "p95Ms": 7251,
+        "definition": "Total request duration for complete responses; median averages two central values; p95 uses nearest rank. Not TTFT."
+      },
+      "usage": {
+        "known": 0,
+        "attempted": 8
+      },
+      "cost": {
+        "known": 0,
+        "attempted": 8,
+        "knownSubtotalUsd": null,
+        "completeUsageBasedTotalUsd": null,
+        "actualBilledUsd": null
+      }
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "planned": 8,
+      "attempted": 8,
+      "technicalPass": 7,
+      "historicalObjectivePass": 7,
+      "historicalObjectiveFail": 0,
+      "content": {
+        "measured": 6,
+        "passed": 6
+      },
+      "format": {
+        "measured": 6,
+        "passed": 6
+      },
+      "truncated": 1,
+      "reviewPending": 1,
+      "latency": {
+        "n": 7,
+        "medianMs": 1907,
+        "p95Ms": 2934,
+        "definition": "Total request duration for complete responses; median averages two central values; p95 uses nearest rank. Not TTFT."
+      },
+      "usage": {
+        "known": 7,
+        "attempted": 8
+      },
+      "cost": {
+        "known": 7,
+        "attempted": 8,
+        "knownSubtotalUsd": 0.0031818,
+        "completeUsageBasedTotalUsd": null,
+        "actualBilledUsd": null
+      }
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "planned": 8,
+      "attempted": 8,
+      "technicalPass": 7,
+      "historicalObjectivePass": 7,
+      "historicalObjectiveFail": 0,
+      "content": {
+        "measured": 6,
+        "passed": 6
+      },
+      "format": {
+        "measured": 6,
+        "passed": 6
+      },
+      "truncated": 1,
+      "reviewPending": 1,
+      "latency": {
+        "n": 7,
+        "medianMs": 3387,
+        "p95Ms": 10191,
+        "definition": "Total request duration for complete responses; median averages two central values; p95 uses nearest rank. Not TTFT."
+      },
+      "usage": {
+        "known": 0,
+        "attempted": 8
+      },
+      "cost": {
+        "known": 0,
+        "attempted": 8,
+        "knownSubtotalUsd": null,
+        "completeUsageBasedTotalUsd": null,
+        "actualBilledUsd": null
+      }
+    }
+  ],
+  "rows": [
+    {
+      "model": "gpt-4o-mini",
+      "caseId": "stream-smoke",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4o-mini",
+      "finishReason": "stop",
+      "durationMs": 805,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 846,
+        "completion_tokens": 3,
+        "total_tokens": 849
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.00012869999999999998
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "caseId": "stream-smoke",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "durationMs": 802,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5-mini",
+      "caseId": "stream-smoke",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5-mini",
+      "finishReason": "stop",
+      "durationMs": 4647,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "caseId": "stream-smoke",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4-mini",
+      "finishReason": "stop",
+      "durationMs": 986,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 818,
+        "completion_tokens": 6,
+        "total_tokens": 824
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.0006405
+    },
+    {
+      "model": "gpt-5.4",
+      "caseId": "stream-smoke",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4",
+      "finishReason": "stop",
+      "durationMs": 1280,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "caseId": "stream-smoke",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-haiku-4-5",
+      "finishReason": "stop",
+      "durationMs": 1088,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-sonnet-5",
+      "caseId": "stream-smoke",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-sonnet-5",
+      "finishReason": "stop",
+      "durationMs": 1176,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-opus-5",
+      "caseId": "stream-smoke",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-opus-5",
+      "finishReason": "stop",
+      "durationMs": 1370,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.5-flash",
+      "caseId": "stream-smoke",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.5-flash",
+      "finishReason": "stop",
+      "durationMs": 2431,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.1-pro-preview",
+      "caseId": "stream-smoke",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.1-pro-preview",
+      "finishReason": "stop",
+      "durationMs": 3283,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "caseId": "stream-smoke",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-flash",
+      "finishReason": "stop",
+      "durationMs": 2196,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 964,
+        "completion_tokens": 4,
+        "total_tokens": 968
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.000294
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "caseId": "stream-smoke",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-pro",
+      "finishReason": "stop",
+      "durationMs": 1843,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-4o-mini",
+      "caseId": "persona-daily",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4o-mini",
+      "finishReason": "stop",
+      "durationMs": 1283,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "UNMEASURED",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 899,
+        "completion_tokens": 39,
+        "total_tokens": 938
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.00015825
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "caseId": "persona-daily",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "durationMs": 929,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "UNMEASURED",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5-mini",
+      "caseId": "persona-daily",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": null,
+      "httpStatus": 200,
+      "reportedModel": "gpt-5-mini",
+      "finishReason": "length",
+      "durationMs": 5879,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "FAIL",
+        "completeness": "TRUNCATED",
+        "content": "UNMEASURED",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": null,
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "caseId": "persona-daily",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4-mini",
+      "finishReason": "stop",
+      "durationMs": 1114,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "UNMEASURED",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 871,
+        "completion_tokens": 65,
+        "total_tokens": 936
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.00094575
+    },
+    {
+      "model": "gpt-5.4",
+      "caseId": "persona-daily",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4",
+      "finishReason": "stop",
+      "durationMs": 2410,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "UNMEASURED",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "caseId": "persona-daily",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-haiku-4-5",
+      "finishReason": "stop",
+      "durationMs": 1739,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "UNMEASURED",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-sonnet-5",
+      "caseId": "persona-daily",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-sonnet-5",
+      "finishReason": "stop",
+      "durationMs": 3000,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "UNMEASURED",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-opus-5",
+      "caseId": "persona-daily",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": null,
+      "httpStatus": 200,
+      "reportedModel": "claude-opus-5",
+      "finishReason": "length",
+      "durationMs": 8342,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "FAIL",
+        "completeness": "TRUNCATED",
+        "content": "UNMEASURED",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": null,
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.5-flash",
+      "caseId": "persona-daily",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": null,
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.5-flash",
+      "finishReason": "length",
+      "durationMs": 7312,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "FAIL",
+        "completeness": "TRUNCATED",
+        "content": "UNMEASURED",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": null,
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-daily",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.1-pro-preview",
+      "finishReason": "stop",
+      "durationMs": 7251,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "UNMEASURED",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "caseId": "persona-daily",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-flash",
+      "finishReason": "stop",
+      "durationMs": 2934,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "UNMEASURED",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 1022,
+        "completion_tokens": 333,
+        "total_tokens": 1355
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.0007061999999999999
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "caseId": "persona-daily",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-pro",
+      "finishReason": "stop",
+      "durationMs": 10191,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "UNMEASURED",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-4o-mini",
+      "caseId": "persona-report",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4o-mini",
+      "finishReason": "stop",
+      "durationMs": 2209,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 1192,
+        "completion_tokens": 126,
+        "total_tokens": 1318
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.0002544
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "caseId": "persona-report",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "durationMs": 1468,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5-mini",
+      "caseId": "persona-report",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": null,
+      "httpStatus": 200,
+      "reportedModel": "gpt-5-mini",
+      "finishReason": "length",
+      "durationMs": 11807,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "FAIL",
+        "completeness": "TRUNCATED",
+        "content": "UNMEASURED",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": null,
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "caseId": "persona-report",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4-mini",
+      "finishReason": "stop",
+      "durationMs": 1726,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 1164,
+        "completion_tokens": 123,
+        "total_tokens": 1287
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.0014265
+    },
+    {
+      "model": "gpt-5.4",
+      "caseId": "persona-report",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4",
+      "finishReason": "stop",
+      "durationMs": 2181,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "caseId": "persona-report",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-haiku-4-5",
+      "finishReason": "stop",
+      "durationMs": 2448,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-sonnet-5",
+      "caseId": "persona-report",
+      "historicalStatus": "INCONCLUSIVE",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-sonnet-5",
+      "finishReason": "stop",
+      "durationMs": 4916,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": true,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-opus-5",
+      "caseId": "persona-report",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": null,
+      "httpStatus": 200,
+      "reportedModel": "claude-opus-5",
+      "finishReason": "length",
+      "durationMs": 7340,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "FAIL",
+        "completeness": "TRUNCATED",
+        "content": "UNMEASURED",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": null,
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.5-flash",
+      "caseId": "persona-report",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": null,
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.5-flash",
+      "finishReason": "length",
+      "durationMs": 7127,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "FAIL",
+        "completeness": "TRUNCATED",
+        "content": "UNMEASURED",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": null,
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-report",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": null,
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.1-pro-preview",
+      "finishReason": "length",
+      "durationMs": 8546,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "FAIL",
+        "completeness": "TRUNCATED",
+        "content": "UNMEASURED",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": null,
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "caseId": "persona-report",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": null,
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-flash",
+      "finishReason": "length",
+      "durationMs": 4420,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "FAIL",
+        "completeness": "TRUNCATED",
+        "content": "UNMEASURED",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": null,
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "historical_parser_ended_at_length",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "caseId": "persona-report",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": null,
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-pro",
+      "finishReason": "length",
+      "durationMs": 8962,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "FAIL",
+        "completeness": "TRUNCATED",
+        "content": "UNMEASURED",
+        "format": "UNMEASURED",
+        "instructions": "UNMEASURED",
+        "reviewPending": false,
+        "historicalObjectiveStatus": null,
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-4o-mini",
+      "caseId": "persona-coding",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4o-mini",
+      "finishReason": "stop",
+      "durationMs": 1030,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 1044,
+        "completion_tokens": 13,
+        "total_tokens": 1057
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.0001644
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "caseId": "persona-coding",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "durationMs": 795,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5-mini",
+      "caseId": "persona-coding",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5-mini",
+      "finishReason": "stop",
+      "durationMs": 6061,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "caseId": "persona-coding",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4-mini",
+      "finishReason": "stop",
+      "durationMs": 1836,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 1016,
+        "completion_tokens": 16,
+        "total_tokens": 1032
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.000834
+    },
+    {
+      "model": "gpt-5.4",
+      "caseId": "persona-coding",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4",
+      "finishReason": "stop",
+      "durationMs": 1369,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "caseId": "persona-coding",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-haiku-4-5",
+      "finishReason": "stop",
+      "durationMs": 897,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-sonnet-5",
+      "caseId": "persona-coding",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-sonnet-5",
+      "finishReason": "stop",
+      "durationMs": 1013,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-opus-5",
+      "caseId": "persona-coding",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-opus-5",
+      "finishReason": "stop",
+      "durationMs": 1638,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.5-flash",
+      "caseId": "persona-coding",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.5-flash",
+      "finishReason": "stop",
+      "durationMs": 6460,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-coding",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.1-pro-preview",
+      "finishReason": "stop",
+      "durationMs": 6146,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "caseId": "persona-coding",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-flash",
+      "finishReason": "stop",
+      "durationMs": 1907,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 1172,
+        "completion_tokens": 97,
+        "total_tokens": 1269
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.00046799999999999994
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "caseId": "persona-coding",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-pro",
+      "finishReason": "stop",
+      "durationMs": 3917,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-4o-mini",
+      "caseId": "reasoning-quantitative",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": "FAIL",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4o-mini",
+      "finishReason": "stop",
+      "durationMs": 881,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "FAIL",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "FAIL",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 911,
+        "completion_tokens": 2,
+        "total_tokens": 913
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.00013785
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "caseId": "reasoning-quantitative",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": "FAIL",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "durationMs": 895,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "FAIL",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "FAIL",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5-mini",
+      "caseId": "reasoning-quantitative",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5-mini",
+      "finishReason": "stop",
+      "durationMs": 3289,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "caseId": "reasoning-quantitative",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4-mini",
+      "finishReason": "stop",
+      "durationMs": 705,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 883,
+        "completion_tokens": 5,
+        "total_tokens": 888
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.00068475
+    },
+    {
+      "model": "gpt-5.4",
+      "caseId": "reasoning-quantitative",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4",
+      "finishReason": "stop",
+      "durationMs": 2258,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "caseId": "reasoning-quantitative",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": "FAIL",
+      "httpStatus": 200,
+      "reportedModel": "claude-haiku-4-5",
+      "finishReason": "stop",
+      "durationMs": 856,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "FAIL",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "FAIL",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-sonnet-5",
+      "caseId": "reasoning-quantitative",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-sonnet-5",
+      "finishReason": "stop",
+      "durationMs": 1127,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-opus-5",
+      "caseId": "reasoning-quantitative",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-opus-5",
+      "finishReason": "stop",
+      "durationMs": 1236,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.5-flash",
+      "caseId": "reasoning-quantitative",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.5-flash",
+      "finishReason": "stop",
+      "durationMs": 3292,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.1-pro-preview",
+      "caseId": "reasoning-quantitative",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.1-pro-preview",
+      "finishReason": "stop",
+      "durationMs": 4167,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "caseId": "reasoning-quantitative",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-flash",
+      "finishReason": "stop",
+      "durationMs": 1504,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 1035,
+        "completion_tokens": 50,
+        "total_tokens": 1085
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.0003705
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "caseId": "reasoning-quantitative",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-pro",
+      "finishReason": "stop",
+      "durationMs": 3234,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-4o-mini",
+      "caseId": "reasoning-constraints",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": "FAIL",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4o-mini",
+      "finishReason": "stop",
+      "durationMs": 1177,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "FAIL",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "FAIL",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 906,
+        "completion_tokens": 14,
+        "total_tokens": 920
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.0001443
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "caseId": "reasoning-constraints",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "durationMs": 1117,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5-mini",
+      "caseId": "reasoning-constraints",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5-mini",
+      "finishReason": "stop",
+      "durationMs": 9253,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "caseId": "reasoning-constraints",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4-mini",
+      "finishReason": "stop",
+      "durationMs": 851,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 878,
+        "completion_tokens": 23,
+        "total_tokens": 901
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.000762
+    },
+    {
+      "model": "gpt-5.4",
+      "caseId": "reasoning-constraints",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4",
+      "finishReason": "stop",
+      "durationMs": 2389,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "caseId": "reasoning-constraints",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-haiku-4-5",
+      "finishReason": "stop",
+      "durationMs": 981,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-sonnet-5",
+      "caseId": "reasoning-constraints",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-sonnet-5",
+      "finishReason": "stop",
+      "durationMs": 3440,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-opus-5",
+      "caseId": "reasoning-constraints",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-opus-5",
+      "finishReason": "stop",
+      "durationMs": 2335,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.5-flash",
+      "caseId": "reasoning-constraints",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.5-flash",
+      "finishReason": "stop",
+      "durationMs": 4095,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.1-pro-preview",
+      "caseId": "reasoning-constraints",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.1-pro-preview",
+      "finishReason": "stop",
+      "durationMs": 5669,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "caseId": "reasoning-constraints",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-flash",
+      "finishReason": "stop",
+      "durationMs": 1856,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 1026,
+        "completion_tokens": 146,
+        "total_tokens": 1172
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.000483
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "caseId": "reasoning-constraints",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-pro",
+      "finishReason": "stop",
+      "durationMs": 5146,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-4o-mini",
+      "caseId": "reasoning-conflicting-information",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": "FAIL",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4o-mini",
+      "finishReason": "stop",
+      "durationMs": 1022,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "FAIL",
+        "instructions": "FAIL",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "FAIL",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 1188,
+        "completion_tokens": 27,
+        "total_tokens": 1215
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.00019439999999999998
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "caseId": "reasoning-conflicting-information",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": "FAIL",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "durationMs": 845,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "FAIL",
+        "instructions": "FAIL",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "FAIL",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5-mini",
+      "caseId": "reasoning-conflicting-information",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5-mini",
+      "finishReason": "stop",
+      "durationMs": 3319,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "caseId": "reasoning-conflicting-information",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4-mini",
+      "finishReason": "stop",
+      "durationMs": 864,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 1160,
+        "completion_tokens": 20,
+        "total_tokens": 1180
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.00096
+    },
+    {
+      "model": "gpt-5.4",
+      "caseId": "reasoning-conflicting-information",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4",
+      "finishReason": "stop",
+      "durationMs": 1335,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "caseId": "reasoning-conflicting-information",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": "FAIL",
+      "httpStatus": 200,
+      "reportedModel": "claude-haiku-4-5",
+      "finishReason": "stop",
+      "durationMs": 933,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "FAIL",
+        "instructions": "FAIL",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "FAIL",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-sonnet-5",
+      "caseId": "reasoning-conflicting-information",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": "FAIL",
+      "httpStatus": 200,
+      "reportedModel": "claude-sonnet-5",
+      "finishReason": "stop",
+      "durationMs": 1207,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "FAIL",
+        "instructions": "FAIL",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "FAIL",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-opus-5",
+      "caseId": "reasoning-conflicting-information",
+      "historicalStatus": "FAIL",
+      "historicalObjectiveStatus": "FAIL",
+      "httpStatus": 200,
+      "reportedModel": "claude-opus-5",
+      "finishReason": "stop",
+      "durationMs": 1476,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "FAIL",
+        "instructions": "FAIL",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "FAIL",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.5-flash",
+      "caseId": "reasoning-conflicting-information",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.5-flash",
+      "finishReason": "stop",
+      "durationMs": 5228,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.1-pro-preview",
+      "caseId": "reasoning-conflicting-information",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.1-pro-preview",
+      "finishReason": "stop",
+      "durationMs": 6483,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "caseId": "reasoning-conflicting-information",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-flash",
+      "finishReason": "stop",
+      "durationMs": 2749,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 1332,
+        "completion_tokens": 121,
+        "total_tokens": 1453
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.0005447999999999999
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "caseId": "reasoning-conflicting-information",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-pro",
+      "finishReason": "stop",
+      "durationMs": 3387,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-4o-mini",
+      "caseId": "context-latest-correction",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4o-mini",
+      "finishReason": "stop",
+      "durationMs": 862,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 925,
+        "completion_tokens": 2,
+        "total_tokens": 927
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.00013995
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "caseId": "context-latest-correction",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "durationMs": 714,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5-mini",
+      "caseId": "context-latest-correction",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5-mini",
+      "finishReason": "stop",
+      "durationMs": 2375,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "caseId": "context-latest-correction",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4-mini",
+      "finishReason": "stop",
+      "durationMs": 724,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 901,
+        "completion_tokens": 5,
+        "total_tokens": 906
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.00069825
+    },
+    {
+      "model": "gpt-5.4",
+      "caseId": "context-latest-correction",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gpt-5.4",
+      "finishReason": "stop",
+      "durationMs": 1203,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "caseId": "context-latest-correction",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-haiku-4-5",
+      "finishReason": "stop",
+      "durationMs": 893,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-sonnet-5",
+      "caseId": "context-latest-correction",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-sonnet-5",
+      "finishReason": "stop",
+      "durationMs": 1010,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "claude-opus-5",
+      "caseId": "context-latest-correction",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "claude-opus-5",
+      "finishReason": "stop",
+      "durationMs": 1340,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.5-flash",
+      "caseId": "context-latest-correction",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.5-flash",
+      "finishReason": "stop",
+      "durationMs": 2449,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "gemini/gemini-3.1-pro-preview",
+      "caseId": "context-latest-correction",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "gemini/gemini-3.1-pro-preview",
+      "finishReason": "stop",
+      "durationMs": 3687,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "caseId": "context-latest-correction",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-flash",
+      "finishReason": "stop",
+      "durationMs": 1226,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": {
+        "prompt_tokens": 1039,
+        "completion_tokens": 3,
+        "total_tokens": 1042
+      },
+      "usageUnknownReason": null,
+      "usageBasedCostUsd": 0.0003153
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "caseId": "context-latest-correction",
+      "historicalStatus": "PASS",
+      "historicalObjectiveStatus": "PASS",
+      "httpStatus": 200,
+      "reportedModel": "deepseek-v4-pro",
+      "finishReason": "stop",
+      "durationMs": 2961,
+      "dimensions": {
+        "rubricVersion": "screening-dimensions-v1",
+        "technical": "PASS",
+        "completeness": "COMPLETE",
+        "content": "PASS",
+        "format": "PASS",
+        "instructions": "PASS",
+        "reviewPending": false,
+        "historicalObjectiveStatus": "PASS",
+        "caveat": "Content checks are narrow; UNMEASURED is not a failure. Instructions measure only the explicit format/shape checks; broader instruction/persona quality needs human review. Historical checks remain separate."
+      },
+      "usage": null,
+      "usageUnknownReason": "not_requested",
+      "usageBasedCostUsd": null
+    }
+  ],
+  "currentFingerprint": {
+    "pipelineSha256": "84abdf05c2a79f1c78b77899d19c5bf7e1168b8c8ea0f64b702dbefcfbef4cc4",
+    "productionPromptSha256": "fd913dd42fd9f8eaf07e4a9e244a2ce777ea9fe52dc987b8bec7d5ac38a62297",
+    "promptFingerprintClock": "2026-01-01T00:00:00Z"
+  },
+  "applicationEvidence": [
+    {
+      "ref": "evaluation/run-2026-10-25T10-19-39-821Z-7d18ecea/report.json",
+      "sha256": "45deed916351b9aed48fc50f8af8a694ccc6f8d73f2728b981bdf90ade5b7725",
+      "candidateModelId": "gpt-4o-mini",
+      "repeats": 3,
+      "samples": 18,
+      "pipelineSha256": "1e3046355a8c1596afed6477f3e9f01bdd8ade6d0a907669cb26b1d2daee41ee",
+      "compatibleWithCurrentPipeline": false,
+      "summary": [
+        {
+          "variant": "fast",
+          "attempted": 18,
+          "objectiveMeasured": 18,
+          "objectivePassRate": 0.5,
+          "reviewRequired": 0,
+          "errors": 0,
+          "p50LatencyMs": 888,
+          "p95LatencyMs": 3060,
+          "usageBasedCostUsd": null
+        }
+      ],
+      "limitation": "Historical operator artifact; no new provider call or human review was performed."
+    },
+    {
+      "ref": "evaluation/run-2026-10-25T10-26-37-433Z-9dd2855b/report.json",
+      "sha256": "56c702c81448bcff07d8f49d21593c35f53de172fac2c432160bb768d5949651",
+      "candidateModelId": "gpt-5.4-mini",
+      "repeats": 3,
+      "samples": 18,
+      "pipelineSha256": "1e3046355a8c1596afed6477f3e9f01bdd8ade6d0a907669cb26b1d2daee41ee",
+      "compatibleWithCurrentPipeline": false,
+      "summary": [
+        {
+          "variant": "fast",
+          "attempted": 18,
+          "objectiveMeasured": 18,
+          "objectivePassRate": 1,
+          "reviewRequired": 0,
+          "errors": 0,
+          "p50LatencyMs": 859,
+          "p95LatencyMs": 4240,
+          "usageBasedCostUsd": null
+        }
+      ],
+      "limitation": "Historical operator artifact; no new provider call or human review was performed."
+    },
+    {
+      "ref": "evaluation/run-2026-10-25T10-30-17-107Z-7992e43f/report.json",
+      "sha256": "5aaf66761bb1780af7c96a7f852fd92f339a6036a03996eb147ccd49133dbf04",
+      "candidateModelId": "deepseek-v4-flash",
+      "repeats": 3,
+      "samples": 18,
+      "pipelineSha256": "1e3046355a8c1596afed6477f3e9f01bdd8ade6d0a907669cb26b1d2daee41ee",
+      "compatibleWithCurrentPipeline": false,
+      "summary": [
+        {
+          "variant": "fast",
+          "attempted": 18,
+          "objectiveMeasured": 18,
+          "objectivePassRate": 1,
+          "reviewRequired": 0,
+          "errors": 0,
+          "p50LatencyMs": 1401,
+          "p95LatencyMs": 6105,
+          "usageBasedCostUsd": null
+        }
+      ],
+      "limitation": "Historical operator artifact; no new provider call or human review was performed."
+    },
+    {
+      "ref": "evaluation/run-2026-10-25T10-59-58-702Z-5a892b6d/report.json",
+      "sha256": "914fede40db55841fc83f8752027a6290d446aefb04915c0752ba0874e43d60d",
+      "candidateModelId": "gpt-4o-mini",
+      "repeats": 3,
+      "samples": 18,
+      "pipelineSha256": "1e3046355a8c1596afed6477f3e9f01bdd8ade6d0a907669cb26b1d2daee41ee",
+      "compatibleWithCurrentPipeline": false,
+      "summary": [
+        {
+          "variant": "fast",
+          "attempted": 18,
+          "objectiveMeasured": 18,
+          "objectivePassRate": 0.6666666666666666,
+          "reviewRequired": 0,
+          "errors": 0,
+          "p50LatencyMs": 936,
+          "p95LatencyMs": 2753,
+          "usageBasedCostUsd": null
+        }
+      ],
+      "limitation": "Historical operator artifact; no new provider call or human review was performed."
+    },
+    {
+      "ref": "evaluation/run-2026-10-25T11-07-16-924Z-18179459/report.json",
+      "sha256": "1dba3ae547db131dc37e5ad83e1616f08a1842a8a919d67d00a5c566bc9c49d9",
+      "candidateModelId": "gpt-4o-mini",
+      "repeats": 3,
+      "samples": 18,
+      "pipelineSha256": "9c89c4000ff157eea641afcaf3e122fd9bd4445cee8ae9a2e22ae4f16f7ff6af",
+      "compatibleWithCurrentPipeline": false,
+      "summary": [
+        {
+          "variant": "fast",
+          "attempted": 18,
+          "objectiveMeasured": 18,
+          "objectivePassRate": 0.5,
+          "reviewRequired": 0,
+          "errors": 0,
+          "p50LatencyMs": 970,
+          "p95LatencyMs": 3643,
+          "usageBasedCostUsd": 0.004962149999999999
+        }
+      ],
+      "limitation": "Historical operator artifact; no new provider call or human review was performed."
+    },
+    {
+      "ref": "evaluation/run-2026-10-25T11-09-42-001Z-92f79165/report.json",
+      "sha256": "3cadacb70e49e0e3b3706ea6bc94266cfeabe087b53d545a7f0191c4e6ecbfd3",
+      "candidateModelId": "gpt-5.4-mini",
+      "repeats": 3,
+      "samples": 18,
+      "pipelineSha256": "9c89c4000ff157eea641afcaf3e122fd9bd4445cee8ae9a2e22ae4f16f7ff6af",
+      "compatibleWithCurrentPipeline": false,
+      "summary": [
+        {
+          "variant": "fast",
+          "attempted": 18,
+          "objectiveMeasured": 18,
+          "objectivePassRate": 1,
+          "reviewRequired": 0,
+          "errors": 0,
+          "p50LatencyMs": 911,
+          "p95LatencyMs": 1928,
+          "usageBasedCostUsd": 0.025148250000000004
+        }
+      ],
+      "limitation": "Historical operator artifact; no new provider call or human review was performed."
+    }
+  ],
+  "limitations": [
+    "Consistency verifies operator-controlled artifacts; it does not independently authenticate gateway responses or underlying model identity.",
+    "New dimensions supplement the immutable historical rubric. Fenced JSON remains historical FAIL, while semantic content may pass the new separate check.",
+    "Unknown historical usage reasons describe observed parser/request behavior, not evidence that trailing frames were actually sent.",
+    "Small unequal sets of completed cases do not establish a universal speed or quality ranking."
+  ]
+}

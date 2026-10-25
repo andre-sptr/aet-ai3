@@ -52,9 +52,18 @@ test('remaining-wave scheduler carries historical cost and global request ceilin
   assert.equal(scheduleRemaining(report,4,0.5).scheduled.size,0);
 });
 
+type RecoveryRow = {
+  model:string; attempted:boolean; status:string; httpStatus:number|null; output:string|null;
+  costEstimate:{estimatedCeilingUsd:number}; request:{body:{messages:{content:string}[]}};
+  reason?:string; checks?:{name:string;pass:boolean}[]; objectiveStatus?:string;
+};
+type RecoveryReport = {
+  modelRequests:number; completedRequests:number; usageUnknownRequests:number; estimatedCostReservedUsd:number;
+  finishedAt?:string; results:RecoveryRow[]; resume:{retainedAttempts:number};
+};
 test('LOCAL MOCK continuation retains 61 cells including FAIL, sends exactly 35, and keeps original file', async () => {
   const root = await fs.mkdtemp(path.join(tmpdir(),'aet-resume-'));
-  const received:any[] = [];
+  const received:{model:string;messages:{content:string}[]}[] = [];
   const cases=JSON.parse(await fs.readFile('tests/fixtures/all-model-benchmark.json','utf8'));
   const server = createServer(async (req,res) => {
     if (req.url==='/v1/models') {res.setHeader('content-type','application/json');res.end(JSON.stringify({data:AI_MODELS.map(m=>({id:m.id}))}));return;}
@@ -77,8 +86,8 @@ test('LOCAL MOCK continuation retains 61 cells including FAIL, sends exactly 35,
     const child=spawn(process.execPath,['--experimental-strip-types','--disable-warning=MODULE_TYPELESS_PACKAGE_JSON','scripts/benchmark-all-models.mjs',...args],{env:{...env,AET_BENCHMARK_MAX_REQUESTS:String(max),AET_BENCHMARK_OUTPUT_DIR:out},stdio:['ignore','pipe','pipe']});
     let stderr='',stdout='';child.stderr.on('data',b=>stderr+=b);child.stdout.on('data',b=>stdout+=b);
     const code=await new Promise<number|null>((resolve,reject)=>{child.on('exit',resolve);child.on('error',reject);});
-    let report:any;try{report=JSON.parse(await fs.readFile(path.join(out,'report.json'),'utf8'));}catch{}
-    return {code,stderr,stdout,report};
+    let report:RecoveryReport|undefined;try{report=JSON.parse(await fs.readFile(path.join(out,'report.json'),'utf8'));}catch{}
+    return {code,stderr,stdout,report:report!};
   }
   try {
     const first=await run('first',[],60);

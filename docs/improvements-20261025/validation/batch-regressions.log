@@ -1,0 +1,12 @@
+✔ one serialized ledger charges every model and role before dispatch, retaining uncertain reservations (4.112993ms)
+✔ cost, token and deadline ceilings fail before another dispatch and resume rejects altered accounting (0.742267ms)
+✔ all-model default plan dispatches nothing and combined mock retains shared limits across profiles and roles (631.829241ms)
+✔ resume retains a failed or uncertain original sample and never redispatches it (356.062268ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1104.721651

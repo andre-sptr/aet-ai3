@@ -1,0 +1,49 @@
+{
+  "node": "v24.22.1",
+  "platform": "Linux",
+  "paidProviderRequests": 0,
+  "commands": [
+    {
+      "command": "npm test",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/check-source-syntax.mjs",
+      "exitCode": 0
+    }
+  ],
+  "tests": {
+    "passed": 216,
+    "failed": 0
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 1
+  },
+  "historicalFilesChecked": 88,
+  "historicalFilesChanged": [],
+  "baselineFingerprint": {
+    "pipelineSha256": "9c89c4000ff157eea641afcaf3e122fd9bd4445cee8ae9a2e22ae4f16f7ff6af",
+    "productionPromptSha256": "fd913dd42fd9f8eaf07e4a9e244a2ce777ea9fe52dc987b8bec7d5ac38a62297",
+    "promptFingerprintClock": "2026-01-01T00:00:00Z"
+  },
+  "currentFingerprint": {
+    "pipelineSha256": "84abdf05c2a79f1c78b77899d19c5bf7e1168b8c8ea0f64b702dbefcfbef4cc4",
+    "productionPromptSha256": "fd913dd42fd9f8eaf07e4a9e244a2ce777ea9fe52dc987b8bec7d5ac38a62297",
+    "promptFingerprintClock": "2026-01-01T00:00:00Z"
+  },
+  "windowsPowerShellExecution": "NOT_RUN (runtime unavailable)",
+  "newLiveQuality": "NOT_RUN"
+}

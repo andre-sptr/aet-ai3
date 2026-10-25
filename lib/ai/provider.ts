@@ -81,9 +81,12 @@ export async function generateText(options: {
       const perMinute = Number(process.env.AET_PROVIDER_CALLS_PER_MINUTE || 120);
       limit('provider:global:minute', Number.isInteger(perMinute) && perMinute > 0 ? perMinute : 120, 60_000);
       record = budget.reserve(options.role, modelId, input, output, options.keepFinal);
+      record.httpStatus = null; record.finishReason = null;
+      record.usageRequested = body.stream_options?.include_usage === true;
       let response: Response;
       try { response = await (options.fetcher ?? fetch)(outbound.url, { ...outbound.init, signal: callSignal, cache: 'no-store', redirect: 'error' }); }
       catch { budget.check(); if(callSignal.aborted)throw new ProviderFailure('UPSTREAM_TIMEOUT',504);throw new ProviderFailure('UPSTREAM_TRANSPORT', 502, true); }
+      record.httpStatus = response.status;
       if (!response.ok) {
         const kind = gatewayErrorKind(response.status); const header = response.headers.get('retry-after');
         const retryAfter = header && (/^\d{1,6}$/.test(header) || Number.isFinite(Date.parse(header))) ? header : null;
@@ -96,6 +99,8 @@ export async function generateText(options: {
       for await (const delta of parseOpenAITextStream(response, { expectedModel: modelId, signal: callSignal, readUsageAfterStop: true, onMetadata: m => {
         if (m.model) record!.reportedModel = m.model;
         if (m.usage && Object.keys(m.usage).length) record!.usage = { ...record!.usage, ...m.usage };
+        if (m.finishReason) record!.finishReason = m.finishReason;
+        if (m.drainOutcome) record!.metadataDrain = m.drainOutcome;
       } })) {
         text += delta;
         if (text.length > 128_000) throw new ProviderFailure('UPSTREAM_FORMAT');
@@ -108,12 +113,26 @@ export async function generateText(options: {
       if (rate && u?.prompt_tokens !== undefined && u.completion_tokens !== undefined) record.usageBasedCostUsd = (u.prompt_tokens * rate.inputUsdPerMillion + u.completion_tokens * rate.outputUsdPerMillion) / 1e6;
       record.status = 'complete'; recordProviderSuccess(modelId); return text;
     } catch (error) {
-      if (record) { record.status = 'failed'; record.errorCode = error instanceof ApiError ? error.code : error instanceof StreamFailure ? 'UPSTREAM_STREAM' : 'CANCELLED'; }
-      budget.check();
+      const code = error instanceof StreamFailure ? `UPSTREAM_${error.code}` : error instanceof ApiError ? error.code
+        : budget.signal.aborted ? budget.signal.reason?.name === 'TimeoutError' ? 'DEADLINE' : 'CANCELLED'
+        : callSignal.aborted ? 'UPSTREAM_TIMEOUT' : 'UPSTREAM_TRANSPORT';
+      if (record) { record.status = 'failed'; record.errorCode = code; }
+      if (!(error instanceof StreamFailure)) budget.check();
       // No rotation to bypass shared billing/quota; retry the same model only
       // before publication, at most once, using the same global attempt budget.
       if (!emitted && error instanceof ProviderFailure && error.retryable && ++tries < 2 && budget.canReserve(input, output, options.keepFinal, modelId)) continue;
-      throw error instanceof StreamFailure ? new ProviderFailure('UPSTREAM_STREAM') : error;
-    } finally { if (record) {record.durationMs = Date.now() - start;const u=record.usage,rate=budget.rates[modelId];if(rate&&u?.prompt_tokens!==undefined&&u.completion_tokens!==undefined)record.usageBasedCostUsd=(u.prompt_tokens*rate.inputUsdPerMillion+u.completion_tokens*rate.outputUsdPerMillion)/1e6;} release(); }
+      throw error instanceof StreamFailure ? new ProviderFailure(code) : callSignal.aborted ? new ProviderFailure('UPSTREAM_TIMEOUT',504) : error;
+    } finally {
+      if (record) {
+        record.durationMs = Date.now() - start;
+        const u=record.usage,rate=budget.rates[modelId];
+        if(rate&&u?.prompt_tokens!==undefined&&u.completion_tokens!==undefined) record.usageBasedCostUsd=(u.prompt_tokens*rate.inputUsdPerMillion+u.completion_tokens*rate.outputUsdPerMillion)/1e6;
+        record.usageUnknownReason = u?.prompt_tokens !== undefined && u.completion_tokens !== undefined ? null
+          : u && Object.keys(u).length ? 'partial_usage' : !record.usageRequested ? 'not_requested'
+          : record.metadataDrain === 'done' ? 'not_sent' : record.metadataDrain === 'eof' ? 'not_observed_before_eof'
+          : ['time_limit','byte_limit','not_requested'].includes(record.metadataDrain ?? '') ? 'reading_ended_early' : 'stream_interrupted';
+      }
+      release();
+    }
   }
 }

@@ -1,0 +1,11 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> aet-ai@2.2.0 lint
+> eslint
+
+
+/workspace/scratch/bfc362e63967/project/tests/chat-route.test.mts
+  17:131  warning  '_init' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
