@@ -2,6 +2,9 @@ import { getGenerationConfig } from './ai/model-config.ts';
 import type { ChatMode } from '../types/index.ts';
 export const DEFAULT_SUMOPOD_BASE_URL = 'https://ai.sumopod.com/v1';
 export const DEFAULT_SUMOPOD_MODEL = 'gpt-4o-mini';
+// Verified on this gateway by live operator probes on 25 October 2026.
+// Keep optional usage metadata scoped to the three tested model IDs.
+const VERIFIED_STREAM_USAGE_MODELS = new Set(['gpt-4o-mini', 'gpt-5.4-mini', 'deepseek-v4-flash']);
 type Part = { type: string; text?: string; image_url?: { url: string } };
 type AppMessage = { role: string; content: string | Part[] };
 export type SumopodMessage = { role: 'system' | 'user' | 'assistant'; content: string | Part[] };
@@ -18,7 +21,8 @@ export function buildSumopodChatRequest({ apiKey, baseUrl = DEFAULT_SUMOPOD_BASE
   const url = new URL(`${baseUrl.replace(/\/+$/, '')}/chat/completions`);
   if (url.username || url.password || (url.protocol !== 'https:' && !(process.env.AET_ALLOW_LOCAL_TEST_GATEWAY === 'true' && url.protocol === 'http:' && ['127.0.0.1','localhost'].includes(url.hostname)))) throw new Error('Invalid gateway URL.');
   const last = messages.filter(m => m.role === 'user').at(-1)?.content;
-  return { url: url.href, init: { method: 'POST' as const, headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` }, body: JSON.stringify({ model: modelId, messages: toSumopodMessages(systemInstruction, messages), ...getGenerationConfig(modelId, mode, inputText ?? (typeof last === 'string' ? last : ''), maxTokens), stream }) } };
+  const requestUsage = stream && url.origin === 'https://ai.sumopod.com' && VERIFIED_STREAM_USAGE_MODELS.has(modelId);
+  return { url: url.href, init: { method: 'POST' as const, headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` }, body: JSON.stringify({ model: modelId, messages: toSumopodMessages(systemInstruction, messages), ...getGenerationConfig(modelId, mode, inputText ?? (typeof last === 'string' ? last : ''), maxTokens), stream, ...(requestUsage ? { stream_options: { include_usage: true } } : {}) }) } };
 }
 export class StreamFailure extends Error { }
 export type StreamMetadata = {

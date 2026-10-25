@@ -51,7 +51,11 @@ export async function auditScreeningReport(file=FINAL_SCREENING_REPORT) {
       const system=buildSystemPrompt(c.mode,c.prompt,[],new Date(report.checkedAt),{imageInput:model.supportsImageInput===true});
       const expected=JSON.parse(buildSumopodChatRequest({apiKey:'offline-unused',modelId:row.model,mode:c.mode,systemInstruction:system,
         messages:[...(c.history||[]),{role:'user',content:c.prompt}],inputText:c.prompt,maxTokens:report.requestedOutputCap,stream:true}).init.body);
-      check(isDeepStrictEqual(row.request.body,expected),'Actual request differs from fixture/production generation config.');
+      // Historical screening predates the optional streaming-usage request.
+      // Accept only the two exact supported bodies; all generation fields stay strict.
+      const legacyExpected=structuredClone(expected);delete legacyExpected.stream_options;
+      check(isDeepStrictEqual(row.request.body,expected)||isDeepStrictEqual(row.request.body,legacyExpected),
+        'Actual request differs from fixture/production generation config.');
       if(!row.attempted){check(row.status==='BLOCKED' && row.output===null,'Unattempted cell contains a result.');continue;}
       if(row.finishReason==='length'){check(row.status==='FAIL','Truncated response was not marked failed.');continue;}
       check(row.httpStatus===200 && row.reportedModel===row.model && row.finishReason==='stop','Unrecognized transport result.');

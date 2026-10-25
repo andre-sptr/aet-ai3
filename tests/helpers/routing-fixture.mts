@@ -28,13 +28,13 @@ export async function calibrationFixture(options:{baselineFails?:boolean}={}) {
  const report={schemaVersion:2,kind:'application-evaluation',repeats:3,fixtureNotice:'SYNTHETIC TEST ONLY; no model capabilities or human approvals asserted.',
   sourceKind:'live',planOnly:false,checkedAt,finishedAt,...await calibrationSource(),datasetSha256,budgetGuard:{allowed:true,keyBound:true},
   pricing:{operatorVerified:true,sourceUrl:'https://sumopod.com/ai',verifiedAt:new Date(Date.now()-20_000).toISOString(),models:Object.fromEntries(models.map(id=>[id,{inputUsdPerMillion:1,outputUsdPerMillion:2}]))},results};
- const reportRef=path.relative(process.cwd(),path.join(directory,'report.json'));
+ const reportRef=path.relative(process.cwd(),path.join(directory,'report.json')).replaceAll('\\','/');
  const reportBytes=JSON.stringify(report);await writeFile(reportRef,reportBytes);
  const reviews=models.map(model=>({authorKind:'human',status:'completed',reviewer:'SYNTHETIC FIXTURE, NOT A HUMAN APPROVAL',reviewedAt:new Date(Date.now()-1000).toISOString(),reportSha256:hash(reportBytes),datasetSha256,modelId:model,
   samples:results.filter(s=>s.metadata.model===model).map(s=>({sampleId:s.sampleId,quality:options.baselineFails&&model===models[0]?1:4.5,instructions:options.baselineFails&&model===models[0]?1:5}))}));
  const evidence=[];
  for(let i=0;i<models.length;i++) {
-  const ref=path.relative(process.cwd(),path.join(directory,`review-${i}.json`)),bytes=JSON.stringify(reviews[i]);await writeFile(ref,bytes);
+  const ref=path.relative(process.cwd(),path.join(directory,`review-${i}.json`)).replaceAll('\\','/'),bytes=JSON.stringify(reviews[i]);await writeFile(ref,bytes);
   evidence.push({modelId:models[i],category:'daily',persona:'daily',complexity:'simple',responseMode:'normal',caseIds:['a','b','c'],contextCaseIds:['context'],report:{ref:reportRef,sha256:hash(reportBytes)},review:{ref,sha256:hash(bytes)}});
  }
  const policy={schemaVersion:2,status:'active',version:'SYNTHETIC-VALIDATION-ONLY',dataset:{ref:datasetRef,sha256:datasetSha256},maxLatencyMs:5000,maxCostUsdPerRequest:0.01,evidence};

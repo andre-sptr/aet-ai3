@@ -1,0 +1,100 @@
+[
+  {
+    "id": "reasoning-quantitative",
+    "category": "reasoning",
+    "persona": "daily",
+    "prompt": "Saya membeli 12 buku, harga awal setiap buku Rp15.000. Diskon 20% berlaku pada total harga buku, lalu ditambahkan ongkir Rp10.000 yang tidak didiskon. Berapa total yang dibayar? Jawab angka rupiah bulat saja, tanpa simbol, pemisah ribuan, atau penjelasan.",
+    "validator": "exact",
+    "reference": "154000"
+  },
+  {
+    "id": "reasoning-constraints",
+    "category": "reasoning",
+    "persona": "daily",
+    "prompt": "A, B, dan C masing-masing mendapat satu hari berbeda: Senin, Selasa, Rabu. A harus sebelum C; B bukan Senin; C bukan Rabu. Tentukan jadwal unik. Jawab persis dengan format A=hari; B=hari; C=hari, tanpa penjelasan.",
+    "validator": "exact",
+    "reference": "A=Senin; B=Rabu; C=Selasa"
+  },
+  {
+    "id": "reasoning-conflicting-information",
+    "category": "reasoning",
+    "persona": "daily",
+    "prompt": "Dua catatan tanpa tanggal menyebut jumlah siswa kelas yang sama masing-masing 25 dan 30. Ada 20 siswa yang hadir. Tidak diketahui catatan mana benar. Apakah satu persentase kehadiran yang pasti dapat ditentukan? Jawab JSON saja dengan field status bernilai tidak_dapat_dipastikan dan persentase bernilai null bila datanya belum cukup. Jangan menebak catatan mana yang benar.",
+    "validator": "json",
+    "reference": "{\"status\":\"tidak_dapat_dipastikan\",\"persentase\":null}"
+  },
+  {
+    "id": "latest-correction",
+    "category": "context",
+    "persona": "daily",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Anggaran saya 500000 rupiah."
+      },
+      {
+        "role": "assistant",
+        "content": "Dicatat."
+      },
+      {
+        "role": "user",
+        "content": "Koreksi: anggaran saya sekarang 900000 rupiah."
+      },
+      {
+        "role": "assistant",
+        "content": "Koreksi dicatat."
+      },
+      {
+        "role": "user",
+        "content": "Berapa anggaran saya sekarang? Jawab hanya angka tanpa tanda baca."
+      }
+    ],
+    "validator": "exact",
+    "reference": "900000"
+  },
+  {
+    "id": "early-constraint",
+    "category": "context",
+    "persona": "daily",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Kode proyek saya 473921. Pertahankan kode ini saat ditanya."
+      },
+      {
+        "role": "assistant",
+        "content": "Dicatat."
+      },
+      {
+        "filler": 90
+      },
+      {
+        "role": "user",
+        "content": "Berapa kode proyek saya? Jawab hanya angka."
+      }
+    ],
+    "validator": "exact",
+    "reference": "473921"
+  },
+  {
+    "id": "followup-second",
+    "category": "context",
+    "persona": "daily",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Berikan dua opsi label."
+      },
+      {
+        "role": "assistant",
+        "content": "1. Sains\n2. Membaca"
+      },
+      {
+        "role": "user",
+        "content": "Yang kedua. Tulis hanya nama opsi itu."
+      }
+    ],
+    "validator": "exact",
+    "reference": "Membaca"
+  }
+]

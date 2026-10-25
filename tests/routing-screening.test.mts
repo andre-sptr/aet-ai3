@@ -26,3 +26,24 @@ test('screening audit rejects duplicated cells and a changed resume parent hash'
   await assert.rejects(()=>auditScreeningReport(ref),/Inherited outcome/);
  } finally {await rm(directory,{recursive:true,force:true});}
 });
+test('historical audit accepts the exact optional usage addition but rejects every other request change',async()=>{
+ const original=JSON.parse(await readFile(FINAL_SCREENING_REPORT,'utf8'));
+ const directory=await mkdtemp('docs/benchmarks/usage-audit-test-'),ref=path.join(directory,'report.json');
+ try{
+  const fixture=structuredClone(original);
+  delete fixture.resume;
+  fixture.validationFixtureNotice='SYNTHETIC DERIVED CONTRACT TEST ONLY; no new live requests or usage asserted.';
+  const row=fixture.results.find(r=>r.model==='gpt-4o-mini');
+  row.request.body.stream_options={include_usage:true};
+  await writeFile(ref,JSON.stringify(fixture));
+  assert.equal((await auditScreeningReport(ref)).uniqueAttempts,96);
+  const rejected=async(change:(value:typeof fixture)=>void)=>{
+   const altered=structuredClone(fixture);change(altered);await writeFile(ref,JSON.stringify(altered));
+   await assert.rejects(()=>auditScreeningReport(ref),/Actual request differs/);
+  };
+  await rejected(value=>{value.results.find(r=>r.model==='gpt-4o-mini').request.body.stream_options={include_usage:false};});
+  await rejected(value=>{value.results.find(r=>r.model==='gpt-4o-mini').request.body.max_tokens++;});
+  await rejected(value=>{value.results.find(r=>r.model==='gpt-4o-mini').request.body.messages.at(-1).content='changed prompt';});
+  await rejected(value=>{value.results.find(r=>r.model==='gpt-4.1-mini').request.body.stream_options={include_usage:true};});
+ }finally{await rm(directory,{recursive:true,force:true});}
+});

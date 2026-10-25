@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "kind": "stream-usage-verification-summary",
+  "sourceKind": "derived-from-user-live-diagnostics",
+  "productionCalibrationEvidence": false,
+  "gateway": "https://ai.sumopod.com/v1",
+  "date": "2026-10-25",
+  "models": [
+    {
+      "modelId": "gpt-4o-mini",
+      "checkedAt": "2026-10-25T10:43:41.807Z",
+      "sourceReportSha256": "2a81ed80310f54014dc42ed07c4b54784407491d5685c1d6d0a17bf398caa27d",
+      "withoutOptionUsageCaptured": false,
+      "withOptionUsageCaptured": true,
+      "httpStatus": 200,
+      "usage": {
+        "prompt_tokens": 26,
+        "completion_tokens": 3,
+        "total_tokens": 29
+      },
+      "actualBilledCostUsd": null,
+      "diagnosticOnly": true
+    },
+    {
+      "modelId": "gpt-5.4-mini",
+      "checkedAt": "2026-10-25T10:45:38.689Z",
+      "sourceReportSha256": "48caaa192ba63251137a9a5dce0092939ab56166e8781f263e862020ceb90b0a",
+      "withoutOptionUsageCaptured": false,
+      "withOptionUsageCaptured": true,
+      "httpStatus": 200,
+      "usage": {
+        "prompt_tokens": 25,
+        "completion_tokens": 6,
+        "total_tokens": 31
+      },
+      "actualBilledCostUsd": null,
+      "diagnosticOnly": true
+    },
+    {
+      "modelId": "deepseek-v4-flash",
+      "checkedAt": "2026-10-25T10:45:48.811Z",
+      "sourceReportSha256": "e22325b8327aad117f298a7d595b1c278b78b1e39808982da78c2db424844541",
+      "withoutOptionUsageCaptured": false,
+      "withOptionUsageCaptured": true,
+      "httpStatus": 200,
+      "usage": {
+        "prompt_tokens": 45,
+        "completion_tokens": 28,
+        "total_tokens": 73
+      },
+      "actualBilledCostUsd": null,
+      "diagnosticOnly": true
+    }
+  ],
+  "limitations": [
+    "One controlled two-request probe per model, with a 64-token output cap.",
+    "This is usage-option compatibility evidence, not task quality or routing calibration.",
+    "No human review or actual provider billing is asserted."
+  ]
+}
