@@ -1,5 +1,7 @@
 # Arsitektur B, migrasi, dan batas implementasi
 
+Pembaruan 25 Oktober 2026: mekanisme routing dan kontrak bukti telah diperbaiki ke v2. Lihat `benchmark-routing-analysis.md`, `routing-policy-guide.md`, dan `routing-validation.md` untuk keadaan terbaru. Uraian bertanggal 24 Oktober di bawah dipertahankan sebagai riwayat; tabel kemampuan/status pekerjaan lama bukan hasil audit terbaru. Screening 96 sel telah selesai tetapi belum mempromosikan kandidat produksi.
+
 Tanggal: 24 Oktober 2026. Masukan: ZIP `aet-aiv3.zip`, HEAD `0147f5b9b3ab0073bfce05ca79a38f2cc6a04563`. Tidak ditemukan AGENTS.md. Perubahan dari ZIP yang sudah ada dipertahankan; source tidak di-reset ke Git. Laporan `docs/*` lama yang disebut README masukan tidak disertakan dalam ZIP. Identitas, persona, CMS, autentikasi, schema/database Prisma dan upload tetap dipertahankan.
 
 ## Kontrak API

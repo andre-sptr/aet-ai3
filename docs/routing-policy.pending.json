@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 2,
+  "status": "pending",
+  "version": "screening-20261025-pending",
+  "dataset": {
+    "ref": "tests/fixtures/adaptive-evaluation.json",
+    "sha256": "116dbf5bfcc269125a3fb4cfde45e1a9d8cb6f5eb0e1cb8b8fae72afcea65998"
+  },
+  "maxLatencyMs": 5000,
+  "maxCostUsdPerRequest": 0.01,
+  "evidence": [],
+  "note": "No calibrated production candidates. Threshold ceilings are example operator limits, not measured results."
+}

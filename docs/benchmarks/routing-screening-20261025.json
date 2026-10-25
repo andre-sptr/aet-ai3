@@ -1,0 +1,2495 @@
+{
+  "schemaVersion": 1,
+  "kind": "screening-audit",
+  "productionStatus": "pending",
+  "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+  "reportSha256": "35d450edbe0f9e1a329474e9614bf819dfc7dde3b38b851b3e86f15ca7e9fa0b",
+  "datasetRef": "tests/fixtures/all-model-benchmark.json",
+  "datasetSha256": "5162b0e7f786b046ea927338bc25189c6125a1610563119f3199595f1e45b3bb",
+  "productionPromptSha256": "2508e6d1a1ab0c71a3e092da243133463ebf65411089b80b769fa9f7ee6f2d3b",
+  "finishedAt": "2026-10-25T07:50:14.514Z",
+  "sourceKind": "live",
+  "planOnly": false,
+  "uniqueAttempts": 96,
+  "statuses": {
+    "PASS": 64,
+    "INCONCLUSIVE": 15,
+    "FAIL": 17
+  },
+  "httpStatuses": {
+    "200": 96
+  },
+  "reportedIdentityMatches": 96,
+  "finishReasons": {
+    "stop": 87,
+    "length": 9
+  },
+  "usageUnknownRequests": 96,
+  "recordedTokens": 0,
+  "actualCostUsd": null,
+  "usageCaveat": "Missing usage is not zero usage or zero billing; no token throughput can be computed.",
+  "lineage": [
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T06-46-37-484Z-9a7a40fa/report-recovered.json",
+      "sha256": "f95f2d66d08fee495e5aef560fc28ab91b7d0d5c219ea5c55494151f17e8fddd",
+      "sourceKind": "live",
+      "planOnly": false,
+      "checkedAt": "2026-10-25T06:46:37.484Z",
+      "finishedAt": null,
+      "sourceRevision": "ea420c1d1ec301d389270b4b8655cc4090c2ddaa",
+      "datasetSha256": "5162b0e7f786b046ea927338bc25189c6125a1610563119f3199595f1e45b3bb",
+      "productionPromptSha256": "2508e6d1a1ab0c71a3e092da243133463ebf65411089b80b769fa9f7ee6f2d3b",
+      "planned": 96,
+      "scheduled": 96,
+      "attempted": 61,
+      "technicalStops": 52,
+      "statuses": {
+        "PASS": 33,
+        "INCONCLUSIVE": 15,
+        "FAIL": 13,
+        "BLOCKED": 35
+      },
+      "newAttempts": 61,
+      "retainedAttempts": 0,
+      "legacyKeyBinding": null
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+      "sha256": "35d450edbe0f9e1a329474e9614bf819dfc7dde3b38b851b3e86f15ca7e9fa0b",
+      "sourceKind": "live",
+      "planOnly": false,
+      "checkedAt": "2026-10-25T06:46:37.484Z",
+      "finishedAt": "2026-10-25T07:50:14.514Z",
+      "sourceRevision": "46f717452f7ba0652bc977263bc42bdea5c5f38e",
+      "datasetSha256": "5162b0e7f786b046ea927338bc25189c6125a1610563119f3199595f1e45b3bb",
+      "productionPromptSha256": "2508e6d1a1ab0c71a3e092da243133463ebf65411089b80b769fa9f7ee6f2d3b",
+      "planned": 96,
+      "scheduled": 96,
+      "attempted": 96,
+      "technicalStops": 87,
+      "statuses": {
+        "PASS": 64,
+        "INCONCLUSIVE": 15,
+        "FAIL": 17
+      },
+      "newAttempts": 35,
+      "retainedAttempts": 61,
+      "legacyKeyBinding": true
+    }
+  ],
+  "cases": [
+    {
+      "caseId": "persona-daily",
+      "category": "persona",
+      "persona": "daily",
+      "n": 12,
+      "statuses": {
+        "INCONCLUSIVE": 9,
+        "FAIL": 3
+      },
+      "objectivePass": 9,
+      "objectiveFail": 0,
+      "objectiveNotScored": 3,
+      "technicalStops": 9,
+      "truncated": 3,
+      "humanReviewRequired": 9
+    },
+    {
+      "caseId": "persona-report",
+      "category": "persona",
+      "persona": "report",
+      "n": 12,
+      "statuses": {
+        "INCONCLUSIVE": 6,
+        "FAIL": 6
+      },
+      "objectivePass": 6,
+      "objectiveFail": 0,
+      "objectiveNotScored": 6,
+      "technicalStops": 6,
+      "truncated": 6,
+      "humanReviewRequired": 6
+    },
+    {
+      "caseId": "persona-coding",
+      "category": "persona",
+      "persona": "coding",
+      "n": 12,
+      "statuses": {
+        "PASS": 12
+      },
+      "objectivePass": 12,
+      "objectiveFail": 0,
+      "objectiveNotScored": 0,
+      "technicalStops": 12,
+      "truncated": 0,
+      "humanReviewRequired": 0
+    },
+    {
+      "caseId": "reasoning-quantitative",
+      "category": "reasoning",
+      "persona": "daily",
+      "n": 12,
+      "statuses": {
+        "FAIL": 3,
+        "PASS": 9
+      },
+      "objectivePass": 9,
+      "objectiveFail": 3,
+      "objectiveNotScored": 0,
+      "technicalStops": 12,
+      "truncated": 0,
+      "humanReviewRequired": 0
+    },
+    {
+      "caseId": "reasoning-constraints",
+      "category": "reasoning",
+      "persona": "daily",
+      "n": 12,
+      "statuses": {
+        "FAIL": 1,
+        "PASS": 11
+      },
+      "objectivePass": 11,
+      "objectiveFail": 1,
+      "objectiveNotScored": 0,
+      "technicalStops": 12,
+      "truncated": 0,
+      "humanReviewRequired": 0
+    },
+    {
+      "caseId": "reasoning-conflicting-information",
+      "category": "reasoning",
+      "persona": "report",
+      "n": 12,
+      "statuses": {
+        "FAIL": 4,
+        "PASS": 8
+      },
+      "objectivePass": 8,
+      "objectiveFail": 4,
+      "objectiveNotScored": 0,
+      "technicalStops": 12,
+      "truncated": 0,
+      "humanReviewRequired": 0
+    },
+    {
+      "caseId": "context-latest-correction",
+      "category": "context",
+      "persona": "daily",
+      "n": 12,
+      "statuses": {
+        "PASS": 12
+      },
+      "objectivePass": 12,
+      "objectiveFail": 0,
+      "objectiveNotScored": 0,
+      "technicalStops": 12,
+      "truncated": 0,
+      "humanReviewRequired": 0
+    },
+    {
+      "caseId": "stream-smoke",
+      "category": "streaming",
+      "persona": "daily",
+      "n": 12,
+      "statuses": {
+        "PASS": 12
+      },
+      "objectivePass": 12,
+      "objectiveFail": 0,
+      "objectiveNotScored": 0,
+      "technicalStops": 12,
+      "truncated": 0,
+      "humanReviewRequired": 0
+    }
+  ],
+  "models": [
+    {
+      "modelId": "gpt-4o-mini",
+      "accessPolicy": "public",
+      "n": 8,
+      "statuses": {
+        "PASS": 3,
+        "INCONCLUSIVE": 2,
+        "FAIL": 3
+      },
+      "cases": [
+        {
+          "caseId": "stream-smoke",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 925,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4o-mini",
+            "caseId": "stream-smoke"
+          }
+        },
+        {
+          "caseId": "persona-daily",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 2123,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4o-mini",
+            "caseId": "persona-daily"
+          }
+        },
+        {
+          "caseId": "persona-report",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 2821,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4o-mini",
+            "caseId": "persona-report"
+          }
+        },
+        {
+          "caseId": "persona-coding",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1021,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4o-mini",
+            "caseId": "persona-coding"
+          }
+        },
+        {
+          "caseId": "reasoning-quantitative",
+          "status": "FAIL",
+          "objectiveStatus": "FAIL",
+          "finishReason": "stop",
+          "durationMs": 3655,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4o-mini",
+            "caseId": "reasoning-quantitative"
+          }
+        },
+        {
+          "caseId": "reasoning-constraints",
+          "status": "FAIL",
+          "objectiveStatus": "FAIL",
+          "finishReason": "stop",
+          "durationMs": 946,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4o-mini",
+            "caseId": "reasoning-constraints"
+          }
+        },
+        {
+          "caseId": "reasoning-conflicting-information",
+          "status": "FAIL",
+          "objectiveStatus": "FAIL",
+          "finishReason": "stop",
+          "durationMs": 1181,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.6000000000000001,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "epistemic_integrity",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4o-mini",
+            "caseId": "reasoning-conflicting-information"
+          }
+        },
+        {
+          "caseId": "context-latest-correction",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 834,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.45,
+          "measuredDimensions": [
+            "accuracy",
+            "context_consistency",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4o-mini",
+            "caseId": "context-latest-correction"
+          }
+        }
+      ]
+    },
+    {
+      "modelId": "gpt-4.1-mini",
+      "accessPolicy": "public",
+      "n": 8,
+      "statuses": {
+        "PASS": 4,
+        "INCONCLUSIVE": 2,
+        "FAIL": 2
+      },
+      "cases": [
+        {
+          "caseId": "stream-smoke",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 757,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4.1-mini",
+            "caseId": "stream-smoke"
+          }
+        },
+        {
+          "caseId": "persona-daily",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1056,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4.1-mini",
+            "caseId": "persona-daily"
+          }
+        },
+        {
+          "caseId": "persona-report",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1369,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4.1-mini",
+            "caseId": "persona-report"
+          }
+        },
+        {
+          "caseId": "persona-coding",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 769,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4.1-mini",
+            "caseId": "persona-coding"
+          }
+        },
+        {
+          "caseId": "reasoning-quantitative",
+          "status": "FAIL",
+          "objectiveStatus": "FAIL",
+          "finishReason": "stop",
+          "durationMs": 708,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4.1-mini",
+            "caseId": "reasoning-quantitative"
+          }
+        },
+        {
+          "caseId": "reasoning-constraints",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 846,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4.1-mini",
+            "caseId": "reasoning-constraints"
+          }
+        },
+        {
+          "caseId": "reasoning-conflicting-information",
+          "status": "FAIL",
+          "objectiveStatus": "FAIL",
+          "finishReason": "stop",
+          "durationMs": 825,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.6000000000000001,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "epistemic_integrity",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4.1-mini",
+            "caseId": "reasoning-conflicting-information"
+          }
+        },
+        {
+          "caseId": "context-latest-correction",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 732,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.45,
+          "measuredDimensions": [
+            "accuracy",
+            "context_consistency",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-4.1-mini",
+            "caseId": "context-latest-correction"
+          }
+        }
+      ]
+    },
+    {
+      "modelId": "gpt-5-mini",
+      "accessPolicy": "public",
+      "n": 8,
+      "statuses": {
+        "PASS": 6,
+        "FAIL": 2
+      },
+      "cases": [
+        {
+          "caseId": "stream-smoke",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 2655,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5-mini",
+            "caseId": "stream-smoke"
+          }
+        },
+        {
+          "caseId": "persona-daily",
+          "status": "FAIL",
+          "objectiveStatus": null,
+          "finishReason": "length",
+          "durationMs": 5704,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5-mini",
+            "caseId": "persona-daily"
+          }
+        },
+        {
+          "caseId": "persona-report",
+          "status": "FAIL",
+          "objectiveStatus": null,
+          "finishReason": "length",
+          "durationMs": 5502,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5-mini",
+            "caseId": "persona-report"
+          }
+        },
+        {
+          "caseId": "persona-coding",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 2969,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5-mini",
+            "caseId": "persona-coding"
+          }
+        },
+        {
+          "caseId": "reasoning-quantitative",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 4186,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5-mini",
+            "caseId": "reasoning-quantitative"
+          }
+        },
+        {
+          "caseId": "reasoning-constraints",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 3986,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5-mini",
+            "caseId": "reasoning-constraints"
+          }
+        },
+        {
+          "caseId": "reasoning-conflicting-information",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 3288,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.6000000000000001,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "epistemic_integrity",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5-mini",
+            "caseId": "reasoning-conflicting-information"
+          }
+        },
+        {
+          "caseId": "context-latest-correction",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 2278,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.45,
+          "measuredDimensions": [
+            "accuracy",
+            "context_consistency",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5-mini",
+            "caseId": "context-latest-correction"
+          }
+        }
+      ]
+    },
+    {
+      "modelId": "gpt-5.4-mini",
+      "accessPolicy": "public",
+      "n": 8,
+      "statuses": {
+        "PASS": 6,
+        "INCONCLUSIVE": 2
+      },
+      "cases": [
+        {
+          "caseId": "stream-smoke",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 746,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4-mini",
+            "caseId": "stream-smoke"
+          }
+        },
+        {
+          "caseId": "persona-daily",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1232,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4-mini",
+            "caseId": "persona-daily"
+          }
+        },
+        {
+          "caseId": "persona-report",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1222,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4-mini",
+            "caseId": "persona-report"
+          }
+        },
+        {
+          "caseId": "persona-coding",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1299,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4-mini",
+            "caseId": "persona-coding"
+          }
+        },
+        {
+          "caseId": "reasoning-quantitative",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 915,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4-mini",
+            "caseId": "reasoning-quantitative"
+          }
+        },
+        {
+          "caseId": "reasoning-constraints",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1541,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4-mini",
+            "caseId": "reasoning-constraints"
+          }
+        },
+        {
+          "caseId": "reasoning-conflicting-information",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1526,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.6000000000000001,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "epistemic_integrity",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4-mini",
+            "caseId": "reasoning-conflicting-information"
+          }
+        },
+        {
+          "caseId": "context-latest-correction",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 923,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.45,
+          "measuredDimensions": [
+            "accuracy",
+            "context_consistency",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4-mini",
+            "caseId": "context-latest-correction"
+          }
+        }
+      ]
+    },
+    {
+      "modelId": "gpt-5.4",
+      "accessPolicy": "frontier",
+      "n": 8,
+      "statuses": {
+        "PASS": 6,
+        "INCONCLUSIVE": 2
+      },
+      "cases": [
+        {
+          "caseId": "stream-smoke",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 953,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4",
+            "caseId": "stream-smoke"
+          }
+        },
+        {
+          "caseId": "persona-daily",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 3644,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4",
+            "caseId": "persona-daily"
+          }
+        },
+        {
+          "caseId": "persona-report",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1643,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4",
+            "caseId": "persona-report"
+          }
+        },
+        {
+          "caseId": "persona-coding",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 943,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4",
+            "caseId": "persona-coding"
+          }
+        },
+        {
+          "caseId": "reasoning-quantitative",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1092,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4",
+            "caseId": "reasoning-quantitative"
+          }
+        },
+        {
+          "caseId": "reasoning-constraints",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 816,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4",
+            "caseId": "reasoning-constraints"
+          }
+        },
+        {
+          "caseId": "reasoning-conflicting-information",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1013,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.6000000000000001,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "epistemic_integrity",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4",
+            "caseId": "reasoning-conflicting-information"
+          }
+        },
+        {
+          "caseId": "context-latest-correction",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1012,
+          "actualOutputCap": 512,
+          "parameter": "max_completion_tokens",
+          "partialWeightCoverage": 0.45,
+          "measuredDimensions": [
+            "accuracy",
+            "context_consistency",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gpt-5.4",
+            "caseId": "context-latest-correction"
+          }
+        }
+      ]
+    },
+    {
+      "modelId": "claude-haiku-4-5",
+      "accessPolicy": "public",
+      "n": 8,
+      "statuses": {
+        "PASS": 4,
+        "INCONCLUSIVE": 2,
+        "FAIL": 2
+      },
+      "cases": [
+        {
+          "caseId": "stream-smoke",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 822,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-haiku-4-5",
+            "caseId": "stream-smoke"
+          }
+        },
+        {
+          "caseId": "persona-daily",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1855,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-haiku-4-5",
+            "caseId": "persona-daily"
+          }
+        },
+        {
+          "caseId": "persona-report",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 2558,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-haiku-4-5",
+            "caseId": "persona-report"
+          }
+        },
+        {
+          "caseId": "persona-coding",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 904,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-haiku-4-5",
+            "caseId": "persona-coding"
+          }
+        },
+        {
+          "caseId": "reasoning-quantitative",
+          "status": "FAIL",
+          "objectiveStatus": "FAIL",
+          "finishReason": "stop",
+          "durationMs": 805,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-haiku-4-5",
+            "caseId": "reasoning-quantitative"
+          }
+        },
+        {
+          "caseId": "reasoning-constraints",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 946,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-haiku-4-5",
+            "caseId": "reasoning-constraints"
+          }
+        },
+        {
+          "caseId": "reasoning-conflicting-information",
+          "status": "FAIL",
+          "objectiveStatus": "FAIL",
+          "finishReason": "stop",
+          "durationMs": 950,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.6000000000000001,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "epistemic_integrity",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-haiku-4-5",
+            "caseId": "reasoning-conflicting-information"
+          }
+        },
+        {
+          "caseId": "context-latest-correction",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 763,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.45,
+          "measuredDimensions": [
+            "accuracy",
+            "context_consistency",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-haiku-4-5",
+            "caseId": "context-latest-correction"
+          }
+        }
+      ]
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "accessPolicy": "frontier",
+      "n": 8,
+      "statuses": {
+        "PASS": 5,
+        "INCONCLUSIVE": 2,
+        "FAIL": 1
+      },
+      "cases": [
+        {
+          "caseId": "stream-smoke",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 981,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-sonnet-5",
+            "caseId": "stream-smoke"
+          }
+        },
+        {
+          "caseId": "persona-daily",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 2476,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-sonnet-5",
+            "caseId": "persona-daily"
+          }
+        },
+        {
+          "caseId": "persona-report",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 3326,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-sonnet-5",
+            "caseId": "persona-report"
+          }
+        },
+        {
+          "caseId": "persona-coding",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 2098,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-sonnet-5",
+            "caseId": "persona-coding"
+          }
+        },
+        {
+          "caseId": "reasoning-quantitative",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1495,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-sonnet-5",
+            "caseId": "reasoning-quantitative"
+          }
+        },
+        {
+          "caseId": "reasoning-constraints",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 2498,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-sonnet-5",
+            "caseId": "reasoning-constraints"
+          }
+        },
+        {
+          "caseId": "reasoning-conflicting-information",
+          "status": "FAIL",
+          "objectiveStatus": "FAIL",
+          "finishReason": "stop",
+          "durationMs": 1222,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.6000000000000001,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "epistemic_integrity",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-sonnet-5",
+            "caseId": "reasoning-conflicting-information"
+          }
+        },
+        {
+          "caseId": "context-latest-correction",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1030,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.45,
+          "measuredDimensions": [
+            "accuracy",
+            "context_consistency",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-sonnet-5",
+            "caseId": "context-latest-correction"
+          }
+        }
+      ]
+    },
+    {
+      "modelId": "claude-opus-5",
+      "accessPolicy": "frontier",
+      "n": 8,
+      "statuses": {
+        "PASS": 6,
+        "INCONCLUSIVE": 1,
+        "FAIL": 1
+      },
+      "cases": [
+        {
+          "caseId": "stream-smoke",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1180,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-opus-5",
+            "caseId": "stream-smoke"
+          }
+        },
+        {
+          "caseId": "persona-daily",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 2171,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-opus-5",
+            "caseId": "persona-daily"
+          }
+        },
+        {
+          "caseId": "persona-report",
+          "status": "FAIL",
+          "objectiveStatus": null,
+          "finishReason": "length",
+          "durationMs": 6529,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-opus-5",
+            "caseId": "persona-report"
+          }
+        },
+        {
+          "caseId": "persona-coding",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1569,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-opus-5",
+            "caseId": "persona-coding"
+          }
+        },
+        {
+          "caseId": "reasoning-quantitative",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1289,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-opus-5",
+            "caseId": "reasoning-quantitative"
+          }
+        },
+        {
+          "caseId": "reasoning-constraints",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1718,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-opus-5",
+            "caseId": "reasoning-constraints"
+          }
+        },
+        {
+          "caseId": "reasoning-conflicting-information",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1991,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.6000000000000001,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "epistemic_integrity",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-opus-5",
+            "caseId": "reasoning-conflicting-information"
+          }
+        },
+        {
+          "caseId": "context-latest-correction",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1249,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.45,
+          "measuredDimensions": [
+            "accuracy",
+            "context_consistency",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "claude-opus-5",
+            "caseId": "context-latest-correction"
+          }
+        }
+      ]
+    },
+    {
+      "modelId": "gemini/gemini-3.5-flash",
+      "accessPolicy": "public",
+      "n": 8,
+      "statuses": {
+        "PASS": 6,
+        "INCONCLUSIVE": 1,
+        "FAIL": 1
+      },
+      "cases": [
+        {
+          "caseId": "stream-smoke",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 2125,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.5-flash",
+            "caseId": "stream-smoke"
+          }
+        },
+        {
+          "caseId": "persona-daily",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 6516,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.5-flash",
+            "caseId": "persona-daily"
+          }
+        },
+        {
+          "caseId": "persona-report",
+          "status": "FAIL",
+          "objectiveStatus": null,
+          "finishReason": "length",
+          "durationMs": 5803,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.5-flash",
+            "caseId": "persona-report"
+          }
+        },
+        {
+          "caseId": "persona-coding",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 5448,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.5-flash",
+            "caseId": "persona-coding"
+          }
+        },
+        {
+          "caseId": "reasoning-quantitative",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 3351,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.5-flash",
+            "caseId": "reasoning-quantitative"
+          }
+        },
+        {
+          "caseId": "reasoning-constraints",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 4158,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.5-flash",
+            "caseId": "reasoning-constraints"
+          }
+        },
+        {
+          "caseId": "reasoning-conflicting-information",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 3914,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.6000000000000001,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "epistemic_integrity",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.5-flash",
+            "caseId": "reasoning-conflicting-information"
+          }
+        },
+        {
+          "caseId": "context-latest-correction",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 2736,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.45,
+          "measuredDimensions": [
+            "accuracy",
+            "context_consistency",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.5-flash",
+            "caseId": "context-latest-correction"
+          }
+        }
+      ]
+    },
+    {
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "accessPolicy": "frontier",
+      "n": 8,
+      "statuses": {
+        "PASS": 6,
+        "FAIL": 2
+      },
+      "cases": [
+        {
+          "caseId": "stream-smoke",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 3506,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.1-pro-preview",
+            "caseId": "stream-smoke"
+          }
+        },
+        {
+          "caseId": "persona-daily",
+          "status": "FAIL",
+          "objectiveStatus": null,
+          "finishReason": "length",
+          "durationMs": 8818,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.1-pro-preview",
+            "caseId": "persona-daily"
+          }
+        },
+        {
+          "caseId": "persona-report",
+          "status": "FAIL",
+          "objectiveStatus": null,
+          "finishReason": "length",
+          "durationMs": 8234,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.1-pro-preview",
+            "caseId": "persona-report"
+          }
+        },
+        {
+          "caseId": "persona-coding",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 6189,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.1-pro-preview",
+            "caseId": "persona-coding"
+          }
+        },
+        {
+          "caseId": "reasoning-quantitative",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 3799,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.1-pro-preview",
+            "caseId": "reasoning-quantitative"
+          }
+        },
+        {
+          "caseId": "reasoning-constraints",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 6461,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.1-pro-preview",
+            "caseId": "reasoning-constraints"
+          }
+        },
+        {
+          "caseId": "reasoning-conflicting-information",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 6832,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.6000000000000001,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "epistemic_integrity",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.1-pro-preview",
+            "caseId": "reasoning-conflicting-information"
+          }
+        },
+        {
+          "caseId": "context-latest-correction",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 3634,
+          "actualOutputCap": 1024,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.45,
+          "measuredDimensions": [
+            "accuracy",
+            "context_consistency",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "gemini/gemini-3.1-pro-preview",
+            "caseId": "context-latest-correction"
+          }
+        }
+      ]
+    },
+    {
+      "modelId": "deepseek-v4-flash",
+      "accessPolicy": "public",
+      "n": 8,
+      "statuses": {
+        "PASS": 6,
+        "INCONCLUSIVE": 1,
+        "FAIL": 1
+      },
+      "cases": [
+        {
+          "caseId": "stream-smoke",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1067,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-flash",
+            "caseId": "stream-smoke"
+          }
+        },
+        {
+          "caseId": "persona-daily",
+          "status": "INCONCLUSIVE",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 7251,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-flash",
+            "caseId": "persona-daily"
+          }
+        },
+        {
+          "caseId": "persona-report",
+          "status": "FAIL",
+          "objectiveStatus": null,
+          "finishReason": "length",
+          "durationMs": 4206,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-flash",
+            "caseId": "persona-report"
+          }
+        },
+        {
+          "caseId": "persona-coding",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1931,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-flash",
+            "caseId": "persona-coding"
+          }
+        },
+        {
+          "caseId": "reasoning-quantitative",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1271,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-flash",
+            "caseId": "reasoning-quantitative"
+          }
+        },
+        {
+          "caseId": "reasoning-constraints",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1594,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-flash",
+            "caseId": "reasoning-constraints"
+          }
+        },
+        {
+          "caseId": "reasoning-conflicting-information",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 1368,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.6000000000000001,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "epistemic_integrity",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-flash",
+            "caseId": "reasoning-conflicting-information"
+          }
+        },
+        {
+          "caseId": "context-latest-correction",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 2444,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.45,
+          "measuredDimensions": [
+            "accuracy",
+            "context_consistency",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-flash",
+            "caseId": "context-latest-correction"
+          }
+        }
+      ]
+    },
+    {
+      "modelId": "deepseek-v4-pro",
+      "accessPolicy": "frontier",
+      "n": 8,
+      "statuses": {
+        "PASS": 6,
+        "FAIL": 2
+      },
+      "cases": [
+        {
+          "caseId": "stream-smoke",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 5145,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-pro",
+            "caseId": "stream-smoke"
+          }
+        },
+        {
+          "caseId": "persona-daily",
+          "status": "FAIL",
+          "objectiveStatus": null,
+          "finishReason": "length",
+          "durationMs": 8562,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-pro",
+            "caseId": "persona-daily"
+          }
+        },
+        {
+          "caseId": "persona-report",
+          "status": "FAIL",
+          "objectiveStatus": null,
+          "finishReason": "length",
+          "durationMs": 10008,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.05,
+          "measuredDimensions": [
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-pro",
+            "caseId": "persona-report"
+          }
+        },
+        {
+          "caseId": "persona-coding",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 7496,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.3,
+          "measuredDimensions": [
+            "accuracy",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-pro",
+            "caseId": "persona-coding"
+          }
+        },
+        {
+          "caseId": "reasoning-quantitative",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 3373,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-pro",
+            "caseId": "reasoning-quantitative"
+          }
+        },
+        {
+          "caseId": "reasoning-constraints",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 7101,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.5,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-pro",
+            "caseId": "reasoning-constraints"
+          }
+        },
+        {
+          "caseId": "reasoning-conflicting-information",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 4205,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.6000000000000001,
+          "measuredDimensions": [
+            "accuracy",
+            "reasoning_constraints",
+            "epistemic_integrity",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-pro",
+            "caseId": "reasoning-conflicting-information"
+          }
+        },
+        {
+          "caseId": "context-latest-correction",
+          "status": "PASS",
+          "objectiveStatus": "PASS",
+          "finishReason": "stop",
+          "durationMs": 4089,
+          "actualOutputCap": 512,
+          "parameter": "max_tokens",
+          "partialWeightCoverage": 0.45,
+          "measuredDimensions": [
+            "accuracy",
+            "context_consistency",
+            "streaming_integration"
+          ],
+          "evidence": {
+            "reportRef": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+            "modelId": "deepseek-v4-pro",
+            "caseId": "context-latest-correction"
+          }
+        }
+      ]
+    }
+  ],
+  "failures": [
+    {
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-daily",
+      "kind": "truncation",
+      "semanticJsonMatches": null,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-daily",
+      "kind": "truncation",
+      "semanticJsonMatches": null,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-daily",
+      "kind": "truncation",
+      "semanticJsonMatches": null,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-report",
+      "kind": "truncation",
+      "semanticJsonMatches": null,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "claude-opus-5",
+      "caseId": "persona-report",
+      "kind": "truncation",
+      "semanticJsonMatches": null,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "gemini/gemini-3.5-flash",
+      "caseId": "persona-report",
+      "kind": "truncation",
+      "semanticJsonMatches": null,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-report",
+      "kind": "truncation",
+      "semanticJsonMatches": null,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "deepseek-v4-flash",
+      "caseId": "persona-report",
+      "kind": "truncation",
+      "semanticJsonMatches": null,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-report",
+      "kind": "truncation",
+      "semanticJsonMatches": null,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "gpt-4o-mini",
+      "caseId": "reasoning-quantitative",
+      "kind": "wrong_answer",
+      "semanticJsonMatches": null,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "gpt-4.1-mini",
+      "caseId": "reasoning-quantitative",
+      "kind": "wrong_answer",
+      "semanticJsonMatches": null,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "claude-haiku-4-5",
+      "caseId": "reasoning-quantitative",
+      "kind": "wrong_answer",
+      "semanticJsonMatches": null,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "gpt-4o-mini",
+      "caseId": "reasoning-constraints",
+      "kind": "wrong_answer",
+      "semanticJsonMatches": null,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "gpt-4o-mini",
+      "caseId": "reasoning-conflicting-information",
+      "kind": "raw_json_format",
+      "semanticJsonMatches": true,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "gpt-4.1-mini",
+      "caseId": "reasoning-conflicting-information",
+      "kind": "raw_json_format",
+      "semanticJsonMatches": true,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "claude-haiku-4-5",
+      "caseId": "reasoning-conflicting-information",
+      "kind": "raw_json_format",
+      "semanticJsonMatches": true,
+      "originalStatus": "FAIL"
+    },
+    {
+      "modelId": "claude-sonnet-5",
+      "caseId": "reasoning-conflicting-information",
+      "kind": "raw_json_format",
+      "semanticJsonMatches": true,
+      "originalStatus": "FAIL"
+    }
+  ],
+  "promotionBlockers": [
+    "One observation per model/case; no independent repetitions.",
+    "Daily/report qualitative human review missing.",
+    "Usage and measured costs absent.",
+    "Direct gateway screening is not application/role calibration.",
+    "No vision, native tool, long-context or planner/worker/verifier/revision calibration."
+  ],
+  "identityCaveat": "Only gateway-reported exact model IDs were checked; backend model identity is not independently verified.",
+  "inventory": [
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T06-28-44-466Z-3df6edcd/report.json",
+      "sha256": "178a33bc159068630acea02c221119d22a159ce74b3a60774e5471b98c4ffd2a",
+      "bytes": 566681,
+      "planOnly": true,
+      "sourceKind": "live",
+      "checkedAt": "2026-10-25T06:28:44.466Z",
+      "finishedAt": "2026-10-25T06:28:44.658Z",
+      "sourceRevision": "ea420c1d1ec301d389270b4b8655cc4090c2ddaa",
+      "attempted": 0,
+      "statuses": {
+        "BLOCKED": 96
+      }
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T06-28-44-466Z-3df6edcd/report.md",
+      "sha256": "81e71eacd0572683193f195dc5d4a98ba960b2915805a092e80d8e5b8a7b1d71",
+      "bytes": 16235
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T06-32-28-311Z-763f4650/report.json",
+      "sha256": "4646116462e30f2cc2cc7dd9a27281205b9f721bb21481e2a4f96daf51bf7ccd",
+      "bytes": 566700,
+      "planOnly": true,
+      "sourceKind": "live",
+      "checkedAt": "2026-10-25T06:32:28.311Z",
+      "finishedAt": "2026-10-25T06:32:28.478Z",
+      "sourceRevision": "ea420c1d1ec301d389270b4b8655cc4090c2ddaa",
+      "attempted": 0,
+      "statuses": {
+        "BLOCKED": 96
+      }
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T06-32-28-311Z-763f4650/report.md",
+      "sha256": "b4a4350e3a8f5c547a2f30de2272f28407b93d038ced7978c28c40483b8c98a1",
+      "bytes": 16254
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T06-34-06-323Z-dc0f7a72/report.json",
+      "sha256": "5f51f62818280ae18c4851ca93e41f634c466b2308a4c6eb2ee2e02f2a4b76ef",
+      "bytes": 566700,
+      "planOnly": true,
+      "sourceKind": "live",
+      "checkedAt": "2026-10-25T06:34:06.323Z",
+      "finishedAt": "2026-10-25T06:34:06.443Z",
+      "sourceRevision": "ea420c1d1ec301d389270b4b8655cc4090c2ddaa",
+      "attempted": 0,
+      "statuses": {
+        "BLOCKED": 96
+      }
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T06-34-06-323Z-dc0f7a72/report.md",
+      "sha256": "54d8aed503d166063b6e1efe430434a53c12f0f630b03097b47645570e864da6",
+      "bytes": 16254
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T06-46-37-484Z-9a7a40fa/report-recovered.json",
+      "sha256": "f95f2d66d08fee495e5aef560fc28ab91b7d0d5c219ea5c55494151f17e8fddd",
+      "bytes": 604212,
+      "planOnly": false,
+      "sourceKind": "live",
+      "checkedAt": "2026-10-25T06:46:37.484Z",
+      "finishedAt": null,
+      "sourceRevision": "ea420c1d1ec301d389270b4b8655cc4090c2ddaa",
+      "attempted": 61,
+      "statuses": {
+        "PASS": 33,
+        "INCONCLUSIVE": 15,
+        "FAIL": 13,
+        "BLOCKED": 35
+      }
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T06-46-37-484Z-9a7a40fa/report.json",
+      "sha256": "19bedb67d0ca4eaa7919dc5f5a46afc169469496d9b5d166c71b92a028baec2d",
+      "bytes": 603897,
+      "planOnly": false,
+      "sourceKind": "live",
+      "checkedAt": "2026-10-25T06:46:37.484Z",
+      "finishedAt": null,
+      "sourceRevision": "ea420c1d1ec301d389270b4b8655cc4090c2ddaa",
+      "attempted": 60,
+      "statuses": {
+        "PASS": 33,
+        "INCONCLUSIVE": 15,
+        "FAIL": 12,
+        "BLOCKED": 36
+      }
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T06-46-37-484Z-9a7a40fa/report.json.tmp",
+      "sha256": "f95f2d66d08fee495e5aef560fc28ab91b7d0d5c219ea5c55494151f17e8fddd",
+      "bytes": 604212,
+      "planOnly": false,
+      "sourceKind": "live",
+      "checkedAt": "2026-10-25T06:46:37.484Z",
+      "finishedAt": null,
+      "sourceRevision": "ea420c1d1ec301d389270b4b8655cc4090c2ddaa",
+      "attempted": 61,
+      "statuses": {
+        "PASS": 33,
+        "INCONCLUSIVE": 15,
+        "FAIL": 13,
+        "BLOCKED": 35
+      }
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T06-46-37-484Z-9a7a40fa/report.md",
+      "sha256": "f5ae5df7d92ba7f4a625ac7506344ca523e25f365ca6e9d881205336cc4772ed",
+      "bytes": 14163
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T07-48-31-653Z-fb5f2e77/report.json",
+      "sha256": "c67aee1e62b8ff4b05548f44c6e9414841e5ac84900f01425abffa560be50356",
+      "bytes": 604191,
+      "planOnly": true,
+      "sourceKind": "live",
+      "checkedAt": "2026-10-25T06:46:37.484Z",
+      "finishedAt": "2026-10-25T07:48:31.830Z",
+      "sourceRevision": "46f717452f7ba0652bc977263bc42bdea5c5f38e",
+      "attempted": 61,
+      "statuses": {
+        "PASS": 33,
+        "INCONCLUSIVE": 15,
+        "FAIL": 13,
+        "BLOCKED": 35
+      }
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T07-48-31-653Z-fb5f2e77/report.md",
+      "sha256": "7fe360579f63d9789f44661debb60704082ad74f46fff2dfb86799cca7171314",
+      "bytes": 15251
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+      "sha256": "35d450edbe0f9e1a329474e9614bf819dfc7dde3b38b851b3e86f15ca7e9fa0b",
+      "bytes": 617522,
+      "planOnly": false,
+      "sourceKind": "live",
+      "checkedAt": "2026-10-25T06:46:37.484Z",
+      "finishedAt": "2026-10-25T07:50:14.514Z",
+      "sourceRevision": "46f717452f7ba0652bc977263bc42bdea5c5f38e",
+      "attempted": 96,
+      "statuses": {
+        "PASS": 64,
+        "INCONCLUSIVE": 15,
+        "FAIL": 17
+      }
+    },
+    {
+      "ref": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.md",
+      "sha256": "81f36fc2d05ead1f260a0ccc4a9031d4c0056dcfa1e5c6b091c8e2c313b017d9",
+      "bytes": 13469
+    }
+  ]
+}

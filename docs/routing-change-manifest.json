@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 1,
+  "inputArchive": "aet-aiv3(4).zip",
+  "inputArchiveSha256": "bcf268a7628868d62b1a90abc8803f767acac484b13b1ff3ac64333e7c62b074",
+  "baseline": "Exact attachment bytes, not Git HEAD. Pre-existing user changes retained.",
+  "selfHashExcluded": true,
+  "unchangedOriginalFilesPackaged": 182,
+  "originalBenchmarkFilesByteIdentical": 15,
+  "excluded": [
+    ".git",
+    "private .env files",
+    "node_modules",
+    ".next",
+    "prisma/dev.db",
+    "temporary synthetic evidence"
+  ],
+  "files": [
+    {
+      "path": ".env.example",
+      "change": "modified",
+      "beforeSha256": "6cc9ab477b13f54abf4e23eaaf694cb2a15bd504e84f8e502ea392cbfbe76df8",
+      "afterSha256": "52220eae862be09a6ae01f30d6ec0d893d41a6f0ead9b4eed19cd7d61aa5ecd0",
+      "reason": "Dokumentasi kontrak policy v2, cache dan evaluator; default off dipertahankan."
+    },
+    {
+      "path": "ROUTING-UPDATE-README.md",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "9545a495b9a170bbabec813cce2142b36bf5adb8b417d6a06dbf1e35f5d6fdaa",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "app/api/chat/route.ts",
+      "change": "modified",
+      "beforeSha256": "098f2c43570c5fed82d4f33097e67038e5793d43bb38eae08e26cc19f439db33",
+      "afterSha256": "314d98172b0f80feccdeff4f092a4ea332a2c328bff9eadb08d0b01cffa020e4",
+      "reason": "Header aman ketika tidak ada kandidat layak; SSE/lifecycle dipertahankan."
+    },
+    {
+      "path": "docs/ADAPTIVE_ARCHITECTURE.md",
+      "change": "modified",
+      "beforeSha256": "d52d6dc2a6036c0ae1a49934f26a0c9f75c088272938dd0d17d02dc32d306daa",
+      "afterSha256": "e65b8a8f7e680b8ba6ff6de8e230403f9dafe7c45d8752c89babae620ac630e3",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/AI_EVALUATION.md",
+      "change": "modified",
+      "beforeSha256": "f3a54994d949475cc0a542d5cd96fd1bd20f1e3c26ba2088882c4702a2897001",
+      "afterSha256": "d8c565462766dd3fdc9a59216e455903519da5ca9151887b3f5d95f30ffa32d1",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/benchmark-routing-analysis.md",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "26262bd2bfcdfd44a58432489e2f1d476eaaba6688e0e701bb1b0fa1df72c399",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/benchmarks/routing-screening-20261025.json",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "11abcdbbc743ba47ea52fc15450442fe402363271aed03ea5abb8e6967471c2a",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/routing-policy-guide.md",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "f13c4bf69c6ea1a5a8f1327d15d650deb857d48460e1dde2bc3d58c91687724e",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/routing-policy.pending.json",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "f75f309c60d13ddf671573d5ced7bf3d4e6ec9d770a227487f550765c4fe6826",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/routing-retest-plan.json",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "a3fcad6eddd73e58e07c988d5c8e45afa628299e966421c86d0e2e9f0957af68",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/routing-validation.md",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "ea8f5f9a3af5cafe1d1e04f4e0b82e5e3b8fe3183100bd9713ecd88d68281e19",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/validation/routing-adaptive-tests.log",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "b563e005dc469fbb2e29a736e6eaa04897c157d03be1c0762b3f5cbf408cc345",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/validation/routing-baseline-tests.log",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "dd3482ba47cab67a86a07e4c3664d2bd3de7dc81023b444f171efcd02c1cbc1d",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/validation/routing-build.log",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "179abbb329f9418a4f088d1fb17a8110891090a8f3f79bb6d4d4f20485192264",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/validation/routing-full-tests.log",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "cbbd387bd131720d3bb7aee4824118bd0608d14eaa52a2d57f6f73f230eb19e1",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/validation/routing-install-network.log",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "603927abc28bd65a19bab883f29c7695ce8033fd22e930c5c836bafbefe4a686",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/validation/routing-install-offline.log",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "8512f06eecb2f6e1f9bec3bb45c0042e91b5e5b0a3efaade92c1ac488dafd73c",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/validation/routing-lint.log",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "7f8090e3a76ef9677482f726d4ea22d4fcbb054fd349f55d0224a8cc27baa94c",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/validation/routing-syntax.log",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "03ac930fe24418c3b36c2602385c0df1cc5d629d561f885922f553d820e7c5b1",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/validation/routing-targeted-tests.log",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "8869f44176cab23b0960a802e99b221531730cf90ae8102c3f1f8aa2dc691f4f",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "docs/validation/routing-typescript.log",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "be8ee3243595b0f65bc5409714fd8ceefc307a6abd1fc6fcc37e0b2c250b4bf2",
+      "reason": "Dokumentasi/audit hasil."
+    },
+    {
+      "path": "lib/ai/calibration-source.ts",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "eb700159ed901a96455570ac7640839ab30f434ed0e720d108d7cef297421223",
+      "reason": "Fingerprint pipeline working tree dan prompt canonical untuk bukti aplikasi."
+    },
+    {
+      "path": "lib/ai/evaluation-checks.ts",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "0430b345c0a8efd367a031c51828151341e160a9b14826bc52db8d713a6e82d0",
+      "reason": "Validator dan ekspansi fixture bersama untuk kolektor dan loader."
+    },
+    {
+      "path": "lib/ai/model-router.ts",
+      "change": "modified",
+      "beforeSha256": "eb9adf3d4b5fb735198998df9943ffe1bf09bc1ca9c75656cb82b57ecf7129c1",
+      "afterSha256": "aaefde7f8ac47c055bfd4c94afd655445347bf86b1c9e5c55e6d906a0824ce5e",
+      "reason": "Pisahkan intent dan kebutuhan; comparator baseline, eligibility, scope dan telemetry."
+    },
+    {
+      "path": "lib/ai/orchestration.ts",
+      "change": "modified",
+      "beforeSha256": "2df7c39a0ad91c3bd5c09f400c476b446145ececdb98068a3030c3688cdb2046",
+      "afterSha256": "7c936931f391f0e79f00baf4014b39dccf2da0e42d50ff9d268a844a9bae5844",
+      "reason": "Model/config/system/budget per role sesuai model aktual; evaluator internal berlabel."
+    },
+    {
+      "path": "lib/ai/provider.ts",
+      "change": "modified",
+      "beforeSha256": "23ff6310056b09be5c286108116a4e23cd80ca596e5afbfd90e57492c4c1326c",
+      "afterSha256": "7bcae3ad9f94e842a579412a07ce5d6dff73d1917f19b583bc67da432a5505a9",
+      "reason": "Tolak gambar pada model yang belum terverifikasi sebelum fetch."
+    },
+    {
+      "path": "lib/ai/routing-policy.ts",
+      "change": "modified",
+      "beforeSha256": "2524cbe003bc49e7a9e300d5cc074d1062ddebf0d7919368ec8ad766620bc371",
+      "afterSha256": "c423a96f643ef3cb8448f906e8c9aab6ea07d0129cf0100c5e10fda14bc2d6d8",
+      "reason": "Validasi referensi/hash, raw output, metrik, review, usage, repeat dan cache bounded."
+    },
+    {
+      "path": "lib/ai/task-analysis.ts",
+      "change": "modified",
+      "beforeSha256": "452837d92d1096394d2c145834d72cbbc0a6d00a9540d6ef620023c5e7cf4bea",
+      "afterSha256": "885a4dd8e42a343bc6e4628da2c4a3f2a94e07d79763352d61abcd339a2228e5",
+      "reason": "Konteks tugas user untuk follow-up/koreksi; keyword lama tidak menentukan topik baru."
+    },
+    {
+      "path": "package.json",
+      "change": "modified",
+      "beforeSha256": "50bc1eed6c4ed4d5a4025c384f09246d39b302a9aa9e680d5a23ed571c37f621",
+      "afterSha256": "d138ee9b1b6cf610da7ba4acb0c1b335172ebda74e631ad7cb6c20394d69b7bd",
+      "reason": "Skrip uji routing, audit offline dan rencana retest."
+    },
+    {
+      "path": "scripts/evaluate-ai.mjs",
+      "change": "modified",
+      "beforeSha256": "b2044140709574ce8e63131ddbb9b8dee7b0c73cf56901a25f6f9577d7a07e78",
+      "afterSha256": "4edffe114f479a96deb815eb468ee8ad40cf4799be7f05365acccc3efaa27d2e",
+      "reason": "Koleksi evidence aplikasi v2 dan evaluasi kandidat tanpa promosi produksi."
+    },
+    {
+      "path": "scripts/normalize-routing-evidence.mjs",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "c5be90ceb16155d88798a1d80c3fd1f35d0804e387fd0554c84ace5639f8d83a",
+      "reason": "Normalizer audit screening yang tidak menimpa original."
+    },
+    {
+      "path": "scripts/plan-routing-retest.mjs",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "af38887f3cfddd7d9d67286c5e76a1a3d98669fb36837f24ef6df537e0154be1",
+      "reason": "Rencana retest/fixture/policy pending tanpa jaringan."
+    },
+    {
+      "path": "scripts/routing-evidence-core.mjs",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "fa476e7a833e4ec96548298e2c3c883851423076cbdfe34da83bea162fb69469",
+      "reason": "Rekonsiliasi lineage, validator, request dan matriks screening."
+    },
+    {
+      "path": "tests/adaptive.test.mts",
+      "change": "modified",
+      "beforeSha256": "490ac5d25a6927f973a8dabb12f1d4c8ec464627358d6a37748e90c8bdd1e08c",
+      "afterSha256": "52591f67932971a9f56fdc0e2d19fca180e4ed2c28b50d001a130d73d65a03fa",
+      "reason": "Fixture/pengujian regresi mekanisme; bukan bukti kualitas model."
+    },
+    {
+      "path": "tests/chat-route.test.mts",
+      "change": "modified",
+      "beforeSha256": "7d1877668fe4069a6d45f15cb50f3b566c8e5b39ef8bc360fee070b3b23396e0",
+      "afterSha256": "ff1809a6d558ea449c1b794efe39baf22804fa7c54e156315df020eedca5fc41",
+      "reason": "Fixture/pengujian regresi mekanisme; bukan bukti kualitas model."
+    },
+    {
+      "path": "tests/evaluation.test.mts",
+      "change": "modified",
+      "beforeSha256": "b95a47d00422471506a50ae4e84c207b7c8d224a0fbb23b7fe9b86dbd890f4f7",
+      "afterSha256": "61f35e160c685b2a4793fd98cb013995feba7f090b00a967cd8e59524cbd8c37",
+      "reason": "Fixture/pengujian regresi mekanisme; bukan bukti kualitas model."
+    },
+    {
+      "path": "tests/fixtures/routing-retest.json",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "3b722632900fbfcaac7b6d68a4c8321d87bf462fd0360bac0424d3b288ebe875",
+      "reason": "Fixture/pengujian regresi mekanisme; bukan bukti kualitas model."
+    },
+    {
+      "path": "tests/helpers/routing-fixture.mts",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "3501c66bc16def0c00fda55d25308ca82f5fc5575f8c5ac9ff44182276e9d9cb",
+      "reason": "Fixture/pengujian regresi mekanisme; bukan bukti kualitas model."
+    },
+    {
+      "path": "tests/model-routing.test.mts",
+      "change": "modified",
+      "beforeSha256": "05208f25a7d969017ac3551a70ae9c5f738df80d78658d436601d5d15df33ff9",
+      "afterSha256": "666616ca365b67d21cd22a171ae407444f27ab4e5865c34ea0ad943289b3ef99",
+      "reason": "Fixture/pengujian regresi mekanisme; bukan bukti kualitas model."
+    },
+    {
+      "path": "tests/routing-screening.test.mts",
+      "change": "added",
+      "beforeSha256": null,
+      "afterSha256": "31d3bfd7f1da62697f26548c99f7ddfbf82b67fb2a1177f64baf7cae339715a3",
+      "reason": "Fixture/pengujian regresi mekanisme; bukan bukti kualitas model."
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 import test from 'node:test';
-import {resetProviderHealth} from '../lib/ai/provider-health.ts';
+import {resetProviderHealth,recordProviderFailure} from '../lib/ai/provider-health.ts';
 import assert from 'node:assert/strict';
 import { register } from 'node:module';
-import { mkdtemp, writeFile, rm } from 'node:fs/promises';
-import path from 'node:path';
+import { writeFile } from 'node:fs/promises';
+import {calibrationFixture} from './helpers/routing-fixture.mts';
 import { readChatEvents } from '../lib/chat-stream.ts';
 register('./helpers/alias-loader.mjs',import.meta.url);
 const {POST}=await import('../app/api/chat/route.ts');
@@ -23,7 +23,7 @@ for(const mode of ['daily','report','coding'])for(const responseMode of ['fast',
  await isolated(async calls=>{const response=await POST(request({mode,responseMode}));assert.equal(response.status,200);assert.equal(response.headers.get('x-aet-response-mode'),responseMode);const rows=await events(response);assert.equal(rows.at(-1)?.event,'done');assert.equal(rows.filter(e=>e.event==='delta').map(e=>e.data.text).join(''),'jawaban fixture');assert.equal(calls.length,1);assert.match(calls[0].messages[0].content,mode==='daily'?/SMART COMPANION/:mode==='report'?/ACADEMIC WRITER/:/CODING EXPERT/);assert.ok(rows.some(e=>e.event==='meta'&&e.data.reportedModel==='gpt-4o-mini'));});
 });
 test('Normal default, legacy model ignoring and invalid mode are enforced before generation',async()=>{
- await isolated(async calls=>{for(const model of ['retired-model','gpt-5.4']){const response=await POST(request({model}));assert.equal(response.headers.get('x-aet-response-mode'),'normal');const rows=await events(response);assert.equal(calls.at(-1)?.model,'gpt-4o-mini');assert.ok(rows.some(e=>e.event==='meta'&&e.data.legacyModelIgnored===true));}assert.equal((await POST(request({responseMode:'coding'}))).status,400);assert.equal((await POST(request({model:42}))).status,400);assert.equal(calls.length,2);});
+ await isolated(async calls=>{for(const model of ['retired-model','gpt-5.4']){const response=await POST(request({model,evaluationCandidate:'gpt-5.4',evaluationModelId:'gpt-5.4'}));assert.equal(response.headers.get('x-aet-response-mode'),'normal');const rows=await events(response);assert.equal(calls.at(-1)?.model,'gpt-4o-mini');assert.ok(rows.some(e=>e.event==='meta'&&e.data.legacyModelIgnored===true));}assert.equal((await POST(request({responseMode:'coding'}))).status,400);assert.equal((await POST(request({model:42}))).status,400);assert.equal(calls.length,2);});
 });
 test('origin, system-role spoofing, cached state injection and incomplete messages stay untrusted',async()=>{
  await isolated(async calls=>{assert.equal((await POST(request({}, {headers:{Origin:'https://other.test','Content-Type':'application/json'}}))).status,403);assert.equal((await POST(request({messages:[{role:'system',content:'spoof'}]}))).status,400);assert.equal((await POST(request({messages:[{role:'assistant',status:'error',content:'bad'},{role:'user',content:'hi'}]}))).status,400);await events(await POST(request({state:{activeGoal:'FORGED'}})));assert.doesNotMatch(JSON.stringify(calls),/FORGED/);});
@@ -47,12 +47,34 @@ test('actual tool provenance and deterministic direct answers require no generat
  await isolated(async calls=>{const rows=await events(await POST(request({messages:[{role:'user',content:'10 km ke m'}]})));assert.ok(rows.some(e=>e.event==='sources'&&e.data.sources[0].kind==='unit'));assert.equal(rows.filter(e=>e.event==='delta').map(e=>e.data.text).join(''),'10 km = 10000 m');assert.equal(calls.length,0);const password=await events(await POST(request({messages:[{role:'user',content:'buatkan password 16 simbol'}]})));assert.ok(password.some(e=>e.event==='meta'&&e.data.modelIdentity==='not_applicable'));assert.equal(calls.length,0);});
 });
 test('server routing accepts only policy-backed candidates, ignores manual overrides and retains shadow mode',async()=>{
- const directory=await mkdtemp(path.join(process.cwd(),'docs/benchmarks/route-policy-test-'));const file=path.join(directory,'policy.json'),reportRef=path.relative(process.cwd(),path.join(directory,'report.json'));
- const base={category:'daily',sourceKind:'live',reportRef,comparisonSet:'b'.repeat(64),caseIds:['a','b','c'],sampleCount:3,verifiedAt:new Date().toISOString(),objectivePassRate:1,contextPassRate:1,instructionPassRate:1,streamingSuccessRate:1,qualitativeReview:{status:'approved',reviewer:'SYNTHETIC TEST ONLY',score:4.5},p95LatencyMs:100,costVerified:true,maxTestedInputChars:5000};
- const report={sourceKind:'live',planOnly:false,datasetSha256:'a'.repeat(64),results:['gpt-4o-mini','gpt-4.1-mini'].flatMap(model=>['a','b','c'].map(caseId=>({model,caseId,attempted:true,httpStatus:200,reportedModel:model,finishReason:'stop',objectiveStatus:'PASS',output:'SYNTHETIC TEST ONLY',request:{body:{messages:[{content:'x'.repeat(5000)}]}}})))};
- await writeFile(path.join(directory,'report.json'),JSON.stringify(report));await writeFile(file,JSON.stringify({schemaVersion:1,datasetSha256:'a'.repeat(64),maxLatencyMs:5000,maxCostUsdPerRequest:0.01,evidence:[{...base,modelId:'gpt-4o-mini',costUsdPerRequest:0.002},{...base,modelId:'gpt-4.1-mini',costUsdPerRequest:0.001}]}));
- try{await isolated(async calls=>{process.env.AET_ROUTING_MODE='adaptive';process.env.AET_ROUTING_POLICY_FILE=file;await events(await POST(request({model:'gpt-5.4'})));assert.equal(calls.at(-1)?.model,'gpt-4.1-mini');process.env.AET_ROUTING_MODE='shadow';await events(await POST(request({})));assert.equal(calls.at(-1)?.model,'gpt-4o-mini');process.env.AET_ROUTING_MODE='adaptive';await writeFile(path.join(directory,'report.json'),JSON.stringify({...report,sourceKind:'LOCAL_MOCK'}));await events(await POST(request({})));assert.equal(calls.at(-1)?.model,'gpt-4o-mini');});}finally{await rm(directory,{recursive:true,force:true});}
+ const fixture=await calibrationFixture();
+ try{await isolated(async calls=>{
+  process.env.AET_ROUTING_MODE='adaptive';process.env.AET_ROUTING_POLICY_FILE=fixture.file;
+  const adaptive=await events(await POST(request({model:'gpt-5.4'})));
+  assert.equal(calls.at(-1)?.model,'gpt-4.1-mini');
+  assert.ok(adaptive.some(e=>e.event==='meta'&&e.data.model==='gpt-4.1-mini'&&e.data.reportedModel==='gpt-4.1-mini'&&e.data.routingCalibration==='reviewed_live_evidence'));
+  const before=calls.length;process.env.AET_ROUTING_MODE='shadow';
+  const shadow=await events(await POST(request({})));
+  assert.equal(calls.length,before+1);assert.equal(calls.at(-1)?.model,'gpt-4o-mini');
+  assert.ok(shadow.some(e=>e.event==='meta'&&(e.data.routing as {recommendedModelId?:string})?.recommendedModelId==='gpt-4.1-mini'));
+  process.env.AET_ROUTING_MODE='adaptive';fixture.policy.status='pending';
+  process.env.AET_ROUTING_POLICY_FILE=await fixture.writePolicy();
+  await events(await POST(request({})));assert.equal(calls.at(-1)?.model,'gpt-4o-mini');
+ });}finally{await fixture.cleanup();}
+});
+test('self-asserted legacy policy metrics do not select an uncalibrated model',async()=>{
+ const f=await calibrationFixture();
+ try{await writeFile(f.file,JSON.stringify({schemaVersion:1,evidence:[],datasetSha256:'a'.repeat(64)}));await isolated(async calls=>{
+  process.env.AET_ROUTING_MODE='adaptive';process.env.AET_ROUTING_POLICY_FILE=f.file;
+  await events(await POST(request({model:'gpt-5.4'})));assert.equal(calls.at(-1)?.model,'gpt-4o-mini');
+ });}finally{await f.cleanup();}
 });
 test('a configured USD cap fails closed without verified runtime pricing',async()=>{await isolated(async calls=>{process.env.AET_MAX_REQUEST_USD='0.01';assert.equal((await POST(request({}))).status,503);assert.equal(calls.length,0);});});
+test('an unhealthy default without a calibrated alternative emits an explicit failure without fetching',async()=>{
+ await isolated(async calls=>{
+  recordProviderFailure('gpt-4o-mini',503,null);recordProviderFailure('gpt-4o-mini',503,null);
+  const raw=await (await POST(request({}))).text();assert.match(raw,/NO_ELIGIBLE_MODEL/);assert.doesNotMatch(raw,/event: done|event: delta/);assert.equal(calls.length,0);
+ });
+});
 
 test('deployment deadline aborts a waiting gateway and never completes a partial answer',async()=>{await isolated(async(_calls,set)=>{process.env.AET_CHAT_DEADLINE_MS='500';set((_b,init)=>new Promise<Response>((_resolve,reject)=>init!.signal!.addEventListener('abort',()=>reject(new Error('timeout')),{once:true})));const response=await POST(request({}));const raw=await response.text();assert.match(raw,/event: error/);assert.match(raw,/DEADLINE|UPSTREAM_TIMEOUT/);assert.doesNotMatch(raw,/event: done|event: delta/);});});

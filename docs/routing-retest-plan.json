@@ -1,0 +1,1003 @@
+{
+  "schemaVersion": 1,
+  "status": "PLAN_ONLY_NOT_AUTHORIZED",
+  "pricingSourceReport": "docs/benchmarks/run-2026-10-25T07-48-50-786Z-6888c026/report.json",
+  "pricingVerifiedAt": "2026-10-25T06:45:50.831Z",
+  "pricingBasis": "Recorded operator-attested gateway non-cache/peak rates; renew and verify before any execution. Not a current price quote.",
+  "authorization": "Historical approval is not approval for this plan. Live execution requires new explicit cost authorization and fresh key-bound provider guard.",
+  "diagnosticGenerationCount": 78,
+  "applicationGenerationCeiling": 54,
+  "directEstimatedUsd": 1.2741834000000005,
+  "applicationConservativeEstimatedUsd": 0.9828864,
+  "totalPlanningEstimateUsd": 2.2570698000000005,
+  "suggestedProviderCapUsd": 3,
+  "localReserveFraction": 0.2,
+  "fitsHistoricalLocalCeiling": true,
+  "caveats": [
+    "No actual token usage or bill was measured.",
+    "Diagnostics change only the cap within each comparison group; retain failures and all previous originals.",
+    "Three repetitions are an initial calibration minimum, not a stable p95 or general quality guarantee.",
+    "Application phase uses one Fast answer per sample; retries consume the same ceiling and can block later samples.",
+    "Review humans must assess all quality/instruction rows. Missing gateway usage still blocks cost-qualified promotion.",
+    "Public candidates were shortlisted only from the three available reasoning cells and their observed latency/recorded rates. No production winner is asserted.",
+    "Vision, tools, document reasoning, long context and non-answer roles require separate scoped suites; do not infer them here."
+  ],
+  "diagnosticTasks": [
+    {
+      "phase": "truncation",
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-daily",
+      "repeat": 1,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.003295
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-daily",
+      "repeat": 2,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.003295
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-daily",
+      "repeat": 3,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.003295
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-daily",
+      "repeat": 1,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.005343
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-daily",
+      "repeat": 2,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.005343
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-daily",
+      "repeat": 3,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.005343
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-daily",
+      "repeat": 1,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.022264
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-daily",
+      "repeat": 2,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.022264
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-daily",
+      "repeat": 3,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.022264
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-daily",
+      "repeat": 1,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.034552
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-daily",
+      "repeat": 2,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.034552
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-daily",
+      "repeat": 3,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.034552
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-daily",
+      "repeat": 1,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.010639200000000001
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-daily",
+      "repeat": 2,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.010639200000000001
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-daily",
+      "repeat": 3,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.010639200000000001
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-daily",
+      "repeat": 1,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.01469424
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-daily",
+      "repeat": 2,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.01469424
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-daily",
+      "repeat": 3,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 4988,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.01469424
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-report",
+      "repeat": 1,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.00358325
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-report",
+      "repeat": 2,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.00358325
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-report",
+      "repeat": 3,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.00358325
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-report",
+      "repeat": 1,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.00563125
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-report",
+      "repeat": 2,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.00563125
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gpt-5-mini",
+      "caseId": "persona-report",
+      "repeat": 3,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.00563125
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "claude-opus-5",
+      "caseId": "persona-report",
+      "repeat": 1,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.056305
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "claude-opus-5",
+      "caseId": "persona-report",
+      "repeat": 2,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.056305
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "claude-opus-5",
+      "caseId": "persona-report",
+      "repeat": 3,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.056305
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "claude-opus-5",
+      "caseId": "persona-report",
+      "repeat": 1,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.081905
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "claude-opus-5",
+      "caseId": "persona-report",
+      "repeat": 2,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.081905
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "claude-opus-5",
+      "caseId": "persona-report",
+      "repeat": 3,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.081905
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.5-flash",
+      "caseId": "persona-report",
+      "repeat": 1,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.0184275
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.5-flash",
+      "caseId": "persona-report",
+      "repeat": 2,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.0184275
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.5-flash",
+      "caseId": "persona-report",
+      "repeat": 3,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.0184275
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.5-flash",
+      "caseId": "persona-report",
+      "repeat": 1,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.0276435
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.5-flash",
+      "caseId": "persona-report",
+      "repeat": 2,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.0276435
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.5-flash",
+      "caseId": "persona-report",
+      "repeat": 3,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.0276435
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-report",
+      "repeat": 1,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.02457
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-report",
+      "repeat": 2,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.02457
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-report",
+      "repeat": 3,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.02457
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-report",
+      "repeat": 1,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.036858
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-report",
+      "repeat": 2,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.036858
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "gemini/gemini-3.1-pro-preview",
+      "caseId": "persona-report",
+      "repeat": 3,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.036858
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-flash",
+      "caseId": "persona-report",
+      "repeat": 1,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.0030711
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-flash",
+      "caseId": "persona-report",
+      "repeat": 2,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.0030711
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-flash",
+      "caseId": "persona-report",
+      "repeat": 3,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.0030711
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-flash",
+      "caseId": "persona-report",
+      "repeat": 1,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.0042999
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-flash",
+      "caseId": "persona-report",
+      "repeat": 2,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.0042999
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-flash",
+      "caseId": "persona-report",
+      "repeat": 3,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.0042999
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-report",
+      "repeat": 1,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.01216116
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-report",
+      "repeat": 2,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.01216116
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-report",
+      "repeat": 3,
+      "actualOutputCap": 1024,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 1024,
+        "estimatedCeilingUsd": 0.01216116
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-report",
+      "repeat": 1,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.0162162
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-report",
+      "repeat": 2,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.0162162
+      }
+    },
+    {
+      "phase": "truncation",
+      "modelId": "deepseek-v4-pro",
+      "caseId": "persona-report",
+      "repeat": 3,
+      "actualOutputCap": 2048,
+      "estimate": {
+        "inputTokenEstimate": 6141,
+        "outputTokenLimit": 2048,
+        "estimatedCeilingUsd": 0.0162162
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4o-mini",
+      "caseId": "reasoning-quantitative",
+      "repeat": 1,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 5132,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.001077
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4o-mini",
+      "caseId": "reasoning-quantitative",
+      "repeat": 2,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 5132,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.001077
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4o-mini",
+      "caseId": "reasoning-quantitative",
+      "repeat": 3,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 5132,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.001077
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4.1-mini",
+      "caseId": "reasoning-quantitative",
+      "repeat": 1,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 5001,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.0028196000000000002
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4.1-mini",
+      "caseId": "reasoning-quantitative",
+      "repeat": 2,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 5001,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.0028196000000000002
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4.1-mini",
+      "caseId": "reasoning-quantitative",
+      "repeat": 3,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 5001,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.0028196000000000002
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "claude-haiku-4-5",
+      "caseId": "reasoning-quantitative",
+      "repeat": 1,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 5001,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.007561
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "claude-haiku-4-5",
+      "caseId": "reasoning-quantitative",
+      "repeat": 2,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 5001,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.007561
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "claude-haiku-4-5",
+      "caseId": "reasoning-quantitative",
+      "repeat": 3,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 5001,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.007561
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4o-mini",
+      "caseId": "reasoning-constraints",
+      "repeat": 1,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 5090,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.0010707
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4o-mini",
+      "caseId": "reasoning-constraints",
+      "repeat": 2,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 5090,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.0010707
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4o-mini",
+      "caseId": "reasoning-constraints",
+      "repeat": 3,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 5090,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.0010707
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4o-mini",
+      "caseId": "reasoning-conflicting-information",
+      "repeat": 1,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 6304,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.0012527999999999999
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4o-mini",
+      "caseId": "reasoning-conflicting-information",
+      "repeat": 2,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 6304,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.0012527999999999999
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4o-mini",
+      "caseId": "reasoning-conflicting-information",
+      "repeat": 3,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 6304,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.0012527999999999999
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4.1-mini",
+      "caseId": "reasoning-conflicting-information",
+      "repeat": 1,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 6173,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.0032884000000000004
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4.1-mini",
+      "caseId": "reasoning-conflicting-information",
+      "repeat": 2,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 6173,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.0032884000000000004
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "gpt-4.1-mini",
+      "caseId": "reasoning-conflicting-information",
+      "repeat": 3,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 6173,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.0032884000000000004
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "claude-haiku-4-5",
+      "caseId": "reasoning-conflicting-information",
+      "repeat": 1,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 6173,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.008733
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "claude-haiku-4-5",
+      "caseId": "reasoning-conflicting-information",
+      "repeat": 2,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 6173,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.008733
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "claude-haiku-4-5",
+      "caseId": "reasoning-conflicting-information",
+      "repeat": 3,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 6173,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.008733
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "claude-sonnet-5",
+      "caseId": "reasoning-conflicting-information",
+      "repeat": 1,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 6173,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.017466
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "claude-sonnet-5",
+      "caseId": "reasoning-conflicting-information",
+      "repeat": 2,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 6173,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.017466
+      }
+    },
+    {
+      "phase": "failed-objective",
+      "modelId": "claude-sonnet-5",
+      "caseId": "reasoning-conflicting-information",
+      "repeat": 3,
+      "actualOutputCap": 512,
+      "estimate": {
+        "inputTokenEstimate": 6173,
+        "outputTokenLimit": 512,
+        "estimatedCeilingUsd": 0.017466
+      }
+    }
+  ],
+  "applicationEstimates": [
+    {
+      "modelId": "gpt-4o-mini",
+      "chatSamples": 18,
+      "maxGenerations": 18,
+      "mode": "fast",
+      "reservedInputPerAttempt": 24000,
+      "reservedOutputPerAttempt": 4096,
+      "conservativeEstimateUsd": 0.1090368
+    },
+    {
+      "modelId": "gpt-5.4-mini",
+      "chatSamples": 18,
+      "maxGenerations": 18,
+      "mode": "fast",
+      "reservedInputPerAttempt": 24000,
+      "reservedOutputPerAttempt": 4096,
+      "conservativeEstimateUsd": 0.655776
+    },
+    {
+      "modelId": "deepseek-v4-flash",
+      "chatSamples": 18,
+      "maxGenerations": 18,
+      "mode": "fast",
+      "reservedInputPerAttempt": 24000,
+      "reservedOutputPerAttempt": 4096,
+      "conservativeEstimateUsd": 0.2180736
+    }
+  ],
+  "applicationFixture": "tests/fixtures/routing-retest.json",
+  "primaryCaseIds": [
+    "reasoning-quantitative",
+    "reasoning-constraints",
+    "reasoning-conflicting-information"
+  ],
+  "contextCaseIds": [
+    "latest-correction",
+    "early-constraint",
+    "followup-second"
+  ]
+}

@@ -1,0 +1,318 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> aet-ai@2.2.0 test
+> node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/*.test.mts
+
+✔ response mode default, validation and legacy model migration cannot request Frontier (2.00921ms)
+✔ structured state retains early constraints, records correction provenance and recomputes after edit/delete (10.967016ms)
+✔ followups resolve a numbered option and one ambiguous reference gets one targeted clarification (20.832807ms)
+✔ additive v2 migration is idempotent, Normal is default, forged cached state and deleted tombstones cannot revive facts (3.120901ms)
+✔ all roles and retries share attempt, token, tool, revision, concurrency and deadline ceilings (1.205262ms)
+✔ optional work must leave a final-answer reserve; unknown usage and price are null rather than zero (0.495645ms)
+✔ fast simple work completes in one generation, ignores legacy model, and publishes only final deltas (14.815231ms)
+✔ normal simple work completes in one generation, ignores legacy model, and publishes only final deltas (4.493956ms)
+✔ think simple work completes in one generation, ignores legacy model, and publishes only final deltas (1.986486ms)
+✔ Think selective two workers, bounded verifier and one targeted revision use at most six attempts (18.1371ms)
+✔ malformed planner or verifier is bounded and never executed as code (5.320668ms)
+✔ every LLM role checks Frontier permission before fetch, including verifier, worker, planner and retry candidate (1.333836ms)
+✔ HTTP transport retry counts twice, billing and Retry-After stop without model rotation (1.786685ms)
+✔ global provider semaphore queues work and abort removes waiting work without taking capacity (0.664559ms)
+✔ cancellation aborts both parallel Think workers and never publishes draft or complete output (4.242197ms)
+✔ tools respect context, deterministic arithmetic is exact within limits, and model text cannot execute commands (3.255614ms)
+✔ citation checks test acquisition, not URL validity or verifier agreement, and exclude failed sources (0.321273ms)
+✔ full context packet keeps an old correction beyond the former 40-message window, with untrusted sources outside system (9.385689ms)
+✔ failed sources trigger advisory review and retain failure provenance rather than fabricated evidence (4.35077ms)
+✔ unsupported citations cannot gain support from verifier agreement and targeted revision never loops (11.968041ms)
+✔ shared provider rate limit prevents a different candidate from bypassing quota (0.675175ms)
+✔ output usage exceeding a reservation is a failure, not an opportunity for additional model work (0.630318ms)
+✔ whole-input accounting includes system/state/documents and rejects an oversized final request before generation (3.773923ms)
+✔ Fast, Normal and Think use the same user-requested output limit for simple work (4.671172ms)
+✔ asking about a current value is a reference, not a replacement correction (0.583447ms)
+✔ example URLs inside code are not mistaken for acquired source citations (0.111949ms)
+✔ provider rejects image input for an unverified model before any attempt or fetch (0.266701ms)
+✔ persona daily composes identity, language, evidence, mode (22.377499ms)
+✔ persona report composes identity, language, evidence, mode (0.635505ms)
+✔ persona coding composes identity, language, evidence, mode (0.37255ms)
+✔ parameters are bounded, family-aware and optional guesses omitted (2.892989ms)
+✔ model retirement preserves historical label without silently selecting another (0.336446ms)
+✔ chat validation rejects spoofed system role, malformed mode, missing final user (0.602456ms)
+✔ failed model outputs cannot become factual context (0.19319ms)
+✔ context cap retains latest correction without changing stored history (0.361233ms)
+✔ deterministic router avoids weather, currency and search false positives (4.035306ms)
+✔ unit conversions respect dimensions, zero, negative and absolute zero (0.589195ms)
+✔ passwords use secure random output with classes and enforced length (2.263222ms)
+✖ AET retrieval detects followup, caches official data and records provenance (16.644811ms)
+✔ benchmark contains exactly 20 cases per mode with explicit rubric and constraints (6.651318ms)
+✖ PDF text extraction uses the installed pdf-parse v2 API (1.933427ms)
+✖ rejects scan.pdf with a clear document error (0.793573ms)
+✖ rejects encrypted.pdf with a clear document error (0.633813ms)
+✖ rejects too-many-pages.pdf with a clear document error (0.91796ms)
+✖ DOCX extraction uses installed Mammoth (0.610958ms)
+✔ UTF-8 TXT extraction supports bounded text (0.694905ms)
+✔ invalid, empty, oversized and spoofed attachments rejected (1.201786ms)
+✔ unknown vision capability blocks image payload before calling gateway (0.474303ms)
+✔ missing legacy attachment is acknowledged rather than hallucinated (0.342765ms)
+✔ budget guard fails closed without real-cap evidence and never accepts a budget over USD 3 (1.557221ms)
+✔ deterministic dataset has reference answers and exactly the promised matrix (6.756897ms)
+✔ code validator executes only its fully whitelisted program templates (3.127942ms)
+✔ missing budget evidence sends no generations, preserves all 96 BLOCKED cells and no invented scores (308.457595ms)
+✔ LOCAL MOCK matrix uses all exact IDs, actual production personas, family parameters and immutable per-case requests (2034.074803ms)
+✔ LOCAL MOCK foreign model identity fails integration, never silently replaces requested IDs (1533.079799ms)
+✔ LOCAL MOCK metadata 403 and absent IDs do not prevent authorized direct generations (3139.026144ms)
+✔ LOCAL MOCK starts with a balanced smoke wave over all 12 models before other cases (344.71223ms)
+✔ LOCAL MOCK direct generation permission error opens circuit with safe provider evidence (195.703845ms)
+✔ LOCAL MOCK wrong key binding, absent prices and unaffordable full wave send no generations (655.662459ms)
+✔ price validation, actual Gemini output cap, and partial scoring keep unknown data explicit (0.702627ms)
+✔ temporary Windows replacement lock retries without deleting the old report (21.606791ms)
+✔ permanent replacement lock retains complete JSON and the previous report; write failure stops (19.257508ms)
+✔ remaining-wave scheduler carries historical cost and global request ceiling forward (0.423016ms)
+✔ LOCAL MOCK continuation retains 61 cells including FAIL, sends exactly 35, and keeps original file (3935.852049ms)
+✔ production daily/fast preserves persona and serves final SSE (50.320404ms)
+✔ production daily/normal preserves persona and serves final SSE (5.797435ms)
+✔ production daily/think preserves persona and serves final SSE (5.983415ms)
+✔ production report/fast preserves persona and serves final SSE (2.647831ms)
+✔ production report/normal preserves persona and serves final SSE (3.387713ms)
+✔ production report/think preserves persona and serves final SSE (6.968366ms)
+✔ production coding/fast preserves persona and serves final SSE (5.451465ms)
+✔ production coding/normal preserves persona and serves final SSE (14.380497ms)
+✔ production coding/think preserves persona and serves final SSE (11.716624ms)
+✔ Normal default, legacy model ignoring and invalid mode are enforced before generation (11.68783ms)
+✔ origin, system-role spoofing, cached state injection and incomplete messages stay untrusted (4.266373ms)
+✔ provider statuses are typed SSE failures; shared quota/billing are never retried or rotated (18.38087ms)
+✔ malformed, empty, interrupted and foreign model streams never expose a draft or finish successfully (6.313121ms)
+✔ request cancellation cancels pending provider read, emits no success and releases capacity (2.758867ms)
+✔ client cancelling the stream invalidates all server work without waiting for another provider chunk (10.025981ms)
+✔ document extraction stays data and all injected text remains outside the system prompt (3.745485ms)
+✔ actual tool provenance and deterministic direct answers require no generation (6.684058ms)
+✔ server routing accepts only policy-backed candidates, ignores manual overrides and retains shadow mode (88.315811ms)
+✔ self-asserted legacy policy metrics do not select an uncalibrated model (67.441248ms)
+✔ a configured USD cap fails closed without verified runtime pricing (1.692403ms)
+✔ an unhealthy default without a calibrated alternative emits an explicit failure without fetching (3.274096ms)
+✔ deployment deadline aborts a waiting gateway and never completes a partial answer (3.63967ms)
+✔ news validates slug, publication boolean and safe image URL (1.484973ms)
+✔ event calendar dates, ordering and explicit WIB parse are correct (0.826443ms)
+✔ team ordering and social links validated (0.440402ms)
+✔ legacy migration preserves stable IDs, content, key and date (1.505002ms)
+✔ new store restores chosen historical model, strips binary only, no silent substitution (4.672534ms)
+✔ retry targets last user exactly once and excludes failed responses from context (1.280735ms)
+✔ invalid store never silently falls back and overwrites legacy data (0.171498ms)
+✔ client message IDs use secure random bytes without requiring randomUUID (2.189231ms)
+✔ explicit word targets receive room to finish and remain bounded (1.294175ms)
+✔ Gemini has tested headroom for invisible generation within output allowance (0.249956ms)
+✔ latest message and resolved attachment cannot exceed context budget (1.023288ms)
+✔ application SSE completes immediately at done even if server keeps socket open (3.783938ms)
+✔ application SSE ignores trailing frames after done and rejects primitive payloads (4.338572ms)
+✔ source provenance exposes actual search URLs and tool failure without trusting model links (0.50556ms)
+✔ negative instructions suppress deterministic tool execution (0.685711ms)
+✔ an aborted request cannot initiate external tool calls (1.832044ms)
+✔ events distinguish future, in progress and ended at exact boundaries (0.191818ms)
+✔ verified vision sends actual image parts and text-only continuation preserves historical messages (18.037765ms)
+✔ image context limit keeps the newest four images with an explicit older-image notice (1.25771ms)
+✔ citation examples and invented DOI requests cannot produce plausible fake sources (0.644179ms)
+✔ active deletion removes exactly its ID and payload from state and the per-mode storage key (19.976785ms)
+✔ inactive item deletion retains the active conversation and all other items (0.766512ms)
+✔ active deletion prefers another saved conversation over an old greeting-only draft (0.463577ms)
+✔ last deletion leaves an empty session, durable empty history, and no resurrection after repeated reloads (0.646742ms)
+✔ durable empty v2 store prevents legacy re-import; deleting migrated history removes its old local copy (0.447412ms)
+✔ a pending autosave and effect cleanup cannot restore a deleted conversation (9.31247ms)
+✔ request and attachment invalidation block deferred responses after deletion or switching (6.127261ms)
+✔ stopping keeps ownership for cancelled status; finishing an old request cannot release a new request (0.294903ms)
+✔ write failure throws before callers publish deletion; original durable data remains (0.663297ms)
+✔ failed legacy removal preserves a durable migration and does not silently delete anything (0.483867ms)
+✔ mode isolation, search, rename, new session, edit and retry still work after deletion (0.508434ms)
+✔ evaluation defaults to zero-network plan with identical cases, four variants and three repeats (308.979906ms)
+✔ mock evaluation records negative baseline control, usable new context, and blinded review without billing claims (491.615318ms)
+✔ unapproved live evaluation fails closed, has no fabricated scores and makes no generations (199.895197ms)
+✔ global evaluation request ceiling includes every role and blocks remaining samples (209.173877ms)
+✔ accelerated three-repeat mock matrix keeps production per-request budgets without hitting the real-time throughput window (1266.803515ms)
+✔ operator candidate evaluation uses exact family parameters and is labelled evaluation-only (198.680472ms)
+✔ an evaluation candidate cannot bypass Frontier authorization and a candidate plan sends nothing (362.849652ms)
+✔ gateway diagnostics classify observations without claiming an exact root cause (6.477196ms)
+✔ provider error capture is bounded, cancelled and redacted (1.161596ms)
+✔ untrusted Markdown rejects script schemes, active data documents, credentials and obfuscation (1.520346ms)
+✔ safe web, relative, mail links and supported raster/video previews are retained (0.166921ms)
+✔ task intent survives documents/large history and follows direct requests across personas (1.907918ms)
+✔ followups and latest corrections inherit user task; a new topic discards old coding keywords (4.679324ms)
+✔ off, missing evidence and shadow are deterministic and do not execute candidates (2.625186ms)
+✔ failed-quality or unhealthy baseline remains a comparator; candidates retain every quality gate (0.463777ms)
+✔ unproven, stale, mismatched, costly, short or unreviewed candidates never promote (0.85144ms)
+✔ Frontier, images, documents, roles, mode, context/output, health and budgets constrain every choice including baseline (8.412336ms)
+✔ client manual IDs cannot override selection; decision metadata contains no user content (0.730398ms)
+✔ v2 loader derives metrics, accepts a failed baseline comparator, and rejects legacy self-asserted metrics (106.461309ms)
+✔ loader rejects altered dataset/report bytes, invented metrics, mocks, plans, stale sources and duplicated repeats (374.118547ms)
+✔ missing usage, review, capability extent or unmeasured category remains visible without fabricated zero cost (55.276803ms)
+node:internal/modules/package_json_reader:331
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'react' imported from /workspace/scratch/cc37678ad100/work/aet-aiv3/tests/rendering.test.mts
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+    at packageResolve (node:internal/modules/esm/resolve:784:25)
+    at moduleResolve (node:internal/modules/esm/resolve:873:18)
+    at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+    at #resolve (node:internal/modules/esm/loader:687:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:276:33) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.22.1
+✖ tests/rendering.test.mts (159.172852ms)
+✔ immutable final screening has 96 unique attempts and 61 unchanged ancestors, without invented reviews or usage (77.238209ms)
+✔ screening audit rejects duplicated cells and a changed resume parent hash (101.605223ms)
+✔ forged cookie and purpose substitution cannot authorize admin (2.850895ms)
+✔ signature tampering, future tokens, extra segments and expiry rejected (0.330187ms)
+✔ Frontier has no public fallback secret or permissive answer matching (0.430958ms)
+✔ cross-site origin and fetch-site denied (3.115342ms)
+✔ JSON rejects wrong content type, malformed body, primitives, oversized chunked bodies (6.80721ms)
+✔ rate limit blocks excess then resets at window boundary (0.486481ms)
+✔ SSRF blocks 127.0.0.1 (0.477307ms)
+✔ SSRF blocks 10.2.3.4 (0.231658ms)
+✔ SSRF blocks 172.16.0.1 (0.139309ms)
+✔ SSRF blocks 192.168.1.1 (0.25942ms)
+✔ SSRF blocks 169.254.169.254 (0.18637ms)
+✔ SSRF blocks 100.64.0.1 (0.192549ms)
+✔ SSRF blocks 0.0.0.0 (0.151307ms)
+✔ SSRF blocks ::1 (4.427233ms)
+✔ SSRF blocks ::ffff:127.0.0.1 (0.289475ms)
+✔ SSRF blocks fc00::1 (0.169985ms)
+✔ SSRF blocks fe80::1 (0.089785ms)
+✔ SSRF blocks 2001:db8::1 (0.169284ms)
+✔ SSRF blocks 2002:7f00:1:: (0.161523ms)
+✔ public IP and safe HTTPS URL accepted, credentials and unsafe schemes rejected (0.613693ms)
+✔ explicit origin supports a trusted reverse-proxy host while rejecting other origins (0.644969ms)
+✔ UTF-8 and SSE frame boundaries may split at every byte (14.427262ms)
+✔ malformed provider frame, provider error, empty output, interrupted EOF rejected (3.416074ms)
+✔ generation output limit signals incomplete answer rather than silent success (0.616266ms)
+✔ reader is cancelled when consumer stops before completion (0.423807ms)
+✔ client application SSE requires done and rejects error events (3.376063ms)
+✔ DONE without a stop finish reason and unsupported tool endings are not complete text (1.235096ms)
+✔ model mismatch is rejected before foreign model text is exposed (0.299991ms)
+✔ metadata records reported identity, usage and finish without storing private reasoning (0.518659ms)
+✔ benchmark reader captures usage sent after stop without appending any extra answer (0.860654ms)
+✔ whitespace-only responses and primitive frames fail closed (0.509576ms)
+✔ abort interrupts a reader waiting without another chunk, on server and client parsers (0.686222ms)
+✔ buildSumopodChatRequest creates a streaming OpenAI-compatible chat request (2.456963ms)
+✔ toSumopodMessages preserves image data URLs for multimodal chat payloads (0.195334ms)
+✔ parseOpenAITextStream yields content deltas from Server-Sent Events (4.093342ms)
+✔ AI model catalog contains the requested models exactly once (0.410697ms)
+✔ frontier model detection separates gated and open models (0.149234ms)
+✔ validateAetFrontierAnswers accepts normalized AET knowledge answers only (0.336015ms)
+✔ frontier access token verifies valid tokens and rejects expired tokens (1.292933ms)
+✔ multi-word negative tool instructions suppress implicit unit/currency calls (4.205209ms)
+✔ malformed external responses never become successful source evidence (8.348667ms)
+✔ non-success external HTTP bodies are cancelled to release resources (1.114075ms)
+ℹ tests 183
+ℹ suites 0
+ℹ pass 176
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8402.17936
+
+✖ failing tests:
+
+test at tests/ai.test.mts:49:1
+✖ AET retrieval detects followup, caches official data and records provenance (16.644811ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'error' !== 'ok'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/cc37678ad100/work/aet-aiv3/tests/ai.test.mts:52:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'error',
+    expected: 'ok',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/attachments.test.mts:7:1
+✖ PDF text extraction uses the installed pdf-parse v2 API (1.933427ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'pdf-parse' imported from /workspace/scratch/cc37678ad100/work/aet-aiv3/tests/attachments.test.mts
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+      at #resolve (node:internal/modules/esm/loader:687:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at tests/attachments.test.mts:11:69
+✖ rejects scan.pdf with a clear document error (0.793573ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'pdf-parse' imported from /workspace/scratch/cc37678ad100/work/aet-aiv3/tests/attachments.test.mts
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+      at #resolve (node:internal/modules/esm/loader:687:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at tests/attachments.test.mts:11:69
+✖ rejects encrypted.pdf with a clear document error (0.633813ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'pdf-parse' imported from /workspace/scratch/cc37678ad100/work/aet-aiv3/tests/attachments.test.mts
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+      at #resolve (node:internal/modules/esm/loader:687:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at tests/attachments.test.mts:11:69
+✖ rejects too-many-pages.pdf with a clear document error (0.91796ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'pdf-parse' imported from /workspace/scratch/cc37678ad100/work/aet-aiv3/tests/attachments.test.mts
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+      at #resolve (node:internal/modules/esm/loader:687:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at tests/attachments.test.mts:15:1
+✖ DOCX extraction uses installed Mammoth (0.610958ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'mammoth' imported from /workspace/scratch/cc37678ad100/work/aet-aiv3/tests/attachments.test.mts
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+      at #resolve (node:internal/modules/esm/loader:687:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+      at node:internal/modules/esm/loader:636:32 {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at tests/rendering.test.mts:1:1
+✖ tests/rendering.test.mts (159.172852ms)
+  'test failed'

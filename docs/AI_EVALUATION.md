@@ -1,5 +1,7 @@
 # Menjalankan evaluasi kemampuan AI
 
+Pembaruan 25 Oktober 2026: evaluator menghasilkan report v2 `application-evaluation` dengan fingerprint source/prompt dan request body tanpa header. Opsi operator `--candidate-model`, `--fixture`, dan `--variants` memungkinkan kalibrasi kandidat tanpa mengaktifkan policy produksi; default tetap plan tanpa jaringan. Lihat `routing-policy-guide.md` untuk kontrak dan `routing-retest-plan.json` untuk rencana yang belum diotorisasi. Report v1 lama dan screening 12×8 tidak otomatis menjadi policy produksi.
+
 Skrip baru: `scripts/evaluate-ai.mjs`. Gunakan Node.js 24 dari root repo. Hasil dibuat pada `evaluation/run-<waktu>-<id>/`; run lama tidak ditimpa. Folder ini diabaikan Git. Skrip membaca `.env`, lalu `.env.local`; environment shell yang sudah ditetapkan tetap berlaku. Jangan mengunggah key, `.env`, atau kredensial.
 
 ## 1. Periksa alur tanpa biaya

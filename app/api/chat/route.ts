@@ -49,7 +49,7 @@ export async function POST(request: Request) {
     });
     transferred = true;
     return new Response(stream,{headers:{'Content-Type':useEvents?'text/event-stream; charset=utf-8':'text/plain; charset=utf-8','Cache-Control':'no-store, no-transform','X-Accel-Buffering':'no',
-      'X-AET-Request-ID':session.requestId,'X-AET-Response-Mode':parsed.responseMode,'X-AET-Model':session.routing.modelId,'X-AET-Routing-Reason':session.routing.reason}});
+      'X-AET-Request-ID':session.requestId,'X-AET-Response-Mode':parsed.responseMode,'X-AET-Model':session.routing.modelId ?? 'none','X-AET-Routing-Reason':session.routing.reason}});
   } catch(error) {return errorResponse(error);}
   finally {if(!transferred){abort.abort();release();}}
 }

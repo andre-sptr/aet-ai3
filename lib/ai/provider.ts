@@ -63,6 +63,7 @@ export async function generateText(options: {
   // gpt-4o-mini input is allowed, <=4 images, at most 8192 reserved tokens each.
   const tokenMessages = body.messages.map((m: GatewayMessage) => ({ ...m, content: Array.isArray(m.content) ? m.content.map(p => p.type === 'image_url' ? {type:'image_url', tokenReserve:8192} : p) : m.content }));
   const images = options.messages.reduce((n,m) => n + (Array.isArray(m.content) ? m.content.filter(p => p.type === 'image_url').length : 0), 0);
+  if (images && getModelById(modelId)?.supportsImageInput !== true) throw new ApiError(400,'Input gambar belum terverifikasi untuk kandidat ini.','IMAGE_UNSUPPORTED');
   if(images && budget.maxUsd!==null)throw new ApiError(503,'Batas USD untuk gambar memerlukan kalibrasi token gambar pada gateway.','VISION_PRICING_UNKNOWN');
   const input = estimateInput(tokenMessages) + images * 8192;
   if (input + output > Math.min(getModelById(modelId)?.contextCapacity ?? 32_000, 128_000)) throw new ApiError(413, 'Konteks beserta cadangan jawaban terlalu panjang.', 'CONTEXT_LIMIT');

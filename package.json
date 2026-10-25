@@ -22,7 +22,10 @@
     "test:ai:plan": "npm run test:ai -- --plan",
     "test:ai:mock": "npm run test:ai -- --mock",
     "test:ai:setup": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/setup-ai-evaluation.mjs",
-    "test:ai:models": "npm run test:benchmark"
+    "test:ai:models": "npm run test:benchmark",
+    "test:routing": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/model-routing.test.mts tests/routing-screening.test.mts tests/chat-route.test.mts tests/adaptive.test.mts tests/evaluation.test.mts",
+    "routing:audit": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/normalize-routing-evidence.mjs --check",
+    "routing:retest:plan": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/plan-routing-retest.mjs --check"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

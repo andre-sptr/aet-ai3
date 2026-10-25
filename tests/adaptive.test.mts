@@ -168,3 +168,10 @@ test('asking about a current value is a reference, not a replacement correction'
 test('example URLs inside code are not mistaken for acquired source citations',()=>{
  const code='Contoh:\n```js\nfetch("https://api.example.com/data");\n```';assert.equal(checkAnswer(code,'Buat contoh fetch JavaScript',[]).issues.length,0);assert.equal(checkAnswer('Bukti: https://api.example.com/data','Jelaskan',[]).issues.length,1);
 });
+test('provider rejects image input for an unverified model before any attempt or fetch',async()=>{
+ let calls=0;const budget=new RequestBudget({...MODE_POLICIES.normal},new AbortController().signal);
+ await assert.rejects(()=>generateText({role:'answer',modelId:'gpt-4.1-mini',persona:'daily',system:'fixture',
+  messages:[{role:'user',content:[{type:'image_url',image_url:{url:'data:image/png;base64,AA=='}}]}],outputLimit:64,budget,
+  fetcher:async()=>{calls++;return frame('gpt-4.1-mini','x');}}),e=>(e as {code:string}).code==='IMAGE_UNSUPPORTED');
+ assert.equal(calls,0);assert.equal(budget.attempts.length,0);
+});

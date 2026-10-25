@@ -26,3 +26,17 @@ test('global evaluation request ceiling includes every role and blocks remaining
 test('accelerated three-repeat mock matrix keeps production per-request budgets without hitting the real-time throughput window',async()=>{
  const {report}=await run(['--mock','--repeat','3','--max-requests','250']);assert.equal(report.results.length,120);assert.equal(report.simulationOverrides.providerCallsPerMinute,10000);assert.ok(report.results.every((r:{status:string})=>r.status!=='ERROR'&&r.status!=='BLOCKED'));assert.ok(report.modelRequests>120);assert.equal(report.results.filter((r:{status:string})=>r.status==='FAIL').length,3);
 });
+test('operator candidate evaluation uses exact family parameters and is labelled evaluation-only',async()=>{
+ const {code,report}=await run(['--mock','--candidate-model','gpt-5.4-mini','--variants','fast','--cases','simple-fact','--repeat','3']);
+ assert.equal(code,0);assert.equal(report.schemaVersion,2);assert.equal(report.kind,'application-evaluation');assert.equal(report.modelRequests,3);
+ assert.ok(report.results.every((r:{status:string;metadata:{model:string;routingCalibration:string};providerRequests:{body:{model:string;max_tokens?:number;max_completion_tokens?:number}}[]})=>
+  r.status==='PASS'&&r.metadata.model==='gpt-5.4-mini'&&r.metadata.routingCalibration==='evaluation_only'
+  &&r.providerRequests.every(p=>p.body.model==='gpt-5.4-mini'&&p.body.max_tokens===undefined&&Number(p.body.max_completion_tokens)>0)));
+ assert.match(report.pipelineSha256,/^[a-f0-9]{64}$/);assert.match(report.productionPromptSha256,/^[a-f0-9]{64}$/);
+});
+test('an evaluation candidate cannot bypass Frontier authorization and a candidate plan sends nothing',async()=>{
+ const {report}=await run(['--mock','--candidate-model','gpt-5.4','--variants','fast','--cases','simple-fact','--repeat','1'],{ENABLE_FRONTIER:'false'});
+ assert.equal(report.modelRequests,0);assert.equal(report.results[0].status,'ERROR');
+ const planned=await run(['--candidate-model','gpt-5.4-mini','--variants','fast','--cases','simple-fact','--repeat','3']);
+ assert.equal(planned.report.modelRequests,0);assert.equal(planned.report.results.length,3);
+});
